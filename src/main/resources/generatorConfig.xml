@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <classPathEntry location="G:\apache\Maven\apache-maven-3.6.3\myresp\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar"/>
+  <context id="context1" targetRuntime="mybatis3">
+    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/shiro0526?characterEncoding=utf8" driverClass="com.mysql.jdbc.Driver" password="123" userId="root" />
+    <javaModelGenerator targetPackage="com.woniu.springbootshiro.model" targetProject=".\src\main\java" />
+    <sqlMapGenerator targetPackage="com.woniu.springbootshiro.mapper" targetProject=".\src\main\java"></sqlMapGenerator>
+    <javaClientGenerator targetPackage="com.woniu.springbootshiro.mapper" targetProject=".\src\main\java" type="XMLMAPPER" />
+    
+     <table schema="springbootshiro" tableName="role">
+    </table>
+    <table schema="springbootshiro" tableName="roletree">
+    </table>
+    <table schema="springbootshiro" tableName="tree">
+    </table>
+    <table schema="springbootshiro" tableName="userinfo">
+    </table>
+    <table schema="springbootshiro" tableName="userinforole">
+    </table>
+  </context>
+</generatorConfiguration>

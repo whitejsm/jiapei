@@ -1,0 +1,18 @@
+server:
+  port: 9000
+spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/shiro0526?characterEncoding=utf-8
+    username: root
+    password: 123
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+logging.level.org.springframework.boot.autoconfigure: ERROR
