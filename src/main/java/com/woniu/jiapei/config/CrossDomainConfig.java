@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author 周元皓丶
  * 项目跨域设置
  */
+
 @Configuration
 public class CrossDomainConfig implements WebMvcConfigurer {
     @Override
