@@ -8,6 +8,11 @@
     <result column="is_super" jdbcType="CHAR" property="isSuper" />
     <result column="role_level" jdbcType="INTEGER" property="roleLevel" />
   </resultMap>
+  <select id="findByUid" resultMap="BaseResultMap" parameterType="int">
+    select * from tb_jp_role where role_id in(
+        select role_id from tb_jp_userinforole where userinfo_id=#{userinfo_id}
+    )
+  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -208,10 +213,7 @@
       role_level = #{roleLevel,jdbcType=INTEGER}
     where role_id = #{roleId,jdbcType=INTEGER}
   </update>
-  <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.Role">
-    <id column="role_id" jdbcType="INTEGER" property="roleId" />
-    <result column="rolename" jdbcType="VARCHAR" property="rolename" />
-  </resultMap>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

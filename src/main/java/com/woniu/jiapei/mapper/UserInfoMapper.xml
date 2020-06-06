@@ -15,6 +15,18 @@
     <result column="isdelete" jdbcType="BIT" property="isdelete" />
     <result column="parent_id" jdbcType="INTEGER" property="parentId" />
   </resultMap>
+  <resultMap id="BaseResultMapWithRole" type="com.woniu.jiapei.model.UserInfo" extends="BaseResultMap">
+    <collection property="roles" column="userinfo_id" select="com.woniu.jiapei.mapper.RoleMapper.findByUid"></collection>
+  </resultMap>
+  <resultMap id="BaseResultMapWithRolePermission" type="com.woniu.jiapei.model.UserInfo" extends="BaseResultMapWithRole">
+    <collection property="permissions" column="userinfo_id" select="com.woniu.jiapei.mapper.PermissionMapper.findByUid"></collection>
+  </resultMap>
+  <!-- 自定义的登录查询语句 -->
+  <select id="findByName" resultType="BaseResultMapWithRolePermission" parameterType="java.lang.String">
+    select * from tb_jp_userinfo where username=#{uname}
+  </select>
+
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

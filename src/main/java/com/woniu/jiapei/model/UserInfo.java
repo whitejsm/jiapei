@@ -1,6 +1,7 @@
 package com.woniu.jiapei.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class UserInfo {
     private Integer userinfoId;
@@ -122,4 +123,25 @@ public class UserInfo {
     public void setParentId(Integer parentId) {
         this.parentId = parentId;
     }
+
+    private List roles;
+
+    public List getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List roles) {
+        this.roles = roles;
+    }
+
+    public List getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List permissions) {
+        this.permissions = permissions;
+    }
+
+    private List permissions;
+
 }

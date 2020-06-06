@@ -7,6 +7,12 @@
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="pid" property="pid" jdbcType="INTEGER" />
   </resultMap>
+  <select id="findByUid" resultMap="BaseResultMap" parameterType="int">
+   select * from tb_jp_permission where id in(
+    select permission_id from tb_jp_rolepermission where role_id in(
+        select role_id from tb_jp_userinforole where userinfo_id=#{userinfo_id}
+    ))
+      </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
