@@ -7,19 +7,18 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
  * @author 周元皓丶
  */
-@Controller
+@RestController
 public class LoginController {
     /*
     登录
      */
-    @PostMapping("/login")
+    @GetMapping("/login")
     public String login(String uname, String upass, ModelMap map){
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(uname,upass);

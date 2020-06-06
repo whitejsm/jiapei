@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.woniu.jiapei.mapper.FeedbackMapper" >
+  <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.Feedback" >
+    <id column="feedback_id" property="feedbackId" jdbcType="VARCHAR" />
+    <result column="orders_id" property="ordersId" jdbcType="VARCHAR" />
+    <result column="feedback_img" property="feedbackImg" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.woniu.jiapei.model.Feedback" extends="BaseResultMap" >
+    <result column="feedback_content" property="feedbackContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    feedback_id, orders_id, feedback_img, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    feedback_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.woniu.jiapei.model.FeedbackExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_jp_feedback
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.model.FeedbackExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_jp_feedback
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_jp_feedback
+    where feedback_id = #{feedbackId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_jp_feedback
+    where feedback_id = #{feedbackId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.woniu.jiapei.model.FeedbackExample" >
+    delete from tb_jp_feedback
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.woniu.jiapei.model.Feedback" >
+    insert into tb_jp_feedback (feedback_id, orders_id, feedback_img, 
+      create_time, feedback_content)
+    values (#{feedbackId,jdbcType=VARCHAR}, #{ordersId,jdbcType=VARCHAR}, #{feedbackImg,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{feedbackContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Feedback" >
+    insert into tb_jp_feedback
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="feedbackId != null" >
+        feedback_id,
+      </if>
+      <if test="ordersId != null" >
+        orders_id,
+      </if>
+      <if test="feedbackImg != null" >
+        feedback_img,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="feedbackContent != null" >
+        feedback_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="feedbackId != null" >
+        #{feedbackId,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersId != null" >
+        #{ordersId,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackImg != null" >
+        #{feedbackImg,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feedbackContent != null" >
+        #{feedbackContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.woniu.jiapei.model.FeedbackExample" resultType="java.lang.Integer" >
+    select count(*) from tb_jp_feedback
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_jp_feedback
+    <set >
+      <if test="record.feedbackId != null" >
+        feedback_id = #{record.feedbackId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ordersId != null" >
+        orders_id = #{record.ordersId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.feedbackImg != null" >
+        feedback_img = #{record.feedbackImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.feedbackContent != null" >
+        feedback_content = #{record.feedbackContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update tb_jp_feedback
+    set feedback_id = #{record.feedbackId,jdbcType=VARCHAR},
+      orders_id = #{record.ordersId,jdbcType=VARCHAR},
+      feedback_img = #{record.feedbackImg,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      feedback_content = #{record.feedbackContent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_jp_feedback
+    set feedback_id = #{record.feedbackId,jdbcType=VARCHAR},
+      orders_id = #{record.ordersId,jdbcType=VARCHAR},
+      feedback_img = #{record.feedbackImg,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.jiapei.model.Feedback" >
+    update tb_jp_feedback
+    <set >
+      <if test="ordersId != null" >
+        orders_id = #{ordersId,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackImg != null" >
+        feedback_img = #{feedbackImg,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feedbackContent != null" >
+        feedback_content = #{feedbackContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where feedback_id = #{feedbackId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.woniu.jiapei.model.Feedback" >
+    update tb_jp_feedback
+    set orders_id = #{ordersId,jdbcType=VARCHAR},
+      feedback_img = #{feedbackImg,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      feedback_content = #{feedbackContent,jdbcType=LONGVARCHAR}
+    where feedback_id = #{feedbackId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.jiapei.model.Feedback" >
+    update tb_jp_feedback
+    set orders_id = #{ordersId,jdbcType=VARCHAR},
+      feedback_img = #{feedbackImg,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where feedback_id = #{feedbackId,jdbcType=VARCHAR}
+  </update>
+</mapper>

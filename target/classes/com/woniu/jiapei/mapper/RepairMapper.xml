@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.woniu.jiapei.mapper.RepairMapper" >
+  <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.Repair" >
+    <id column="repair_id" property="repairId" jdbcType="VARCHAR" />
+    <result column="fault_id" property="faultId" jdbcType="INTEGER" />
+    <result column="repair_result" property="repairResult" jdbcType="VARCHAR" />
+    <result column="repair_status" property="repairStatus" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.woniu.jiapei.model.Repair" extends="BaseResultMap" >
+    <result column="repair_instructions" property="repairInstructions" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    repair_id, fault_id, repair_result, repair_status, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    repair_instructions
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.woniu.jiapei.model.RepairExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_jp_repair
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.model.RepairExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_jp_repair
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_jp_repair
+    where repair_id = #{repairId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_jp_repair
+    where repair_id = #{repairId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.woniu.jiapei.model.RepairExample" >
+    delete from tb_jp_repair
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.woniu.jiapei.model.Repair" >
+    insert into tb_jp_repair (repair_id, fault_id, repair_result, 
+      repair_status, create_time, repair_instructions
+      )
+    values (#{repairId,jdbcType=VARCHAR}, #{faultId,jdbcType=INTEGER}, #{repairResult,jdbcType=VARCHAR}, 
+      #{repairStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{repairInstructions,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Repair" >
+    insert into tb_jp_repair
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="repairId != null" >
+        repair_id,
+      </if>
+      <if test="faultId != null" >
+        fault_id,
+      </if>
+      <if test="repairResult != null" >
+        repair_result,
+      </if>
+      <if test="repairStatus != null" >
+        repair_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="repairInstructions != null" >
+        repair_instructions,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="repairId != null" >
+        #{repairId,jdbcType=VARCHAR},
+      </if>
+      <if test="faultId != null" >
+        #{faultId,jdbcType=INTEGER},
+      </if>
+      <if test="repairResult != null" >
+        #{repairResult,jdbcType=VARCHAR},
+      </if>
+      <if test="repairStatus != null" >
+        #{repairStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repairInstructions != null" >
+        #{repairInstructions,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.woniu.jiapei.model.RepairExample" resultType="java.lang.Integer" >
+    select count(*) from tb_jp_repair
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_jp_repair
+    <set >
+      <if test="record.repairId != null" >
+        repair_id = #{record.repairId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.faultId != null" >
+        fault_id = #{record.faultId,jdbcType=INTEGER},
+      </if>
+      <if test="record.repairResult != null" >
+        repair_result = #{record.repairResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repairStatus != null" >
+        repair_status = #{record.repairStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.repairInstructions != null" >
+        repair_instructions = #{record.repairInstructions,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update tb_jp_repair
+    set repair_id = #{record.repairId,jdbcType=VARCHAR},
+      fault_id = #{record.faultId,jdbcType=INTEGER},
+      repair_result = #{record.repairResult,jdbcType=VARCHAR},
+      repair_status = #{record.repairStatus,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      repair_instructions = #{record.repairInstructions,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_jp_repair
+    set repair_id = #{record.repairId,jdbcType=VARCHAR},
+      fault_id = #{record.faultId,jdbcType=INTEGER},
+      repair_result = #{record.repairResult,jdbcType=VARCHAR},
+      repair_status = #{record.repairStatus,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.jiapei.model.Repair" >
+    update tb_jp_repair
+    <set >
+      <if test="faultId != null" >
+        fault_id = #{faultId,jdbcType=INTEGER},
+      </if>
+      <if test="repairResult != null" >
+        repair_result = #{repairResult,jdbcType=VARCHAR},
+      </if>
+      <if test="repairStatus != null" >
+        repair_status = #{repairStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repairInstructions != null" >
+        repair_instructions = #{repairInstructions,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where repair_id = #{repairId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.woniu.jiapei.model.Repair" >
+    update tb_jp_repair
+    set fault_id = #{faultId,jdbcType=INTEGER},
+      repair_result = #{repairResult,jdbcType=VARCHAR},
+      repair_status = #{repairStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      repair_instructions = #{repairInstructions,jdbcType=LONGVARCHAR}
+    where repair_id = #{repairId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.jiapei.model.Repair" >
+    update tb_jp_repair
+    set fault_id = #{faultId,jdbcType=INTEGER},
+      repair_result = #{repairResult,jdbcType=VARCHAR},
+      repair_status = #{repairStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where repair_id = #{repairId,jdbcType=VARCHAR}
+  </update>
+</mapper>
