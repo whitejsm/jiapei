@@ -104,143 +104,133 @@ public class ProvinceExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andPidIsNull() {
-            addCriterion("pid is null");
+        public Criteria andProvinceIdIsNull() {
+            addCriterion("province_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andPidIsNotNull() {
-            addCriterion("pid is not null");
+        public Criteria andProvinceIdIsNotNull() {
+            addCriterion("province_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPidEqualTo(String value) {
-            addCriterion("pid =", value, "pid");
+        public Criteria andProvinceIdEqualTo(Integer value) {
+            addCriterion("province_id =", value, "provinceId");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotEqualTo(String value) {
-            addCriterion("pid <>", value, "pid");
+        public Criteria andProvinceIdNotEqualTo(Integer value) {
+            addCriterion("province_id <>", value, "provinceId");
             return (Criteria) this;
         }
 
-        public Criteria andPidGreaterThan(String value) {
-            addCriterion("pid >", value, "pid");
+        public Criteria andProvinceIdGreaterThan(Integer value) {
+            addCriterion("province_id >", value, "provinceId");
             return (Criteria) this;
         }
 
-        public Criteria andPidGreaterThanOrEqualTo(String value) {
-            addCriterion("pid >=", value, "pid");
+        public Criteria andProvinceIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("province_id >=", value, "provinceId");
             return (Criteria) this;
         }
 
-        public Criteria andPidLessThan(String value) {
-            addCriterion("pid <", value, "pid");
+        public Criteria andProvinceIdLessThan(Integer value) {
+            addCriterion("province_id <", value, "provinceId");
             return (Criteria) this;
         }
 
-        public Criteria andPidLessThanOrEqualTo(String value) {
-            addCriterion("pid <=", value, "pid");
+        public Criteria andProvinceIdLessThanOrEqualTo(Integer value) {
+            addCriterion("province_id <=", value, "provinceId");
             return (Criteria) this;
         }
 
-        public Criteria andPidLike(String value) {
-            addCriterion("pid like", value, "pid");
+        public Criteria andProvinceIdIn(List<Integer> values) {
+            addCriterion("province_id in", values, "provinceId");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotLike(String value) {
-            addCriterion("pid not like", value, "pid");
+        public Criteria andProvinceIdNotIn(List<Integer> values) {
+            addCriterion("province_id not in", values, "provinceId");
             return (Criteria) this;
         }
 
-        public Criteria andPidIn(List<String> values) {
-            addCriterion("pid in", values, "pid");
+        public Criteria andProvinceIdBetween(Integer value1, Integer value2) {
+            addCriterion("province_id between", value1, value2, "provinceId");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotIn(List<String> values) {
-            addCriterion("pid not in", values, "pid");
+        public Criteria andProvinceIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("province_id not between", value1, value2, "provinceId");
             return (Criteria) this;
         }
 
-        public Criteria andPidBetween(String value1, String value2) {
-            addCriterion("pid between", value1, value2, "pid");
+        public Criteria andProvinceNameIsNull() {
+            addCriterion("province_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotBetween(String value1, String value2) {
-            addCriterion("pid not between", value1, value2, "pid");
+        public Criteria andProvinceNameIsNotNull() {
+            addCriterion("province_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPnameIsNull() {
-            addCriterion("pname is null");
+        public Criteria andProvinceNameEqualTo(String value) {
+            addCriterion("province_name =", value, "provinceName");
             return (Criteria) this;
         }
 
-        public Criteria andPnameIsNotNull() {
-            addCriterion("pname is not null");
+        public Criteria andProvinceNameNotEqualTo(String value) {
+            addCriterion("province_name <>", value, "provinceName");
             return (Criteria) this;
         }
 
-        public Criteria andPnameEqualTo(String value) {
-            addCriterion("pname =", value, "pname");
+        public Criteria andProvinceNameGreaterThan(String value) {
+            addCriterion("province_name >", value, "provinceName");
             return (Criteria) this;
         }
 
-        public Criteria andPnameNotEqualTo(String value) {
-            addCriterion("pname <>", value, "pname");
+        public Criteria andProvinceNameGreaterThanOrEqualTo(String value) {
+            addCriterion("province_name >=", value, "provinceName");
             return (Criteria) this;
         }
 
-        public Criteria andPnameGreaterThan(String value) {
-            addCriterion("pname >", value, "pname");
+        public Criteria andProvinceNameLessThan(String value) {
+            addCriterion("province_name <", value, "provinceName");
             return (Criteria) this;
         }
 
-        public Criteria andPnameGreaterThanOrEqualTo(String value) {
-            addCriterion("pname >=", value, "pname");
+        public Criteria andProvinceNameLessThanOrEqualTo(String value) {
+            addCriterion("province_name <=", value, "provinceName");
             return (Criteria) this;
         }
 
-        public Criteria andPnameLessThan(String value) {
-            addCriterion("pname <", value, "pname");
+        public Criteria andProvinceNameLike(String value) {
+            addCriterion("province_name like", value, "provinceName");
             return (Criteria) this;
         }
 
-        public Criteria andPnameLessThanOrEqualTo(String value) {
-            addCriterion("pname <=", value, "pname");
+        public Criteria andProvinceNameNotLike(String value) {
+            addCriterion("province_name not like", value, "provinceName");
             return (Criteria) this;
         }
 
-        public Criteria andPnameLike(String value) {
-            addCriterion("pname like", value, "pname");
+        public Criteria andProvinceNameIn(List<String> values) {
+            addCriterion("province_name in", values, "provinceName");
             return (Criteria) this;
         }
 
-        public Criteria andPnameNotLike(String value) {
-            addCriterion("pname not like", value, "pname");
+        public Criteria andProvinceNameNotIn(List<String> values) {
+            addCriterion("province_name not in", values, "provinceName");
             return (Criteria) this;
         }
 
-        public Criteria andPnameIn(List<String> values) {
-            addCriterion("pname in", values, "pname");
+        public Criteria andProvinceNameBetween(String value1, String value2) {
+            addCriterion("province_name between", value1, value2, "provinceName");
             return (Criteria) this;
         }
 
-        public Criteria andPnameNotIn(List<String> values) {
-            addCriterion("pname not in", values, "pname");
-            return (Criteria) this;
-        }
-
-        public Criteria andPnameBetween(String value1, String value2) {
-            addCriterion("pname between", value1, value2, "pname");
-            return (Criteria) this;
-        }
-
-        public Criteria andPnameNotBetween(String value1, String value2) {
-            addCriterion("pname not between", value1, value2, "pname");
+        public Criteria andProvinceNameNotBetween(String value1, String value2) {
+            addCriterion("province_name not between", value1, value2, "provinceName");
             return (Criteria) this;
         }
     }

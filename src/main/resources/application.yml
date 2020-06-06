@@ -2,8 +2,8 @@ server:
   port: 9000
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://39.105.162.40:6033/jiapei?characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://39.105.162.40:6033/jiapei?characterEncoding=utf-8&useSSL=false
     username: root
     password: 6j3tg3p5a9@0316YTMZZ
 pagehelper:
@@ -11,4 +11,11 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
-logging.level.org.springframework.boot.autoconfigure: ERROR
+
+logging:
+ level:
+  org:
+   springframework:
+    boot:
+     autoconfigure:
+      ERROR

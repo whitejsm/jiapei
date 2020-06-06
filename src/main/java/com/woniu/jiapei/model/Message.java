@@ -1,43 +1,75 @@
 package com.woniu.jiapei.model;
 
+import java.util.Date;
+
 public class Message {
-    private Long id;
+    private String messageId;
 
-    private String content;
+    private Integer roleId;
 
-    private Integer type;
+    private Integer messageTypeId;
 
-    private String title;
+    private Integer messageDetailId;
 
-    public Long getId() {
-        return id;
+    private String messageWay;
+
+    private String messageCondition;
+
+    private Date createTime;
+
+    public String getMessageId() {
+        return messageId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
     }
 
-    public String getContent() {
-        return content;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getMessageTypeId() {
+        return messageTypeId;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setMessageTypeId(Integer messageTypeId) {
+        this.messageTypeId = messageTypeId;
     }
 
-    public String getTitle() {
-        return title;
+    public Integer getMessageDetailId() {
+        return messageDetailId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setMessageDetailId(Integer messageDetailId) {
+        this.messageDetailId = messageDetailId;
+    }
+
+    public String getMessageWay() {
+        return messageWay;
+    }
+
+    public void setMessageWay(String messageWay) {
+        this.messageWay = messageWay;
+    }
+
+    public String getMessageCondition() {
+        return messageCondition;
+    }
+
+    public void setMessageCondition(String messageCondition) {
+        this.messageCondition = messageCondition;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

@@ -48,7 +48,7 @@ public class ShiroRealm extends AuthorizingRealm {
 
         SimpleAuthorizationInfo sai = new SimpleAuthorizationInfo();
         for (Role role : roles) {
-            sai.addRole(role.getRoleName());
+            sai.addRole(role.getRolename());
         }
         sai.addStringPermissions(permission);
         return sai;

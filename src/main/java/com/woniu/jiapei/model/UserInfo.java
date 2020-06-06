@@ -6,9 +6,9 @@ import java.util.List;
 public class UserInfo {
     private Integer userinfoId;
 
-    private String name;
-
     private String username;
+
+    private String name;
 
     private String password;
 
@@ -36,20 +36,20 @@ public class UserInfo {
         this.userinfoId = userinfoId;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -123,8 +123,8 @@ public class UserInfo {
     public void setParentId(Integer parentId) {
         this.parentId = parentId;
     }
-
     private List roles;
+    private List permissions;
 
     public List getRoles() {
         return roles;
@@ -141,7 +141,4 @@ public class UserInfo {
     public void setPermissions(List permissions) {
         this.permissions = permissions;
     }
-
-    private List permissions;
-
 }

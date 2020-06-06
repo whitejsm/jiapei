@@ -1,63 +1,65 @@
 package com.woniu.jiapei.model;
 
+import java.util.Date;
+
 public class Log {
-    private Integer id;
+    private String logId;
 
-    private Integer userId;
+    private Integer userinfoId;
 
-    private String module;
+    private Integer modelId;
 
-    private String context;
+    private String logIp;
 
-    private String ip;
+    private Date logTime;
 
-    private String time;
+    private String logContent;
 
-    public Integer getId() {
-        return id;
+    public String getLogId() {
+        return logId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setLogId(String logId) {
+        this.logId = logId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getUserinfoId() {
+        return userinfoId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserinfoId(Integer userinfoId) {
+        this.userinfoId = userinfoId;
     }
 
-    public String getModule() {
-        return module;
+    public Integer getModelId() {
+        return modelId;
     }
 
-    public void setModule(String module) {
-        this.module = module;
+    public void setModelId(Integer modelId) {
+        this.modelId = modelId;
     }
 
-    public String getContext() {
-        return context;
+    public String getLogIp() {
+        return logIp;
     }
 
-    public void setContext(String context) {
-        this.context = context;
+    public void setLogIp(String logIp) {
+        this.logIp = logIp;
     }
 
-    public String getIp() {
-        return ip;
+    public Date getLogTime() {
+        return logTime;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setLogTime(Date logTime) {
+        this.logTime = logTime;
     }
 
-    public String getTime() {
-        return time;
+    public String getLogContent() {
+        return logContent;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setLogContent(String logContent) {
+        this.logContent = logContent;
     }
 }

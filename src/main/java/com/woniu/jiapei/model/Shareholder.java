@@ -11,7 +11,7 @@ public class Shareholder {
 
     private String shareholderBankcard;
 
-    private Long shareholderMoney;
+    private Long shareholderMoeny;
 
     public Integer getUserinfoId() {
         return userinfoId;
@@ -45,11 +45,11 @@ public class Shareholder {
         this.shareholderBankcard = shareholderBankcard;
     }
 
-    public Long getShareholderMoney() {
-        return shareholderMoney;
+    public Long getShareholderMoeny() {
+        return shareholderMoeny;
     }
 
-    public void setShareholderMoney(Long shareholderMoney) {
-        this.shareholderMoney = shareholderMoney;
+    public void setShareholderMoeny(Long shareholderMoeny) {
+        this.shareholderMoeny = shareholderMoeny;
     }
 }

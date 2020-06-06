@@ -1,23 +1,23 @@
 package com.woniu.jiapei.model;
 
 public class Province {
-    private String pid;
+    private Integer provinceId;
 
-    private String pname;
+    private String provinceName;
 
-    public String getPid() {
-        return pid;
+    public Integer getProvinceId() {
+        return provinceId;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
+    public void setProvinceId(Integer provinceId) {
+        this.provinceId = provinceId;
     }
 
-    public String getPname() {
-        return pname;
+    public String getProvinceName() {
+        return provinceName;
     }
 
-    public void setPname(String pname) {
-        this.pname = pname;
+    public void setProvinceName(String provinceName) {
+        this.provinceName = provinceName;
     }
 }

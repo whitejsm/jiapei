@@ -355,63 +355,63 @@ public class ShareholderExample {
             return (Criteria) this;
         }
 
-        public Criteria andShareholderMoneyIsNull() {
-            addCriterion("shareholder_money is null");
+        public Criteria andShareholderMoenyIsNull() {
+            addCriterion("shareholder_moeny is null");
             return (Criteria) this;
         }
 
-        public Criteria andShareholderMoneyIsNotNull() {
-            addCriterion("shareholder_money is not null");
+        public Criteria andShareholderMoenyIsNotNull() {
+            addCriterion("shareholder_moeny is not null");
             return (Criteria) this;
         }
 
-        public Criteria andShareholderMoneyEqualTo(Long value) {
-            addCriterion("shareholder_money =", value, "shareholderMoney");
+        public Criteria andShareholderMoenyEqualTo(Long value) {
+            addCriterion("shareholder_moeny =", value, "shareholderMoeny");
             return (Criteria) this;
         }
 
-        public Criteria andShareholderMoneyNotEqualTo(Long value) {
-            addCriterion("shareholder_money <>", value, "shareholderMoney");
+        public Criteria andShareholderMoenyNotEqualTo(Long value) {
+            addCriterion("shareholder_moeny <>", value, "shareholderMoeny");
             return (Criteria) this;
         }
 
-        public Criteria andShareholderMoneyGreaterThan(Long value) {
-            addCriterion("shareholder_money >", value, "shareholderMoney");
+        public Criteria andShareholderMoenyGreaterThan(Long value) {
+            addCriterion("shareholder_moeny >", value, "shareholderMoeny");
             return (Criteria) this;
         }
 
-        public Criteria andShareholderMoneyGreaterThanOrEqualTo(Long value) {
-            addCriterion("shareholder_money >=", value, "shareholderMoney");
+        public Criteria andShareholderMoenyGreaterThanOrEqualTo(Long value) {
+            addCriterion("shareholder_moeny >=", value, "shareholderMoeny");
             return (Criteria) this;
         }
 
-        public Criteria andShareholderMoneyLessThan(Long value) {
-            addCriterion("shareholder_money <", value, "shareholderMoney");
+        public Criteria andShareholderMoenyLessThan(Long value) {
+            addCriterion("shareholder_moeny <", value, "shareholderMoeny");
             return (Criteria) this;
         }
 
-        public Criteria andShareholderMoneyLessThanOrEqualTo(Long value) {
-            addCriterion("shareholder_money <=", value, "shareholderMoney");
+        public Criteria andShareholderMoenyLessThanOrEqualTo(Long value) {
+            addCriterion("shareholder_moeny <=", value, "shareholderMoeny");
             return (Criteria) this;
         }
 
-        public Criteria andShareholderMoneyIn(List<Long> values) {
-            addCriterion("shareholder_money in", values, "shareholderMoney");
+        public Criteria andShareholderMoenyIn(List<Long> values) {
+            addCriterion("shareholder_moeny in", values, "shareholderMoeny");
             return (Criteria) this;
         }
 
-        public Criteria andShareholderMoneyNotIn(List<Long> values) {
-            addCriterion("shareholder_money not in", values, "shareholderMoney");
+        public Criteria andShareholderMoenyNotIn(List<Long> values) {
+            addCriterion("shareholder_moeny not in", values, "shareholderMoeny");
             return (Criteria) this;
         }
 
-        public Criteria andShareholderMoneyBetween(Long value1, Long value2) {
-            addCriterion("shareholder_money between", value1, value2, "shareholderMoney");
+        public Criteria andShareholderMoenyBetween(Long value1, Long value2) {
+            addCriterion("shareholder_moeny between", value1, value2, "shareholderMoeny");
             return (Criteria) this;
         }
 
-        public Criteria andShareholderMoneyNotBetween(Long value1, Long value2) {
-            addCriterion("shareholder_money not between", value1, value2, "shareholderMoney");
+        public Criteria andShareholderMoenyNotBetween(Long value1, Long value2) {
+            addCriterion("shareholder_moeny not between", value1, value2, "shareholderMoeny");
             return (Criteria) this;
         }
     }

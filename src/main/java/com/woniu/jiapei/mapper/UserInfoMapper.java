@@ -28,5 +28,5 @@ public interface UserInfoMapper {
 
     int updateByPrimaryKey(UserInfo record);
 
-    UserInfo findByName(String uname);
+    UserInfo findByName(String username);
 }

@@ -10,7 +10,7 @@ public interface ProvinceMapper {
 
     int deleteByExample(ProvinceExample example);
 
-    int deleteByPrimaryKey(String pid);
+    int deleteByPrimaryKey(Integer provinceId);
 
     int insert(Province record);
 
@@ -18,7 +18,7 @@ public interface ProvinceMapper {
 
     List<Province> selectByExample(ProvinceExample example);
 
-    Province selectByPrimaryKey(String pid);
+    Province selectByPrimaryKey(Integer provinceId);
 
     int updateByExampleSelective(@Param("record") Province record, @Param("example") ProvinceExample example);
 

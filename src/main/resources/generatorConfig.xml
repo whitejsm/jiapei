@@ -6,15 +6,14 @@
     <commentGenerator>
       <property name="suppressAllComments" value="true"></property>
     </commentGenerator>
-    <jdbcConnection connectionURL="jdbc:mysql://39.105.162.40:6033/jiapei?characterEncoding=utf8" driverClass="com.mysql.jdbc.Driver" password="6j3tg3p5a9@0316YTMZZ" userId="root" />
+    <jdbcConnection connectionURL="jdbc:mysql://39.105.162.40:6033/jiapei?characterEncoding=utf8" driverClass="com.mysql.jdbc.Driver" password="6j3tg3p5a9@0316YTMZZ" userId="root" >
+      <property name="useInformationSchema" value="true"/>
+      <property name="nullCatalogMeansCurrent" value="true"/>
+    </jdbcConnection>
     <javaModelGenerator targetPackage="com.woniu.jiapei.model" targetProject=".\src\main\java" />
     <sqlMapGenerator targetPackage="com.woniu.jiapei.mapper" targetProject=".\src\main\java"></sqlMapGenerator>
     <javaClientGenerator targetPackage="com.woniu.jiapei.mapper" targetProject=".\src\main\java" type="XMLMAPPER" />
 
-    <table schema="jiapei" tableName="city" domainObjectName="City">
-    </table>
-    <table schema="jiapei" tableName="province" domainObjectName="Province">
-    </table>
 
 
     <table schema="jiapei" tableName="tb_jp_bed" domainObjectName="Bed">
@@ -68,7 +67,10 @@
 
     <table schema="jiapei" tableName="tb_jp_userinforole" domainObjectName="UserInfoRole">
     </table>
-
+    <table schema="jiapei" tableName="city" domainObjectName="City">
+    </table>
+    <table schema="jiapei" tableName="province" domainObjectName="Province">
+    </table>
     <table schema="jiapei" tableName="zone" domainObjectName="Zone">
     </table>
 

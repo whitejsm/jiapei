@@ -10,7 +10,7 @@ public interface MessageMapper {
 
     int deleteByExample(MessageExample example);
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String messageId);
 
     int insert(Message record);
 
@@ -18,7 +18,7 @@ public interface MessageMapper {
 
     List<Message> selectByExample(MessageExample example);
 
-    Message selectByPrimaryKey(Long id);
+    Message selectByPrimaryKey(String messageId);
 
     int updateByExampleSelective(@Param("record") Message record, @Param("example") MessageExample example);
 
