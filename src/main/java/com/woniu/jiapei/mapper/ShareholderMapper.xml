@@ -1,30 +1,32 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.woniu.jiapei.mapper.ShareholderMapper" >
-  <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.Shareholder" >
-    <id column="userinfo_id" property="userinfoId" jdbcType="INTEGER" />
-    <result column="shareholder_revenueshare" property="shareholderRevenueshare" jdbcType="INTEGER" />
-    <result column="shareholder_time" property="shareholderTime" jdbcType="TIMESTAMP" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.jiapei.mapper.ShareholderMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.Shareholder">
+    <id column="userinfo_id" jdbcType="INTEGER" property="userinfoId" />
+    <result column="shareholder_revenueshare" jdbcType="INTEGER" property="shareholderRevenueshare" />
+    <result column="shareholder_time" jdbcType="TIMESTAMP" property="shareholderTime" />
+    <result column="shareholder_bankcard" jdbcType="VARCHAR" property="shareholderBankcard" />
+    <result column="shareholder_money" jdbcType="DECIMAL" property="shareholderMoney" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -35,25 +37,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -64,115 +66,322 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
-    userinfo_id, shareholder_revenueshare, shareholder_time
+  <sql id="Base_Column_List">
+    userinfo_id, shareholder_revenueshare, shareholder_time, shareholder_bankcard, shareholder_money
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.model.ShareholderExample" >
+  <select id="selectByExample" parameterType="com.woniu.jiapei.model.ShareholderExample" resultMap="BaseResultMap">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
     from tb_jp_shareholder
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tb_jp_shareholder
     where userinfo_id = #{userinfoId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_jp_shareholder
     where userinfo_id = #{userinfoId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.woniu.jiapei.model.ShareholderExample" >
+  <delete id="deleteByExample" parameterType="com.woniu.jiapei.model.ShareholderExample">
     delete from tb_jp_shareholder
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.woniu.jiapei.model.Shareholder" >
+  <insert id="insert" parameterType="com.woniu.jiapei.model.Shareholder">
+    insert into tb_jp_shareholder (userinfo_id, shareholder_revenueshare, 
+      shareholder_time, shareholder_bankcard, 
+      shareholder_money)
+    values (#{userinfoId,jdbcType=INTEGER}, #{shareholderRevenueshare,jdbcType=INTEGER}, 
+      #{shareholderTime,jdbcType=TIMESTAMP}, #{shareholderBankcard,jdbcType=VARCHAR}, 
+      #{shareholderMoney,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Shareholder">
+    insert into tb_jp_shareholder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userinfoId != null">
+        userinfo_id,
+      </if>
+      <if test="shareholderRevenueshare != null">
+        shareholder_revenueshare,
+      </if>
+      <if test="shareholderTime != null">
+        shareholder_time,
+      </if>
+      <if test="shareholderBankcard != null">
+        shareholder_bankcard,
+      </if>
+      <if test="shareholderMoney != null">
+        shareholder_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userinfoId != null">
+        #{userinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="shareholderRevenueshare != null">
+        #{shareholderRevenueshare,jdbcType=INTEGER},
+      </if>
+      <if test="shareholderTime != null">
+        #{shareholderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shareholderBankcard != null">
+        #{shareholderBankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="shareholderMoney != null">
+        #{shareholderMoney,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.woniu.jiapei.model.ShareholderExample" resultType="java.lang.Integer">
+    select count(*) from tb_jp_shareholder
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_jp_shareholder
+    <set>
+      <if test="record.userinfoId != null">
+        userinfo_id = #{record.userinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shareholderRevenueshare != null">
+        shareholder_revenueshare = #{record.shareholderRevenueshare,jdbcType=INTEGER},
+      </if>
+      <if test="record.shareholderTime != null">
+        shareholder_time = #{record.shareholderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shareholderBankcard != null">
+        shareholder_bankcard = #{record.shareholderBankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shareholderMoney != null">
+        shareholder_money = #{record.shareholderMoney,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_jp_shareholder
+    set userinfo_id = #{record.userinfoId,jdbcType=INTEGER},
+      shareholder_revenueshare = #{record.shareholderRevenueshare,jdbcType=INTEGER},
+      shareholder_time = #{record.shareholderTime,jdbcType=TIMESTAMP},
+      shareholder_bankcard = #{record.shareholderBankcard,jdbcType=VARCHAR},
+      shareholder_money = #{record.shareholderMoney,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.jiapei.model.Shareholder">
+    update tb_jp_shareholder
+    <set>
+      <if test="shareholderRevenueshare != null">
+        shareholder_revenueshare = #{shareholderRevenueshare,jdbcType=INTEGER},
+      </if>
+      <if test="shareholderTime != null">
+        shareholder_time = #{shareholderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shareholderBankcard != null">
+        shareholder_bankcard = #{shareholderBankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="shareholderMoney != null">
+        shareholder_money = #{shareholderMoney,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where userinfo_id = #{userinfoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.jiapei.model.Shareholder">
+    update tb_jp_shareholder
+    set shareholder_revenueshare = #{shareholderRevenueshare,jdbcType=INTEGER},
+      shareholder_time = #{shareholderTime,jdbcType=TIMESTAMP},
+      shareholder_bankcard = #{shareholderBankcard,jdbcType=VARCHAR},
+      shareholder_money = #{shareholderMoney,jdbcType=DECIMAL}
+    where userinfo_id = #{userinfoId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.Shareholder">
+    <id column="userinfo_id" jdbcType="INTEGER" property="userinfoId" />
+    <result column="shareholder_revenueshare" jdbcType="INTEGER" property="shareholderRevenueshare" />
+    <result column="shareholder_time" jdbcType="TIMESTAMP" property="shareholderTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    userinfo_id, shareholder_revenueshare, shareholder_time
+  </sql>
+  <select id="selectByExample" parameterType="com.woniu.jiapei.model.ShareholderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_jp_shareholder
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_jp_shareholder
+    where userinfo_id = #{userinfoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_jp_shareholder
+    where userinfo_id = #{userinfoId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.woniu.jiapei.model.ShareholderExample">
+    delete from tb_jp_shareholder
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.woniu.jiapei.model.Shareholder">
     insert into tb_jp_shareholder (userinfo_id, shareholder_revenueshare, 
       shareholder_time)
     values (#{userinfoId,jdbcType=INTEGER}, #{shareholderRevenueshare,jdbcType=INTEGER}, 
       #{shareholderTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Shareholder" >
+  <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Shareholder">
     insert into tb_jp_shareholder
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userinfoId != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userinfoId != null">
         userinfo_id,
       </if>
-      <if test="shareholderRevenueshare != null" >
+      <if test="shareholderRevenueshare != null">
         shareholder_revenueshare,
       </if>
-      <if test="shareholderTime != null" >
+      <if test="shareholderTime != null">
         shareholder_time,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userinfoId != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userinfoId != null">
         #{userinfoId,jdbcType=INTEGER},
       </if>
-      <if test="shareholderRevenueshare != null" >
+      <if test="shareholderRevenueshare != null">
         #{shareholderRevenueshare,jdbcType=INTEGER},
       </if>
-      <if test="shareholderTime != null" >
+      <if test="shareholderTime != null">
         #{shareholderTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.woniu.jiapei.model.ShareholderExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.woniu.jiapei.model.ShareholderExample" resultType="java.lang.Integer">
     select count(*) from tb_jp_shareholder
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map">
     update tb_jp_shareholder
-    <set >
-      <if test="record.userinfoId != null" >
+    <set>
+      <if test="record.userinfoId != null">
         userinfo_id = #{record.userinfoId,jdbcType=INTEGER},
       </if>
-      <if test="record.shareholderRevenueshare != null" >
+      <if test="record.shareholderRevenueshare != null">
         shareholder_revenueshare = #{record.shareholderRevenueshare,jdbcType=INTEGER},
       </if>
-      <if test="record.shareholderTime != null" >
+      <if test="record.shareholderTime != null">
         shareholder_time = #{record.shareholderTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByExample" parameterType="map">
     update tb_jp_shareholder
     set userinfo_id = #{record.userinfoId,jdbcType=INTEGER},
       shareholder_revenueshare = #{record.shareholderRevenueshare,jdbcType=INTEGER},
       shareholder_time = #{record.shareholderTime,jdbcType=TIMESTAMP}
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.jiapei.model.Shareholder" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.jiapei.model.Shareholder">
     update tb_jp_shareholder
-    <set >
-      <if test="shareholderRevenueshare != null" >
+    <set>
+      <if test="shareholderRevenueshare != null">
         shareholder_revenueshare = #{shareholderRevenueshare,jdbcType=INTEGER},
       </if>
-      <if test="shareholderTime != null" >
+      <if test="shareholderTime != null">
         shareholder_time = #{shareholderTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where userinfo_id = #{userinfoId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.woniu.jiapei.model.Shareholder" >
+  <update id="updateByPrimaryKey" parameterType="com.woniu.jiapei.model.Shareholder">
     update tb_jp_shareholder
     set shareholder_revenueshare = #{shareholderRevenueshare,jdbcType=INTEGER},
       shareholder_time = #{shareholderTime,jdbcType=TIMESTAMP}

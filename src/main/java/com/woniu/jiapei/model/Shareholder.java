@@ -9,6 +9,10 @@ public class Shareholder {
 
     private Date shareholderTime;
 
+    private String shareholderBankcard;
+
+    private Long shareholderMoney;
+
     public Integer getUserinfoId() {
         return userinfoId;
     }
@@ -31,5 +35,21 @@ public class Shareholder {
 
     public void setShareholderTime(Date shareholderTime) {
         this.shareholderTime = shareholderTime;
+    }
+
+    public String getShareholderBankcard() {
+        return shareholderBankcard;
+    }
+
+    public void setShareholderBankcard(String shareholderBankcard) {
+        this.shareholderBankcard = shareholderBankcard;
+    }
+
+    public Long getShareholderMoney() {
+        return shareholderMoney;
+    }
+
+    public void setShareholderMoney(Long shareholderMoney) {
+        this.shareholderMoney = shareholderMoney;
     }
 }

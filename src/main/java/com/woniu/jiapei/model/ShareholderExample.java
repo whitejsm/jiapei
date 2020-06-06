@@ -284,6 +284,136 @@ public class ShareholderExample {
             addCriterion("shareholder_time not between", value1, value2, "shareholderTime");
             return (Criteria) this;
         }
+
+        public Criteria andShareholderBankcardIsNull() {
+            addCriterion("shareholder_bankcard is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderBankcardIsNotNull() {
+            addCriterion("shareholder_bankcard is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderBankcardEqualTo(String value) {
+            addCriterion("shareholder_bankcard =", value, "shareholderBankcard");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderBankcardNotEqualTo(String value) {
+            addCriterion("shareholder_bankcard <>", value, "shareholderBankcard");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderBankcardGreaterThan(String value) {
+            addCriterion("shareholder_bankcard >", value, "shareholderBankcard");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderBankcardGreaterThanOrEqualTo(String value) {
+            addCriterion("shareholder_bankcard >=", value, "shareholderBankcard");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderBankcardLessThan(String value) {
+            addCriterion("shareholder_bankcard <", value, "shareholderBankcard");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderBankcardLessThanOrEqualTo(String value) {
+            addCriterion("shareholder_bankcard <=", value, "shareholderBankcard");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderBankcardLike(String value) {
+            addCriterion("shareholder_bankcard like", value, "shareholderBankcard");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderBankcardNotLike(String value) {
+            addCriterion("shareholder_bankcard not like", value, "shareholderBankcard");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderBankcardIn(List<String> values) {
+            addCriterion("shareholder_bankcard in", values, "shareholderBankcard");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderBankcardNotIn(List<String> values) {
+            addCriterion("shareholder_bankcard not in", values, "shareholderBankcard");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderBankcardBetween(String value1, String value2) {
+            addCriterion("shareholder_bankcard between", value1, value2, "shareholderBankcard");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderBankcardNotBetween(String value1, String value2) {
+            addCriterion("shareholder_bankcard not between", value1, value2, "shareholderBankcard");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderMoneyIsNull() {
+            addCriterion("shareholder_money is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderMoneyIsNotNull() {
+            addCriterion("shareholder_money is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderMoneyEqualTo(Long value) {
+            addCriterion("shareholder_money =", value, "shareholderMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderMoneyNotEqualTo(Long value) {
+            addCriterion("shareholder_money <>", value, "shareholderMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderMoneyGreaterThan(Long value) {
+            addCriterion("shareholder_money >", value, "shareholderMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderMoneyGreaterThanOrEqualTo(Long value) {
+            addCriterion("shareholder_money >=", value, "shareholderMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderMoneyLessThan(Long value) {
+            addCriterion("shareholder_money <", value, "shareholderMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderMoneyLessThanOrEqualTo(Long value) {
+            addCriterion("shareholder_money <=", value, "shareholderMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderMoneyIn(List<Long> values) {
+            addCriterion("shareholder_money in", values, "shareholderMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderMoneyNotIn(List<Long> values) {
+            addCriterion("shareholder_money not in", values, "shareholderMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderMoneyBetween(Long value1, Long value2) {
+            addCriterion("shareholder_money between", value1, value2, "shareholderMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareholderMoneyNotBetween(Long value1, Long value2) {
+            addCriterion("shareholder_money not between", value1, value2, "shareholderMoney");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
