@@ -3,7 +3,174 @@
   <component name="ChangeListManager">
     <list default="true" id="777cd8c3-f1ce-45da-a2fb-10ff0d90b5bc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/controller/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/JiapeiApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/config/CrossDomainConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/controller/LoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/BedMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/CityMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/CustomerLoginInfoMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/CustomerMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/DepartmentMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/FaultMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/FeedbackMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/HospitalMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/LogMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/ManufacturerMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/MessageDetailsMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/MessageListMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/MessageMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/MessageTypeMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/OperationModuleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/OrdersMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/PermissionMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/ProvinceMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/RepairMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/RoleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/RolePermissionMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/ShareholderMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/UserInfoMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/UserInfoRoleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/UserLoginInfoMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/ZoneMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Bed.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/BedExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/BedExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/BedExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/BedExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/City.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CityExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CityExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CityExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CityExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Customer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerLoginInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerLoginInfoExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerLoginInfoExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerLoginInfoExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerLoginInfoExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Department.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/DepartmentExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/DepartmentExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/DepartmentExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/DepartmentExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Fault.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/FaultExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/FaultExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/FaultExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/FaultExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Feedback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/FeedbackExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/FeedbackExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/FeedbackExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/FeedbackExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Hospital.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/HospitalExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/HospitalExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/HospitalExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/HospitalExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Log.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/LogExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/LogExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/LogExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/LogExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Manufacturer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ManufacturerExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ManufacturerExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ManufacturerExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ManufacturerExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Message.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageDetails.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageDetailsExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageDetailsExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageDetailsExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageDetailsExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageListExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageListExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageListExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageListExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageTypeExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageTypeExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageTypeExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageTypeExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OperationModule.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OperationModuleExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OperationModuleExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OperationModuleExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OperationModuleExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Orders.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OrdersExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OrdersExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OrdersExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OrdersExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Permission.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/PermissionExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/PermissionExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/PermissionExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/PermissionExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Province.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ProvinceExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ProvinceExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ProvinceExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ProvinceExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Repair.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RepairExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RepairExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RepairExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RepairExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Role.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RoleExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RoleExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RoleExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RoleExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RolePermission.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RolePermissionExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RolePermissionExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RolePermissionExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RolePermissionExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RolePermissionKey.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Shareholder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ShareholderExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ShareholderExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ShareholderExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ShareholderExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoRoleExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoRoleExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoRoleExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoRoleExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoRoleKey.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserLoginInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserLoginInfoExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserLoginInfoExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserLoginInfoExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserLoginInfoExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Zone.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ZoneExample$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ZoneExample$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ZoneExample$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ZoneExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/PermissionService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/RoleService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/UserInfoService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/impl/PermissionServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/impl/RolePermissionImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/impl/UserInfoServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/shiro/ShiroConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/shiro/ShiroRealm.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -304,6 +471,42 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_TABS">
+      <set>
+        <option value="1" />
+      </set>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first test" />
     <MESSAGE value="second update" />
@@ -336,46 +539,50 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="501" y="193" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1591274664134" />
-    <state width="1485" height="512" key="GridCell.Tab.0.bottom" timestamp="1591436619673">
+    <state width="1485" height="512" key="GridCell.Tab.0.bottom" timestamp="1591578834274">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1485" height="512" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591436619673" />
-    <state width="1485" height="512" key="GridCell.Tab.0.center" timestamp="1591436619672">
+    <state width="1485" height="512" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591578834274" />
+    <state width="1485" height="512" key="GridCell.Tab.0.center" timestamp="1591578834274">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1485" height="512" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591436619672" />
-    <state width="1485" height="512" key="GridCell.Tab.0.left" timestamp="1591436619672">
+    <state width="1485" height="512" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591578834274" />
+    <state width="1485" height="512" key="GridCell.Tab.0.left" timestamp="1591578834273">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1485" height="512" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591436619672" />
-    <state width="1485" height="512" key="GridCell.Tab.0.right" timestamp="1591436619673">
+    <state width="1485" height="512" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591578834273" />
+    <state width="1485" height="512" key="GridCell.Tab.0.right" timestamp="1591578834274">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1485" height="512" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591436619673" />
-    <state width="1485" height="512" key="GridCell.Tab.1.bottom" timestamp="1591436619673">
+    <state width="1485" height="512" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591578834274" />
+    <state width="1485" height="512" key="GridCell.Tab.1.bottom" timestamp="1591578834275">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1485" height="512" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591436619673" />
-    <state width="1485" height="512" key="GridCell.Tab.1.center" timestamp="1591436619673">
+    <state width="1485" height="512" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591578834275" />
+    <state width="1485" height="512" key="GridCell.Tab.1.center" timestamp="1591578834274">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1485" height="512" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1591436619673" />
-    <state width="1485" height="512" key="GridCell.Tab.1.left" timestamp="1591436619673">
+    <state width="1485" height="512" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1591578834274" />
+    <state width="1485" height="512" key="GridCell.Tab.1.left" timestamp="1591578834274">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1485" height="512" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1591436619673" />
-    <state width="1485" height="512" key="GridCell.Tab.1.right" timestamp="1591436619673">
+    <state width="1485" height="512" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1591578834274" />
+    <state width="1485" height="512" key="GridCell.Tab.1.right" timestamp="1591578834275">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1485" height="512" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1591436619673" />
+    <state width="1485" height="512" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1591578834275" />
     <state x="249" y="88" key="IDE.errors.dialog" timestamp="1591434745529">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="88" key="IDE.errors.dialog/0.0.1536.824@0.0.1536.824" timestamp="1591434745529" />
-    <state x="510" y="58" key="RollbackChangesDialog" timestamp="1591434481700">
+    <state x="186" y="0" key="Maven.ArtifactSearchDialog" timestamp="1591578741044">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="510" y="58" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1591434481700" />
+    <state x="186" y="0" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1591578741044" />
+    <state x="510" y="58" key="RollbackChangesDialog" timestamp="1591578728998">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="510" y="58" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1591578728998" />
     <state x="198" y="0" key="SettingsEditor" timestamp="1591357226694">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -384,6 +591,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="261" y="82" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1591434635424" />
+    <state x="194" y="56" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1591578998137">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="194" y="56" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1591578998137" />
     <state x="378" y="197" key="com.intellij.ide.util.TipDialog" timestamp="1591425854297">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -604,10 +815,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="dock-window-9/0.0.1536.824@0.0.1536.824" timestamp="1591354567759" />
-    <state x="435" y="161" key="git4idea.merge.GitPullDialog" timestamp="1591434459892">
+    <state x="435" y="161" key="git4idea.merge.GitPullDialog" timestamp="1591578748562">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="435" y="161" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1591434459892" />
+    <state x="435" y="161" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1591578748562" />
     <state x="341" y="185" key="run.anything.popup" timestamp="1591354843714">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
