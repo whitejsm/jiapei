@@ -1,5 +1,7 @@
 package com.woniu.jiapei.controller;
 
+import com.woniu.jiapei.model.UserInfo;
+import com.woniu.jiapei.service.UserInfoService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +21,8 @@ import java.util.Map;
  */
 @RestController
 public class LoginController {
+    @Resource
+    UserInfoService userInfoServiceImpl;
     /*
     登录
      */
@@ -29,16 +34,22 @@ public class LoginController {
         try{
             subject.login(token);
             System.out.println("登录成功");
-            map.put("success","登录成功");
+            UserInfo userinfo= userInfoServiceImpl.findByName(uname);
+            Integer userId=userinfo.getUserinfoId();
+            map.put("status","success");
+            map.put("userId",String.valueOf(userId));
         }catch(UnknownAccountException unknownAccountException){
             System.out.println("账户不存在");
-            map.put("error","账户不存在");
+            map.put("status","error");
+            map.put("msg","账户不存在");
         }catch(IncorrectCredentialsException incorrectCredentialsException){
             System.out.println("口令和账户不匹配");
-            map.put("error","口令和账户不匹配");
+            map.put("status","error");
+            map.put("msg","口令和账户不匹配");
         }catch (Exception e){
-            map.put("error","登录失败");
+            map.put("status","error");
             System.out.println("登录失败");
+            map.put("msg","登录失败");
         }
         return map;
     }
