@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="777cd8c3-f1ce-45da-a2fb-10ff0d90b5bc" name="Default Changelist" comment="update 1">
-      <change afterPath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.1/fileChanges/last-build.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.1/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" afterDir="false" />
+    <list default="true" id="777cd8c3-f1ce-45da-a2fb-10ff0d90b5bc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/BedMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/BedMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/BedMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/BedMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/DepartmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/DepartmentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/model/Bed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/model/Bed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/model/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/model/Department.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/BedMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/BedMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/DepartmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/DepartmentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/BedController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/BedController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +24,9 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
-        <option value="whitejsm &lt;841816207@qq.com&gt;" />
         <option value="whitejsm" />
+        <option value="young199511" />
+        <option value="whitejsm &lt;841816207@qq.com&gt;" />
         <option value="zyh" />
         <option value="今晚打老虎" />
       </list>
@@ -124,7 +111,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -314,7 +301,28 @@
       <option name="project" value="LOCAL" />
       <updated>1591434624927</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="update 1">
+      <created>1591684179602</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1591684179602</updated>
+    </task>
+    <task id="LOCAL-00017" summary="update 1">
+      <created>1591684282781</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1591684282781</updated>
+    </task>
+    <task id="LOCAL-00018" summary="update 1">
+      <created>1591685401878</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1591685401878</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,14 +361,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="436" y="103" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1591354976846" />
-    <state x="420" y="0" key="CommitChangelistDialog2" timestamp="1591682644857">
+    <state x="420" y="0" key="CommitChangelistDialog2" timestamp="1591685401176">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="420" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1591682644857" />
-    <state x="501" y="193" key="FileChooserDialogImpl" timestamp="1591670915217">
+    <state x="420" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1591685401176" />
+    <state x="833" y="224" key="FileChooserDialogImpl" timestamp="1591685190328">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="501" y="193" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1591670915217" />
+    <state x="833" y="224" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1591685190328" />
     <state width="1142" height="90" key="GridCell.Tab.0.bottom" timestamp="1591682644873">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -413,15 +421,15 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="510" y="58" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1591434481700" />
-    <state x="198" y="0" key="SettingsEditor" timestamp="1591674160001">
+    <state x="115" y="117" width="996" height="707" key="SettingsEditor" timestamp="1591685234851">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="198" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1591674160001" />
+    <state x="115" y="117" width="996" height="707" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1591685234851" />
     <state x="186" y="23" key="SettingsEditor/0.23.1440.805@0.23.1440.805" timestamp="1591441171285" />
-    <state x="261" y="82" width="1154" height="533" key="Vcs.Push.Dialog.v2" timestamp="1591682591587">
+    <state x="261" y="82" width="1154" height="533" key="Vcs.Push.Dialog.v2" timestamp="1591684815814">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="261" y="82" width="1154" height="533" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1591682591587" />
+    <state x="261" y="82" width="1154" height="533" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1591684815814" />
     <state x="378" y="197" key="com.intellij.ide.util.TipDialog" timestamp="1591425854297">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

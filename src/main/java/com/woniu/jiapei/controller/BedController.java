@@ -38,7 +38,7 @@ public class BedController {
 
     @GetMapping("findByExample")
     public Msg findAll(Bed bed,PageBean pageBean){
-        System.out.println();
+
         Msg msg = new Msg();
         try{
             List<Bed> bedList = bedServiceImpl.findByExample(bed,pageBean);
