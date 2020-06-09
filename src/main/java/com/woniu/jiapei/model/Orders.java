@@ -112,4 +112,13 @@ public class Orders {
     public void setPayStatus(String payStatus) {
         this.payStatus = payStatus;
     }
+    private String timec;
+
+    public String getTimec() {
+        return timec;
+    }
+
+    public void setTimec(String timec) {
+        this.timec = timec;
+    }
 }

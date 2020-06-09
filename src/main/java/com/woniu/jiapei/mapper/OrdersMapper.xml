@@ -14,6 +14,14 @@
     <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
     <result column="pay_status" property="payStatus" jdbcType="VARCHAR" />
   </resultMap>
+  <!-- 根据顾客id查询订单总数 -->
+  <select id="countById" parameterType="int" resultType="int">
+    select count(orders_id) from tb_jp_orders where customer_id=#{customerId}
+   </select>
+  <!-- 根据顾客id查询消费金额 -->
+  <select id="countMoneyById" parameterType="int" resultType="string">
+    select sum(totalpay) from tb_jp_orders where customer_id=#{customerId}
+   </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

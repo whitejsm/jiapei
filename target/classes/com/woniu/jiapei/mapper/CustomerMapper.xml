@@ -13,6 +13,9 @@
     <result column="isuse" property="isuse" jdbcType="BIT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
+  <select id="countCustomer" resultType="int">
+    select count(customer_id) from tb_jp_customer
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
