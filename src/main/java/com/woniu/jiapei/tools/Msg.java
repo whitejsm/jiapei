@@ -17,4 +17,5 @@ public class Msg {
     private Boolean result;
     private Bed bed;
     private List<Bed> bedList;
+    private PageBean pageBean;
 }
