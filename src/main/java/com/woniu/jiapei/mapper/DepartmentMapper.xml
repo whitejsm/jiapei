@@ -9,6 +9,9 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="revenueshare" property="revenueshare" jdbcType="INTEGER" />
   </resultMap>
+  <resultMap id="BaseResultMapWithHospital" type="com.woniu.jiapei.model.Department" extends="BaseResultMap">
+    <association property="hospital" column="hospital_id" select="com.woniu.jiapei.mapper.HospitalMapper.selectByPrimaryKey"></association>
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -84,7 +87,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMapWithHospital" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from tb_jp_department

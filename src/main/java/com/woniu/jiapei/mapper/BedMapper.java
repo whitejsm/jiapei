@@ -15,7 +15,7 @@ public interface BedMapper {
     int insert(Bed record);
 
     int insertSelective(Bed record);
-
+    List<Bed> findAll();
     List<Bed> selectByExample(BedExample example);
 
     Bed selectByPrimaryKey(String bedId);
