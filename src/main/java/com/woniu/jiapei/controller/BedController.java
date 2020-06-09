@@ -25,6 +25,7 @@ public class BedController {
         try{
             List<Bed> bedList = bedServiceImpl.findAll(pageBean);
             msg.setBedList(bedList);
+            msg.setPageBean(pageBean);
             msg.setMsg("数据维护成功");
             msg.setResult(true);
         }catch(Exception e) {
@@ -38,11 +39,11 @@ public class BedController {
 
     @GetMapping("findByExample")
     public Msg findAll(Bed bed,PageBean pageBean){
-
         Msg msg = new Msg();
         try{
             List<Bed> bedList = bedServiceImpl.findByExample(bed,pageBean);
             msg.setBedList(bedList);
+            msg.setPageBean(pageBean);
             msg.setMsg("数据维护成功");
             msg.setResult(true);
         }catch(Exception e) {
@@ -96,6 +97,7 @@ public class BedController {
     public Msg update(Bed bed){
         Msg msg = new Msg();
         try{
+            System.out.println("ddd");
             bedServiceImpl.update(bed);
             msg.setMsg("数据维护成功");
             msg.setResult(true);
