@@ -36,8 +36,10 @@ public class LoginController {
             System.out.println("登录成功");
             UserInfo userinfo= userInfoServiceImpl.findByName(uname);
             Integer userId=userinfo.getUserinfoId();
+            String  userName=userinfo.getName();
             map.put("status","success");
             map.put("userId",String.valueOf(userId));
+            map.put("userName",userName);
         }catch(UnknownAccountException unknownAccountException){
             System.out.println("账户不存在");
             map.put("status","error");
