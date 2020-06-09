@@ -12,7 +12,7 @@ import java.util.Date;
 public class OrderCondition {
     private String ordersId;
     private Integer hospitalId;
-    private Integer DepartmentId;
+    private Integer departmentId;
     private String ordersStatus;
     private Date createTime;
     private Date endTime;
