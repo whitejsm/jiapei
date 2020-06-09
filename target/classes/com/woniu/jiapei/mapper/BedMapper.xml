@@ -22,6 +22,10 @@
   <select id="findBedById" parameterType="string" resultMap="BaseResultMapWithManufacturerAndDepartment">
     select * from tb_jp_bed where bed_id=#{bedId}
   </select>
+
+  <select id="findByHospitalId" resultMap="BaseResultMap" parameterType="int">
+    select * from tb_jp_bed where hospital_id=#{hospitalId}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -97,7 +101,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMapWithManufacturerAndDepartment" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from tb_jp_bed
