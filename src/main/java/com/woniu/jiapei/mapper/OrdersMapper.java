@@ -1,5 +1,6 @@
 package com.woniu.jiapei.mapper;
 
+import com.woniu.jiapei.condition.OrderCondition;
 import com.woniu.jiapei.model.Orders;
 import com.woniu.jiapei.model.OrdersExample;
 import java.util.List;
@@ -31,4 +32,6 @@ public interface OrdersMapper {
     int countById(Integer customerId);
 
     String countMoneyById(Integer customerId);
+
+    List<Orders> getOrdersByCondition(OrderCondition orderCondition);
 }

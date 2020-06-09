@@ -25,6 +25,36 @@ public class Orders {
 
     private String payStatus;
 
+    private Bed bed;
+
+    private Fault fault;
+
+    private Customer customer;
+
+    public Bed getBed() {
+        return bed;
+    }
+
+    public void setBed(Bed bed) {
+        this.bed = bed;
+    }
+
+    public Fault getFault() {
+        return fault;
+    }
+
+    public void setFault(Fault fault) {
+        this.fault = fault;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public String getOrdersId() {
         return ordersId;
     }

@@ -1,9 +1,13 @@
 package com.woniu.jiapei.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.woniu.jiapei.condition.OrderCondition;
 import com.woniu.jiapei.mapper.OrdersMapper;
 import com.woniu.jiapei.model.Orders;
 import com.woniu.jiapei.model.OrdersExample;
 import com.woniu.jiapei.service.OrdersService;
+import com.woniu.jiapei.tools.PageBean;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -53,5 +57,21 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public Integer countCustomerOrders(int customerId) {
         return ordersMapper.countById(customerId);
+    }
+
+    @Override
+    public List<Orders> getAllOrders() {
+        return ordersMapper.selectByExample(null);
+    }
+
+    @Override
+    public List<Orders> getOrdersByCondition(PageBean pageBean, OrderCondition orderCondition) {
+        PageHelper.startPage(pageBean.getPageNum(), pageBean.getPageSize());
+        List<Orders> ordersList = ordersMapper.getOrdersByCondition(orderCondition);
+        PageInfo<Orders> pageInfo = new PageInfo<>(ordersList);
+        pageBean.setTotal((int)pageInfo.getTotal());
+        pageBean.setPages(pageInfo.getPages());
+
+        return ordersList;
     }
 }

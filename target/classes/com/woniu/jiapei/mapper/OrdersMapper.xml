@@ -14,6 +14,12 @@
     <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
     <result column="pay_status" property="payStatus" jdbcType="VARCHAR" />
   </resultMap>
+
+  <resultMap id="resultByOthers" type="com.woniu.jiapei.model.Orders" extends="BaseResultMap">
+    <association property="bed" column="bed_id" select="com.woniu.jiapei.mapper.BedMapper.selectByPrimaryKey"/>
+    <association property="fault" column="fault_id" select="com.woniu.jiapei.mapper.FaultMapper.selectByPrimaryKey"/>
+    <association property="customer" column="customer_id" select="com.woniu.jiapei.mapper.CustomerMapper.selectByPrimaryKey"/>
+  </resultMap>
   <!-- 根据顾客id查询订单总数 -->
   <select id="countById" parameterType="int" resultType="int">
     select count(orders_id) from tb_jp_orders where customer_id=#{customerId}
@@ -311,4 +317,38 @@
       pay_status = #{payStatus,jdbcType=VARCHAR}
     where orders_id = #{ordersId,jdbcType=VARCHAR}
   </update>
+
+  <select id="getOrdersByCondition" parameterType="com.woniu.jiapei.condition.OrderCondition"
+          resultMap="resultByOthers">
+    select * from tb_jp_orders
+    <where>
+      <if test="ordersId != null and ordersId != ''">
+        <bind name="ordersId" value="'%' + ordersId + '%'" />
+        and orders_id like #{ordersId}
+      </if>
+      <if test="hospitalId != null">
+        and bed_id in (
+        select bed_id from tb_jp_bed
+        where department_id in (
+        select department_id from tb_jp_department where hospital_id = #{hospitalId}
+        )
+        )
+      </if>
+      <if test="departmentId != null">
+        and bed_id in (
+        select bed_id from tb_jp_bed
+        where department_id = #{departmentId}
+        )
+      </if>
+      <if test="ordersStatus != null and ordersStatus != ''">
+        and orders_status = #{ordersStatus}
+      </if>
+      <if test="createTime != null">
+        and create_time &gt;= #{createTime}
+      </if>
+      <if test="endTime != null">
+        and end_time &lt;= #{endTime}
+      </if>
+    </where>
+  </select>
 </mapper>
