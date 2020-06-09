@@ -40,7 +40,7 @@ public class OrdersServiceImpl implements OrdersService {
                 String newt=dfs.format(orders.getEndTime());
                 java.util.Date begin=dfs.parse(old);
                 java.util.Date end = dfs.parse(newt);
-                long l=begin.getTime()-end.getTime();
+                long l=end.getTime()-begin.getTime();
                 long day=l/(24*60*60*1000);
                 long hour=(l/(60*60*1000)-day*24);
                 long min=((l/(60*1000))-day*24*60-hour*60);
