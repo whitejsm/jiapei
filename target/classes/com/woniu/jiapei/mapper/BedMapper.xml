@@ -10,6 +10,15 @@
     <result column="power" property="power" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
+  <resultMap id="BaseResultMapWithManufacturer" type="com.woniu.jiapei.model.Bed" extends="BaseResultMap">
+    <association property="manufacturer" column="manufacturer_id" select="com.woniu.jiapei.mapper.ManufacturerMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <resultMap id="BaseResultMapWithManufacturerAndDepartment" type="com.woniu.jiapei.model.Bed" extends="BaseResultMapWithManufacturer">
+    <association property="department" column="department_id" select="com.woniu.jiapei.mapper.DepartmentMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <select id="findAll" resultMap="BaseResultMapWithManufacturerAndDepartment">
+    select * from tb_jp_bed
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
