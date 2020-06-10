@@ -83,7 +83,7 @@
     hospital_id, hospitalname, bankcard, rent, revenueshare, create_time, distributor_id, 
     contactor_id, province_id, city_id, zone_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.model.HospitalExample" >
+  <select id="selectByExample" resultMap="BaseResultMapWithDepartment" parameterType="com.woniu.jiapei.model.HospitalExample" >
     select
     <if test="distinct" >
       distinct
