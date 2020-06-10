@@ -10,7 +10,19 @@ import java.util.List;
 public interface UserInfoService {
     public UserInfo findByName(String username);
 
-    List<Customer> findAllAccounting(PageBean pageBean, AccountingCondition accountingCondition);
+    List<UserInfo> findAllAccounting(PageBean pageBean, AccountingCondition accountingCondition);
 
     Integer countAccounting();
+
+    void addAccounting(UserInfo userInfo);
+
+    void updateAccounting(UserInfo userInfo);
+
+    List<UserInfo> findAllRepairman(PageBean pageBean, AccountingCondition accountingCondition);
+
+    Integer countRepairman();
+
+    void addRepairman(UserInfo userInfo);
+
+    void updateRepairman(UserInfo userInfo);
 }

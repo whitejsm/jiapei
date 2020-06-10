@@ -41,17 +41,6 @@ public class CustomerController {
         map.put("countCustomer",countCustomer);
         return map;
     }
-    @GetMapping("/getAllCustomerSelect")
-    public Map<String,Object> getAllCustomerSelect(PageBean pageBean, CustomerCondition customerCondition) throws ParseException {
-        System.out.println(customerCondition);
-        Map<String,Object> map=new HashMap<String,Object>();
-        List<Customer> list=customerServiceImpl.findAll(pageBean,customerCondition);
-        Integer countCustomer=customerServiceImpl.countCustomer();
-        map.put("pageBean",pageBean);
-        map.put("customerList",list);
-        map.put("countCustomer",countCustomer);
-        return map;
-    }
 
     @GetMapping("/findCustomerOrder")
     public Map<String,Object> findCustomerOrder(int customerId) {
