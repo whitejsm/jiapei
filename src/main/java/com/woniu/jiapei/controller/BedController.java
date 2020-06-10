@@ -1,6 +1,9 @@
 package com.woniu.jiapei.controller;
 
+import com.woniu.jiapei.condition.BedCondition;
+import com.woniu.jiapei.mapper.HospitalMapper;
 import com.woniu.jiapei.model.Bed;
+import com.woniu.jiapei.model.Hospital;
 import com.woniu.jiapei.model.Message;
 import com.woniu.jiapei.service.IBedService;
 import com.woniu.jiapei.tools.Msg;
@@ -38,10 +41,11 @@ public class BedController {
     }
 
     @GetMapping("findByExample")
-    public Msg findAll(Bed bed,PageBean pageBean){
+    public Msg findByExample(BedCondition bedCondition, PageBean pageBean){
         Msg msg = new Msg();
         try{
-            List<Bed> bedList = bedServiceImpl.findByExample(bed,pageBean);
+            System.out.println(bedCondition);
+            List<Bed> bedList = bedServiceImpl.findByExample(bedCondition,pageBean);
             msg.setBedList(bedList);
             msg.setPageBean(pageBean);
             msg.setMsg("数据维护成功");
@@ -144,6 +148,12 @@ public class BedController {
         }
     }
 
+    @Resource
+    private HospitalMapper hospitalMapper;
 
+    @GetMapping("asd")
+    public Hospital asd(){
+        return hospitalMapper.findOneWithBed(3);
+    }
 
 }

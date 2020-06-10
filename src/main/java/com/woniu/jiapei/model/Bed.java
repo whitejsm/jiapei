@@ -1,7 +1,9 @@
 package com.woniu.jiapei.model;
 
-import java.util.Date;
+import lombok.Data;
 
+import java.util.Date;
+@Data
 public class Bed {
     private String bedId;
 
