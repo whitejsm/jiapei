@@ -28,6 +28,7 @@ public class BedController {
         try{
             List<Bed> bedList = bedServiceImpl.findAll(pageBean);
             msg.setBedList(bedList);
+            ///jaaa
             msg.setPageBean(pageBean);
             msg.setMsg("数据维护成功");
             msg.setResult(true);

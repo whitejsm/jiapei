@@ -43,7 +43,6 @@ public class CustomerController {
     }
     @GetMapping("/getAllCustomerSelect")
     public Map<String,Object> getAllCustomerSelect(PageBean pageBean, CustomerCondition customerCondition) throws ParseException {
-        System.out.println(customerCondition.getEndTime());
         System.out.println(customerCondition);
         Map<String,Object> map=new HashMap<String,Object>();
         List<Customer> list=customerServiceImpl.findAll(pageBean,customerCondition);
