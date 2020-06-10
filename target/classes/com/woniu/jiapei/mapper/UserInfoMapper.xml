@@ -25,6 +25,12 @@
   <select id="findByName" resultMap="BaseResultMapWithRolePermission" parameterType="string">
     select * from tb_jp_userinfo where username=#{uname}
   </select>
+
+  <!-- 获取会计人数 -->
+  <select id="countAccounting" resultType="int" >
+    select count(userinfo_id) from tb_jp_userinforole where role_id=(
+    select role_id from tb_jp_role where rolename='会计')
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

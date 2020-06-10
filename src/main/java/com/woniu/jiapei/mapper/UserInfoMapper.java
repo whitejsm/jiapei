@@ -29,4 +29,6 @@ public interface UserInfoMapper {
     int updateByPrimaryKey(UserInfo record);
 
     UserInfo findByName(String username);
+
+    Integer countAccounting();
 }
