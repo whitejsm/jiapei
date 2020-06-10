@@ -329,9 +329,9 @@
       <if test="hospitalId != null and hospitalId != -1">
         and bed_id in (
         select bed_id from tb_jp_bed
-        where department_id in (
-        select department_id from tb_jp_department where hospital_id = #{hospitalId}
-        )
+          where department_id in (
+            select department_id from tb_jp_department where hospital_id = #{hospitalId}
+          )
         )
       </if>
       <if test="departmentId != null and departmentId != -1">
