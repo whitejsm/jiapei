@@ -14,9 +14,13 @@
     <result column="city_id" property="cityId" jdbcType="INTEGER" />
     <result column="zone_id" property="zoneId" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap id="BaseResultMapWithBed" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMap">
-    <collection property="bedList" column="hospital_id" select=""
+  <resultMap id="BaseResultMapWithDepartment" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMap">
+    <collection property="departmentList" column="hospital_id" select="com.woniu.jiapei.mapper.DepartmentMapper.findByHospitalId"></collection>
   </resultMap>
+  <select id="findOneWithBed" parameterType="int" resultMap="BaseResultMapWithDepartment">
+    select * from tb_jp_hospital where hospital_id=#{hospitalId}
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

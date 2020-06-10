@@ -19,13 +19,30 @@
   <select id="findAll" resultMap="BaseResultMapWithManufacturerAndDepartment">
     select * from tb_jp_bed
   </select>
+
+  <select id="findByDepartmentId" resultMap="BaseResultMap" parameterType="int">
+    select * from tb_jp_bed where department_id=#{departmentId}
+  </select>
+
   <select id="findBedById" parameterType="string" resultMap="BaseResultMapWithManufacturerAndDepartment">
     select * from tb_jp_bed where bed_id=#{bedId}
   </select>
 
-  <select id="findByHospitalId" resultMap="BaseResultMap" parameterType="int">
-    select * from tb_jp_bed where hospital_id=#{hospitalId}
+  <select id="findByExample" resultMap="BaseResultMapWithManufacturerAndDepartment" parameterType="com.woniu.jiapei.model.BedExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_jp_bed
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
   </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

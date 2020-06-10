@@ -2,6 +2,7 @@ package com.woniu.jiapei.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.woniu.jiapei.condition.BedCondition;
 import com.woniu.jiapei.mapper.BedMapper;
 import com.woniu.jiapei.model.Bed;
 import com.woniu.jiapei.model.BedExample;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 床位管理的实现类
@@ -20,6 +22,7 @@ import java.util.List;
 public class BedServiceImpl implements IBedService {
     @Resource
     private BedMapper bedMapper;
+
 
     /**
      * 查询所有
@@ -46,29 +49,34 @@ public class BedServiceImpl implements IBedService {
 
     /**
      * 根据床位的附属信息查询
-     * @param bed
+     * @param bedCondition
+     * @param pageBean
      * @return
      */
-    public List<Bed> findByExample(Bed bed,PageBean pageBean) {
-        PageHelper.startPage(pageBean.getPageNum(),pageBean.getPageSize());
-
+    public List<Bed> findByExample(BedCondition bedCondition, PageBean pageBean) {
         BedExample example = new BedExample();
         BedExample.Criteria criteria = example.createCriteria();
+        System.out.println(bedCondition);
+        if(bedCondition.getBedId()!=null&&bedCondition.getBedId()!="")
+            criteria.andBedIdLike("%"+bedCondition.getBedId()+"%");
 
-        if(bed.getBedId()!=null&&bed.getBedId()!="")
-            criteria.andBedIdLike("%"+bed.getBedId()+"%");
+        if(bedCondition.getDepartmentId()!=null&&bedCondition.getDepartmentId()!=-1)
+            criteria.andDepartmentIdEqualTo(bedCondition.getDepartmentId());
 
-        if(bed.getDepartmentId()!=null)
-            criteria.andDepartmentIdEqualTo(bed.getDepartmentId());
+        if(bedCondition.getPower()!=null&&bedCondition.getPower()!=-1)
+            criteria.andPowerLessThan(bedCondition.getPower());
 
-        if(bed.getPower()!=null)
-            criteria.andPowerEqualTo(bed.getPower());
+        if(bedCondition.getStatus()!=null&&bedCondition.getStatus()!="")
+            criteria.andStatusEqualTo(bedCondition.getStatus());
 
-        if(bed.getStatus()!=null&&bed.getStatus()!="")
-            criteria.andStatusEqualTo(bed.getStatus());
+        if(bedCondition.getBeginTime()!=null)
+            criteria.andCreateTimeGreaterThan(bedCondition.getBeginTime());
+
+        if(bedCondition.getEndTime()!=null)
+            criteria.andCreateTimeLessThan(bedCondition.getEndTime());
 
         PageHelper.startPage(pageBean.getPageNum(),pageBean.getPageSize());
-        List<Bed> bedList = bedMapper.selectByExample(example);
+        List<Bed> bedList = bedMapper.findByExample(example);
         //获取跟分页有关的信息
         PageInfo<Bed> pageInfo = new PageInfo<Bed>(bedList);
         //插入页码信息

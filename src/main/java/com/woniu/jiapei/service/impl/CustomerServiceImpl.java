@@ -2,6 +2,7 @@ package com.woniu.jiapei.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.woniu.jiapei.condition.CustomerCondition;
 import com.woniu.jiapei.mapper.CustomerMapper;
 import com.woniu.jiapei.mapper.OrdersMapper;
 import com.woniu.jiapei.model.Customer;
@@ -25,9 +26,9 @@ public class CustomerServiceImpl implements CustomerService {
     OrdersMapper ordersMapper;
 
     @Override
-    public List<Customer> findAll(PageBean pageBean) {
+    public List<Customer> findAll(PageBean pageBean, CustomerCondition customerCondition) {
         PageHelper.startPage(pageBean.getPageNum(),pageBean.getPageSize());
-        List<Customer> list=customerMapper.selectByExample(null);
+        List<Customer> list=customerMapper.getCusetomerByCondition(customerCondition);
         for (Customer customer : list) {
              customer.setOrderCount(ordersMapper.countById(customer.getCustomerId()));
              customer.setSumMoney(ordersMapper.countMoneyById(customer.getCustomerId()));

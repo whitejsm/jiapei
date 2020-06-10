@@ -326,7 +326,7 @@
         <bind name="ordersId" value="'%' + ordersId + '%'" />
         and orders_id like #{ordersId}
       </if>
-      <if test="hospitalId != null">
+      <if test="hospitalId != null and hospitalId != -1">
         and bed_id in (
         select bed_id from tb_jp_bed
         where department_id in (
@@ -334,13 +334,13 @@
         )
         )
       </if>
-      <if test="departmentId != null">
+      <if test="departmentId != null and departmentId != -1">
         and bed_id in (
         select bed_id from tb_jp_bed
         where department_id = #{departmentId}
         )
       </if>
-      <if test="ordersStatus != null and ordersStatus != ''">
+      <if test="ordersStatus != null and ordersStatus != '' and ordersStatus != '所有状态'">
         and orders_status = #{ordersStatus}
       </if>
       <if test="createTime != null">
