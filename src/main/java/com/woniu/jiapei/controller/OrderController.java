@@ -40,13 +40,15 @@ public class OrderController {
     @GetMapping("/getOrdersByCondition")
     public Map<String, Object> getOrdersByCondition(PageBean pageBean, OrderCondition orderCondition) {
         Map<String, Object> map = new HashMap<>();
-
+        System.out.println(orderCondition);
+        System.out.println(pageBean);
         try {
             List<Orders> ordersList = ordersServiceImpl.getOrdersByCondition(pageBean, orderCondition);
             map.put("ordersList", ordersList);
             map.put("pageBean", pageBean);
             map.put("result", "ok");
         } catch(Exception e) {
+            e.printStackTrace();
             map.put("result", "error");
         }
 
