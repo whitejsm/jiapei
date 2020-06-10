@@ -1,8 +1,19 @@
 package com.woniu.jiapei.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Hospital {
+    private List<Bed> bedList ;
+
+    public List<Bed> getBedList() {
+        return bedList;
+    }
+
+    public void setBedList(List<Bed> bedList) {
+        this.bedList = bedList;
+    }
+
     private Integer hospitalId;
 
     private String hospitalname;

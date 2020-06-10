@@ -3,6 +3,7 @@ package com.woniu.jiapei.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.jiapei.condition.OrderCondition;
+import com.woniu.jiapei.mapper.BedMapper;
 import com.woniu.jiapei.mapper.OrdersMapper;
 import com.woniu.jiapei.model.Orders;
 import com.woniu.jiapei.model.OrdersExample;
@@ -26,6 +27,8 @@ public class OrdersServiceImpl implements OrdersService {
     @Resource
     OrdersMapper ordersMapper;
 
+    @Resource
+    BedMapper bedMapper;
     @Override
     public List<Orders> selectByCustomerId(int customerId) {
         OrdersExample example=new OrdersExample();
@@ -33,6 +36,7 @@ public class OrdersServiceImpl implements OrdersService {
         criteriae.andCustomerIdEqualTo(customerId);
         List<Orders> list=ordersMapper.selectByExample(example);
         for (Orders orders : list) {
+            orders.setBed(bedMapper.findBedById(orders.getBedId()));
             String timec=null;
             SimpleDateFormat dfs = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             try{
@@ -40,7 +44,7 @@ public class OrdersServiceImpl implements OrdersService {
                 String newt=dfs.format(orders.getEndTime());
                 java.util.Date begin=dfs.parse(old);
                 java.util.Date end = dfs.parse(newt);
-                long l=begin.getTime()-end.getTime();
+                long l=end.getTime()-begin.getTime();
                 long day=l/(24*60*60*1000);
                 long hour=(l/(60*60*1000)-day*24);
                 long min=((l/(60*1000))-day*24*60-hour*60);

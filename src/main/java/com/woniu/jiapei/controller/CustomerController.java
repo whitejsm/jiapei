@@ -5,6 +5,7 @@ import com.woniu.jiapei.model.Customer;
 import com.woniu.jiapei.model.Orders;
 import com.woniu.jiapei.service.CustomerService;
 import com.woniu.jiapei.service.OrdersService;
+import com.woniu.jiapei.tools.PageBean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,15 +26,18 @@ public class CustomerController {
 
     @Resource
     OrdersService ordersServiceImpl;
+
     @GetMapping("/getAllCustomer")
-    public Map<String,Object> getAllCustomer(){
+    public Map<String,Object> getAllCustomer(PageBean pageBean){
         Map<String,Object> map=new HashMap<String,Object>();
-        List<Customer> list=customerServiceImpl.findAll();
+        List<Customer> list=customerServiceImpl.findAll(pageBean);
         Integer countCustomer=customerServiceImpl.countCustomer();
+        map.put("pageBean",pageBean);
         map.put("customerList",list);
         map.put("countCustomer",countCustomer);
         return map;
     }
+
     @GetMapping("/findCustomerOrder")
     public Map<String,Object> findCustomerOrder(int customerId) {
         Map<String,Object> map=new HashMap<String,Object>();

@@ -27,4 +27,6 @@ public interface BedMapper {
     int updateByPrimaryKeySelective(Bed record);
 
     int updateByPrimaryKey(Bed record);
+
+    Bed findBedById(String bedId);
 }

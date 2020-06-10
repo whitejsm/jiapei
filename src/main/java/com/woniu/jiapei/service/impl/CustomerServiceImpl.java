@@ -1,13 +1,15 @@
 package com.woniu.jiapei.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.woniu.jiapei.mapper.CustomerMapper;
 import com.woniu.jiapei.mapper.OrdersMapper;
 import com.woniu.jiapei.model.Customer;
 import com.woniu.jiapei.service.CustomerService;
+import com.woniu.jiapei.tools.PageBean;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,12 +25,16 @@ public class CustomerServiceImpl implements CustomerService {
     OrdersMapper ordersMapper;
 
     @Override
-    public List<Customer> findAll() {
+    public List<Customer> findAll(PageBean pageBean) {
+        PageHelper.startPage(pageBean.getPageNum(),pageBean.getPageSize());
         List<Customer> list=customerMapper.selectByExample(null);
         for (Customer customer : list) {
              customer.setOrderCount(ordersMapper.countById(customer.getCustomerId()));
              customer.setSumMoney(ordersMapper.countMoneyById(customer.getCustomerId()));
         }
+        PageInfo<Customer> pageInfo = new PageInfo<Customer>(list);
+        pageBean.setPages(pageInfo.getPages());
+        pageBean.setTotal((int) pageInfo.getTotal());
         return list;
     }
 
