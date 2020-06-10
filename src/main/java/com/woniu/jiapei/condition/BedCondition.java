@@ -17,4 +17,5 @@ public class BedCondition {
     private String status;
     private Date beginTime;
     private Date endTime;
+    //ashj
 }
