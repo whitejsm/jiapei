@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface BedMapper {
+    List<Bed> findByExample(BedExample example);
+
     int countByExample(BedExample example);
 
     int deleteByExample(BedExample example);
