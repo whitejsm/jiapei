@@ -32,6 +32,7 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public List<Orders> selectByCustomerId(int customerId) {
         OrdersExample example=new OrdersExample();
+        example.setOrderByClause("'create_time' DESC");
         OrdersExample.Criteria criteriae=example.createCriteria();
         criteriae.andCustomerIdEqualTo(customerId);
         List<Orders> list=ordersMapper.selectByExample(example);

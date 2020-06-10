@@ -19,12 +19,12 @@
   <select id="findAll" resultMap="BaseResultMapWithManufacturerAndDepartment">
     select * from tb_jp_bed
   </select>
-  <select id="findBedById" parameterType="string" resultMap="BaseResultMapWithManufacturerAndDepartment">
-    select * from tb_jp_bed where bed_id=#{bedId}
-  </select>
 
   <select id="findByHospitalId" resultMap="BaseResultMap" parameterType="int">
     select * from tb_jp_bed where hospital_id=#{hospitalId}
+  </select>
+  <select id="findBedById" parameterType="string" resultMap="BaseResultMapWithManufacturerAndDepartment">
+    select * from tb_jp_bed where bed_id=#{bedId}
   </select>
   <sql id="Example_Where_Clause" >
     <where >

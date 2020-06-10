@@ -16,6 +16,35 @@
   <select id="countCustomer" resultType="int">
     select count(customer_id) from tb_jp_customer
   </select>
+  <select id="getCusetomerByCondition" parameterType="com.woniu.jiapei.condition.CustomerCondition"
+          resultMap="BaseResultMap">
+    select * from tb_jp_customer
+    <where>
+      <if test="phonenumber != null and phonenumber != ''">
+        <bind name="phonenumber" value="'%' + phonenumber + '%'" />
+        and phonenumber like #{phonenumber}
+      </if>
+      <if test="gender != null and gender == true">
+        and gender = 1
+      </if>
+      <if test="gender != null and gender == false">
+        and gender = 0
+      </if>
+      <if test="isuse != null and isuse == true">
+        and isuse = 1
+      </if>
+      <if test="isuse != null and isuse == false">
+        and isuse = 0
+      </if>
+      <if test="startTime != null">
+        and create_time &gt;= #{startTime}
+      </if>
+      <if test="endTime != null">
+        and create_time &lt;= #{endTime}
+      </if>
+    </where>
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

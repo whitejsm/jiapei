@@ -1,6 +1,7 @@
 package com.woniu.jiapei.controller;
 
 
+import com.woniu.jiapei.condition.CustomerCondition;
 import com.woniu.jiapei.model.Customer;
 import com.woniu.jiapei.model.Orders;
 import com.woniu.jiapei.service.CustomerService;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,9 +31,22 @@ public class CustomerController {
     OrdersService ordersServiceImpl;
 
     @GetMapping("/getAllCustomer")
-    public Map<String,Object> getAllCustomer(PageBean pageBean){
+    public Map<String,Object> getAllCustomer(PageBean pageBean, CustomerCondition customerCondition) throws ParseException {
+        System.out.println(customerCondition);
         Map<String,Object> map=new HashMap<String,Object>();
-        List<Customer> list=customerServiceImpl.findAll(pageBean);
+        List<Customer> list=customerServiceImpl.findAll(pageBean,customerCondition);
+        Integer countCustomer=customerServiceImpl.countCustomer();
+        map.put("pageBean",pageBean);
+        map.put("customerList",list);
+        map.put("countCustomer",countCustomer);
+        return map;
+    }
+    @GetMapping("/getAllCustomerSelect")
+    public Map<String,Object> getAllCustomerSelect(PageBean pageBean, CustomerCondition customerCondition) throws ParseException {
+        System.out.println(customerCondition.getEndTime());
+        System.out.println(customerCondition);
+        Map<String,Object> map=new HashMap<String,Object>();
+        List<Customer> list=customerServiceImpl.findAll(pageBean,customerCondition);
         Integer countCustomer=customerServiceImpl.countCustomer();
         map.put("pageBean",pageBean);
         map.put("customerList",list);
