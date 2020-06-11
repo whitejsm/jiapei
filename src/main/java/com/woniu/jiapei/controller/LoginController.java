@@ -29,10 +29,10 @@ public class LoginController {
     @GetMapping("/login")
     public Map<String, String> login(String uname, String upass){
         Map<String, String> map=new HashMap<>();
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(uname,upass);
+//        Subject subject = SecurityUtils.getSubject();
+//        UsernamePasswordToken token = new UsernamePasswordToken(uname,upass);
         try{
-            subject.login(token);
+       //     subject.login(token);
             System.out.println("登录成功");
             UserInfo userinfo= userInfoServiceImpl.findByName(uname);
             Integer userId=userinfo.getUserinfoId();
