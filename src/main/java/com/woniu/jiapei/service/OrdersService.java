@@ -17,4 +17,6 @@ public interface OrdersService {
     List<Orders> getAllOrders();
 
     List<Orders> getOrdersByCondition(PageBean pageBean, OrderCondition orderCondition);
+
+    List<Orders> getOrdersByCondition(OrderCondition orderCondition);
 }
