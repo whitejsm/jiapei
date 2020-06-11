@@ -17,7 +17,7 @@
   <resultMap id="BaseResultMapWithDepartment" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMap">
     <collection property="departmentList" column="hospital_id" select="com.woniu.jiapei.mapper.DepartmentMapper.findByHospitalId"></collection>
   </resultMap>
-  <select id="findOneWithBed" parameterType="int" resultMap="BaseResultMapWithDepartment">
+  <select id="findOneWithDepartment" parameterType="int" resultMap="BaseResultMapWithDepartment">
     select * from tb_jp_hospital where hospital_id=#{hospitalId}
   </select>
 

@@ -1,12 +1,13 @@
 package com.woniu.jiapei.mapper;
 
+import com.woniu.jiapei.condition.BedCondition;
 import com.woniu.jiapei.model.Bed;
 import com.woniu.jiapei.model.BedExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface BedMapper {
-    List<Bed> findByExample(BedExample example);
+    List<Bed> findByExample(BedCondition bedCondition);
 
     int countByExample(BedExample example);
 
