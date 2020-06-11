@@ -54,8 +54,10 @@ public class BedController {
         Msg msg = new Msg();
         try{
             System.out.println(bedCondition);
-            bedCondition.setBeginTime(new Date(bedCondition.getBeginTime().getTime()+1000*3600*13));
-            bedCondition.setEndTime(new Date(bedCondition.getEndTime().getTime()+1000*3600*37));
+            if(bedCondition.getBeginTime()!=null)
+                bedCondition.setBeginTime(new Date(bedCondition.getBeginTime().getTime()+1000*3600*13));
+            if(bedCondition.getEndTime()!=null)
+                bedCondition.setEndTime(new Date(bedCondition.getEndTime().getTime()+1000*3600*37));
             System.out.println(bedCondition);
 
             List<Bed> bedList = bedServiceImpl.findByExample(bedCondition,pageBean);
