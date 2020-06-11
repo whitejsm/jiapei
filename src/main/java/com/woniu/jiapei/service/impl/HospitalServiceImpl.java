@@ -30,6 +30,7 @@ public class HospitalServiceImpl implements HospitalService {
         Hospital hospital = new Hospital();
         hospital.setHospitalId(id);
         hospital.setIsdelete(false);
+        hospital.setIsdelete(true);
         int i = hospitalMapper.updateByPrimaryKeySelective(hospital);
         return i==0?false:true;
     }
