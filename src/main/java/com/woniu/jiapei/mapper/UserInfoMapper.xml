@@ -27,13 +27,11 @@
   </select>
   <select id="findDistributor" resultMap="BaseResultMap">
 select * from tb_jp_userinfo where userinfo_id in(
-select distributor_id from tb_jp_hospital where isdelete=1
+select distributor_id from tb_jp_hospital where isdelete=0
 )
 </select>
   <select id="findByRoleName" resultMap="BaseResultMap" parameterType="string">
-    select * from tb_jp_userinfo where
-    isdelete=1
-    and userinfo_id in(
+    select * from tb_jp_userinfo where userinfo_id in(
 
 select userinfo_id from tb_jp_userinforole where role_id in
 (
@@ -44,8 +42,6 @@ select role_id from tb_jp_role where rolename = #{name}
 
   <select id="findByRoleNameDistributor1" resultMap="BaseResultMap" parameterType="string">
 select * from tb_jp_userinfo where ISNULL(parent_id ) and
-isdelete=1
-and
 
 userinfo_id in(
 
@@ -58,8 +54,7 @@ select role_id from tb_jp_role where rolename = '分销商'
 
   <select id="findByRoleNameDistributor2" resultMap="BaseResultMap" parameterType="string">
 select * from tb_jp_userinfo where parent_id is not null and
-isdelete=1
-and
+
 userinfo_id in(
 
 select userinfo_id from tb_jp_userinforole where role_id in
