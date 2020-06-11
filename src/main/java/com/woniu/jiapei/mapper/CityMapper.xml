@@ -5,7 +5,14 @@
     <id column="city_id" property="cityId" jdbcType="INTEGER" />
     <result column="province_id" property="provinceId" jdbcType="INTEGER" />
     <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+<!--    <collection property="zones" column="city_id" select="com.woniu.jiapei.mapper.ZoneMapper.findByCityId">-->
+<!--    </collection>-->
+
   </resultMap>
+  <select id="findByProvinceId" resultMap="BaseResultMap" parameterType="int">
+
+    select * from city where province_id=#{provinceId}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -82,7 +89,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from city
     where city_id = #{cityId,jdbcType=INTEGER}

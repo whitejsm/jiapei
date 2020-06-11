@@ -1,6 +1,12 @@
 package com.woniu.jiapei.model;
 
+import lombok.Data;
+
+import java.util.List;
+@Data
 public class City {
+    private List<Zone> zones;
+
     private Integer cityId;
 
     private Integer provinceId;
