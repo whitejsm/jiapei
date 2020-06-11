@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.woniu.jiapei.mapper.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.Department" >
+    <id column="department_id" property="departmentId" jdbcType="INTEGER" />
+    <result column="hospital_id" property="hospitalId" jdbcType="INTEGER" />
+    <result column="departor_id" property="departorId" jdbcType="INTEGER" />
+    <result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="revenueshare" property="revenueshare" jdbcType="INTEGER" />
+    <result column="isdelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <select id="findByHospitalId" resultMap="BaseResultMap" parameterType="int">
+    select * from tb_jp_department where hospital_id = #{hospitalId}
+  </select>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    department_id, hospital_id, departor_id, departmentname, create_time, revenueshare,
+    isdelete
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.model.DepartmentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_jp_department
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_jp_department
+    where department_id = #{departmentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_jp_department
+    where department_id = #{departmentId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.woniu.jiapei.model.DepartmentExample" >
+    delete from tb_jp_department
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.woniu.jiapei.model.Department" >
+    insert into tb_jp_department (department_id, hospital_id, departor_id,
+      departmentname, create_time, revenueshare,
+      isdelete)
+    values (#{departmentId,jdbcType=INTEGER}, #{hospitalId,jdbcType=INTEGER}, #{departorId,jdbcType=INTEGER},
+      #{departmentname,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{revenueshare,jdbcType=INTEGER},
+      #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Department" >
+    insert into tb_jp_department
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="departmentId != null" >
+        department_id,
+      </if>
+      <if test="hospitalId != null" >
+        hospital_id,
+      </if>
+      <if test="departorId != null" >
+        departor_id,
+      </if>
+      <if test="departmentname != null" >
+        departmentname,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="revenueshare != null" >
+        revenueshare,
+      </if>
+      <if test="isdelete != null" >
+        isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalId != null" >
+        #{hospitalId,jdbcType=INTEGER},
+      </if>
+      <if test="departorId != null" >
+        #{departorId,jdbcType=INTEGER},
+      </if>
+      <if test="departmentname != null" >
+        #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revenueshare != null" >
+        #{revenueshare,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.woniu.jiapei.model.DepartmentExample" resultType="java.lang.Integer" >
+    select count(*) from tb_jp_department
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_jp_department
+    <set >
+      <if test="record.departmentId != null" >
+        department_id = #{record.departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.hospitalId != null" >
+        hospital_id = #{record.hospitalId,jdbcType=INTEGER},
+      </if>
+      <if test="record.departorId != null" >
+        departor_id = #{record.departorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.departmentname != null" >
+        departmentname = #{record.departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.revenueshare != null" >
+        revenueshare = #{record.revenueshare,jdbcType=INTEGER},
+      </if>
+      <if test="record.isdelete != null" >
+        isdelete = #{record.isdelete,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_jp_department
+    set department_id = #{record.departmentId,jdbcType=INTEGER},
+      hospital_id = #{record.hospitalId,jdbcType=INTEGER},
+      departor_id = #{record.departorId,jdbcType=INTEGER},
+      departmentname = #{record.departmentname,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      revenueshare = #{record.revenueshare,jdbcType=INTEGER},
+      isdelete = #{record.isdelete,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.jiapei.model.Department" >
+    update tb_jp_department
+    <set >
+      <if test="hospitalId != null" >
+        hospital_id = #{hospitalId,jdbcType=INTEGER},
+      </if>
+      <if test="departorId != null" >
+        departor_id = #{departorId,jdbcType=INTEGER},
+      </if>
+      <if test="departmentname != null" >
+        departmentname = #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revenueshare != null" >
+        revenueshare = #{revenueshare,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        isdelete = #{isdelete,jdbcType=BIT},
+      </if>
+    </set>
+    where department_id = #{departmentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.jiapei.model.Department" >
+    update tb_jp_department
+    set hospital_id = #{hospitalId,jdbcType=INTEGER},
+      departor_id = #{departorId,jdbcType=INTEGER},
+      departmentname = #{departmentname,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      revenueshare = #{revenueshare,jdbcType=INTEGER},
+      isdelete = #{isdelete,jdbcType=BIT}
+    where department_id = #{departmentId,jdbcType=INTEGER}
+  </update>
+</mapper>
