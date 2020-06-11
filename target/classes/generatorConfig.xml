@@ -16,65 +16,66 @@
 
 
 
-    <table schema="jiapei" tableName="tb_jp_bed" domainObjectName="Bed">
-    </table>
-     <table schema="jiapei" tableName="tb_jp_customer" domainObjectName="Customer">
-    </table>
+<!--    <table schema="jiapei" tableName="tb_jp_bed" domainObjectName="Bed">-->
+<!--    </table>-->
+<!--     <table schema="jiapei" tableName="tb_jp_customer" domainObjectName="Customer">-->
+<!--    </table>-->
 
-    <table schema="jiapei" tableName="tb_jp_customer_login" domainObjectName="CustomerLoginInfo">
-    </table>
+<!--    <table schema="jiapei" tableName="tb_jp_customer_login" domainObjectName="CustomerLoginInfo">-->
+<!--    </table>-->
 
-    <table schema="jiapei" tableName="tb_jp_department" domainObjectName="Department">
-    </table>
-    <table schema="jiapei" tableName="tb_jp_fault" domainObjectName="Fault">
-    </table>
-    <table schema="jiapei" tableName="tb_jp_feedback" domainObjectName="Feedback">
-    </table>
-    <table schema="jiapei" tableName="tb_jp_hospital" domainObjectName="Hospital">
-    </table>
-    <table schema="jiapei" tableName="tb_jp_log" domainObjectName="Log">
-    </table>
-    <table schema="jiapei" tableName="tb_jp_manufacturer" domainObjectName="Manufacturer">
-    </table>
-    <table schema="jiapei" tableName="tb_jp_message" domainObjectName="Message">
-    </table>
-    <table schema="jiapei" tableName="tb_jp_message_details" domainObjectName="MessageDetails">
-    </table>
-    <table schema="jiapei" tableName="tb_jp_message_list" domainObjectName="MessageList">
-    </table>
-    <table schema="jiapei" tableName="tb_jp_message_type" domainObjectName="MessageType">
-    </table>
-    <table schema="jiapei" tableName="tb_jp_operation_module" domainObjectName="OperationModule">
-    </table>
-    <table schema="jiapei" tableName="tb_jp_orders" domainObjectName="Orders">
-    </table>
-    <table schema="jiapei" tableName="tb_jp_permission" domainObjectName="Permission">
-    </table>
-    <table schema="jiapei" tableName="tb_jp_repair" domainObjectName="Repair">
-    </table>
-    <table schema="jiapei" tableName="tb_jp_role" domainObjectName="Role">
-    </table>
-    <table schema="jiapei" tableName="tb_jp_rolepermission" domainObjectName="RolePermission">
-    </table>
-    <table schema="jiapei" tableName="tb_jp_shareholder" domainObjectName="Shareholder">
-    </table>
+<!--    <table schema="jiapei" tableName="tb_jp_department" domainObjectName="Department">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="tb_jp_fault" domainObjectName="Fault">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="tb_jp_feedback" domainObjectName="Feedback">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="tb_jp_hospital" domainObjectName="Hospital">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="tb_jp_log" domainObjectName="Log">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="tb_jp_manufacturer" domainObjectName="Manufacturer">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="tb_jp_message" domainObjectName="Message">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="tb_jp_message_details" domainObjectName="MessageDetails">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="tb_jp_message_list" domainObjectName="MessageList">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="tb_jp_message_type" domainObjectName="MessageType">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="tb_jp_operation_module" domainObjectName="OperationModule">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="tb_jp_orders" domainObjectName="Orders">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="tb_jp_permission" domainObjectName="Permission">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="tb_jp_repair" domainObjectName="Repair">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="tb_jp_role" domainObjectName="Role">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="tb_jp_rolepermission" domainObjectName="RolePermission">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="tb_jp_shareholder" domainObjectName="Shareholder">-->
+<!--    </table>-->
 
-    <table schema="jiapei" tableName="tb_jp_user_login" domainObjectName="UserLoginInfo">
-    </table>
+<!--    <table schema="jiapei" tableName="tb_jp_user_login" domainObjectName="UserLoginInfo">-->
+<!--    </table>-->
 
-    <table schema="jiapei" tableName="tb_jp_userinfo" domainObjectName="UserInfo">
-    </table>
+<!--    <table schema="jiapei" tableName="tb_jp_userinfo" domainObjectName="UserInfo">-->
+<!--    </table>-->
 
-    <table schema="jiapei" tableName="tb_jp_userinforole" domainObjectName="UserInfoRole">
-    </table>
-    <table schema="jiapei" tableName="city" domainObjectName="City">
-    </table>
-    <table schema="jiapei" tableName="province" domainObjectName="Province">
-    </table>
-    <table schema="jiapei" tableName="zone" domainObjectName="Zone">
-    </table>
+<!--    <table schema="jiapei" tableName="tb_jp_userinforole" domainObjectName="UserInfoRole">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="city" domainObjectName="City">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="province" domainObjectName="Province">-->
+<!--    </table>-->
+<!--    <table schema="jiapei" tableName="zone" domainObjectName="Zone">-->
+<!--    </table>-->
 
-
+    <table schema="jiapei" tableName="tb_jp_repairman" domainObjectName="Repairman">
+    </table>
   </context>
 
 

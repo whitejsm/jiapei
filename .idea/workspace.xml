@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a3d4c24-f525-4d64-b189-4be2bb93c616" name="Default Changelist" comment="" />
+    <list default="true" id="e8e4ad54-cdca-4c4a-94f4-abe600df0afd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/controller/UserInfoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/UserInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/UserInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/UserInfoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/UserInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/UserInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/UserInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/UserInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/impl/UserInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/impl/UserInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/controller/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/controller/CustomerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/UserInfoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/UserInfoMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/UserInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/UserInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/UserInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/UserInfoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/impl/UserInfoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/impl/UserInfoServiceImpl.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,31 +41,36 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/UserInfoMapper.xml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/UserInfoMapper.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/BedController.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/LoginController.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/shiro/ShiroConfiguration.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/shiro/ShiroRealm.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/BedMapper.xml" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/PermissionMapper.xml" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/impl/UserInfoServiceImpl.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/BedMapper.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/impl/PermissionServiceImpl.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/condition/CustomerCondition.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/DepartmentMapper.xml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/CustomerMapper.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/CustomerMapper.xml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/PermissionController.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/impl/OrdersServiceImpl.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/HospitalMapper.xml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/OrdersMapper.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/PermissionController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/LoginController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/UserInfoMapper.xml" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/CustomerMapper.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/impl/OrdersServiceImpl.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/condition/CustomerCondition.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/BedController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/OrdersMapper.xml" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/model/Permission.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/shiro/ShiroConfiguration.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/impl/PermissionServiceImpl.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/shiro/ShiroRealm.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/LoginController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/UserInfoMapper.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/CustomerMapper.xml" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/PermissionMapper.xml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/OrdersMapper.xml" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/impl/BedServiceImpl.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/PermissionController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/impl/UserInfoServiceImpl.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/OrdersMapper.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/BedMapper.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/RoleMapper.xml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/model/Permission.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/BedMapper.xml" root0="SKIP_INSPECTION" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -182,21 +201,7 @@
       <option name="project" value="LOCAL" />
       <updated>1591757619924</updated>
     </task>
-    <task id="LOCAL-00007" summary="userinfo code zyh">
-      <created>1591862091169</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1591862091170</updated>
-    </task>
-    <task id="LOCAL-00008" summary="userinfo code zyh">
-      <created>1591862699299</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1591862699299</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,46 +222,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="530" y="45" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1591771044060" />
-    <state x="283" y="0" key="CommitChangelistDialog2" timestamp="1591862698646">
+    <state x="283" y="0" key="CommitChangelistDialog2" timestamp="1591757618971">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="283" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1591862698646" />
+    <state x="283" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1591757618971" />
     <state x="300" y="112" key="FileChooserDialogImpl" timestamp="1591601697781">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="300" y="112" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1591601697781" />
-    <state width="1493" height="186" key="GridCell.Tab.0.bottom" timestamp="1591862757985">
+    <state width="1485" height="9" key="GridCell.Tab.0.bottom" timestamp="1591770889009">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="186" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591862757985" />
-    <state width="1493" height="186" key="GridCell.Tab.0.center" timestamp="1591862757985">
+    <state width="1485" height="9" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591770889009" />
+    <state width="1485" height="9" key="GridCell.Tab.0.center" timestamp="1591770889008">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="186" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591862757985" />
-    <state width="1493" height="186" key="GridCell.Tab.0.left" timestamp="1591862757985">
+    <state width="1485" height="9" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591770889008" />
+    <state width="1485" height="9" key="GridCell.Tab.0.left" timestamp="1591770889008">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="186" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591862757985" />
-    <state width="1493" height="186" key="GridCell.Tab.0.right" timestamp="1591862757985">
+    <state width="1485" height="9" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591770889008" />
+    <state width="1485" height="9" key="GridCell.Tab.0.right" timestamp="1591770889008">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="186" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591862757985" />
-    <state width="1493" height="186" key="GridCell.Tab.1.bottom" timestamp="1591862757985">
+    <state width="1485" height="9" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591770889008" />
+    <state width="1485" height="9" key="GridCell.Tab.1.bottom" timestamp="1591770889009">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="186" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591862757985" />
-    <state width="1493" height="186" key="GridCell.Tab.1.center" timestamp="1591862757985">
+    <state width="1485" height="9" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591770889009" />
+    <state width="1485" height="9" key="GridCell.Tab.1.center" timestamp="1591770889009">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="186" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1591862757985" />
-    <state width="1493" height="186" key="GridCell.Tab.1.left" timestamp="1591862757985">
+    <state width="1485" height="9" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1591770889009" />
+    <state width="1485" height="9" key="GridCell.Tab.1.left" timestamp="1591770889009">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="186" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1591862757985" />
-    <state width="1493" height="186" key="GridCell.Tab.1.right" timestamp="1591862757985">
+    <state width="1485" height="9" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1591770889009" />
+    <state width="1485" height="9" key="GridCell.Tab.1.right" timestamp="1591770889009">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="186" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1591862757985" />
+    <state width="1485" height="9" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1591770889009" />
     <state x="186" y="0" key="Maven.ArtifactSearchDialog" timestamp="1591693539307">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -278,10 +283,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="0" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1591674071945" />
-    <state x="184" y="120" width="1014" height="626" key="Vcs.Push.Dialog.v2" timestamp="1591862730991">
+    <state x="184" y="120" width="1014" height="626" key="Vcs.Push.Dialog.v2" timestamp="1591771744272">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="184" y="120" width="1014" height="626" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1591862730991" />
+    <state x="184" y="120" width="1014" height="626" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1591771744272" />
     <state x="378" y="197" key="com.intellij.ide.util.TipDialog" timestamp="1591665400943">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -298,10 +303,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="827" y="187" key="git4idea.merge.GitMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1591758061579" />
-    <state x="435" y="161" key="git4idea.merge.GitPullDialog" timestamp="1591862553717">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="408" y="180" key="git4idea.merge.GitPullDialog" timestamp="1591782596918">
+      <screen x="0" y="23" width="1440" height="805" />
     </state>
-    <state x="435" y="161" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1591862553717" />
+    <state x="435" y="161" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1591758325795" />
     <state x="408" y="180" key="git4idea.merge.GitPullDialog/0.23.1440.805@0.23.1440.805" timestamp="1591782596918" />
     <state x="597" y="290" key="git4idea.ui.GitStashDialog" timestamp="1591758171501">
       <screen x="0" y="0" width="1536" height="824" />
