@@ -283,6 +283,146 @@ public class RepairmanExample {
             addCriterion("department_id not between", value1, value2, "departmentId");
             return (Criteria) this;
         }
+
+        public Criteria andHospitalnameIsNull() {
+            addCriterion("hospitalname is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHospitalnameIsNotNull() {
+            addCriterion("hospitalname is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHospitalnameEqualTo(String value) {
+            addCriterion("hospitalname =", value, "hospitalname");
+            return (Criteria) this;
+        }
+
+        public Criteria andHospitalnameNotEqualTo(String value) {
+            addCriterion("hospitalname <>", value, "hospitalname");
+            return (Criteria) this;
+        }
+
+        public Criteria andHospitalnameGreaterThan(String value) {
+            addCriterion("hospitalname >", value, "hospitalname");
+            return (Criteria) this;
+        }
+
+        public Criteria andHospitalnameGreaterThanOrEqualTo(String value) {
+            addCriterion("hospitalname >=", value, "hospitalname");
+            return (Criteria) this;
+        }
+
+        public Criteria andHospitalnameLessThan(String value) {
+            addCriterion("hospitalname <", value, "hospitalname");
+            return (Criteria) this;
+        }
+
+        public Criteria andHospitalnameLessThanOrEqualTo(String value) {
+            addCriterion("hospitalname <=", value, "hospitalname");
+            return (Criteria) this;
+        }
+
+        public Criteria andHospitalnameLike(String value) {
+            addCriterion("hospitalname like", value, "hospitalname");
+            return (Criteria) this;
+        }
+
+        public Criteria andHospitalnameNotLike(String value) {
+            addCriterion("hospitalname not like", value, "hospitalname");
+            return (Criteria) this;
+        }
+
+        public Criteria andHospitalnameIn(List<String> values) {
+            addCriterion("hospitalname in", values, "hospitalname");
+            return (Criteria) this;
+        }
+
+        public Criteria andHospitalnameNotIn(List<String> values) {
+            addCriterion("hospitalname not in", values, "hospitalname");
+            return (Criteria) this;
+        }
+
+        public Criteria andHospitalnameBetween(String value1, String value2) {
+            addCriterion("hospitalname between", value1, value2, "hospitalname");
+            return (Criteria) this;
+        }
+
+        public Criteria andHospitalnameNotBetween(String value1, String value2) {
+            addCriterion("hospitalname not between", value1, value2, "hospitalname");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentnameIsNull() {
+            addCriterion("departmentname is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentnameIsNotNull() {
+            addCriterion("departmentname is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentnameEqualTo(String value) {
+            addCriterion("departmentname =", value, "departmentname");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentnameNotEqualTo(String value) {
+            addCriterion("departmentname <>", value, "departmentname");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentnameGreaterThan(String value) {
+            addCriterion("departmentname >", value, "departmentname");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentnameGreaterThanOrEqualTo(String value) {
+            addCriterion("departmentname >=", value, "departmentname");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentnameLessThan(String value) {
+            addCriterion("departmentname <", value, "departmentname");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentnameLessThanOrEqualTo(String value) {
+            addCriterion("departmentname <=", value, "departmentname");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentnameLike(String value) {
+            addCriterion("departmentname like", value, "departmentname");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentnameNotLike(String value) {
+            addCriterion("departmentname not like", value, "departmentname");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentnameIn(List<String> values) {
+            addCriterion("departmentname in", values, "departmentname");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentnameNotIn(List<String> values) {
+            addCriterion("departmentname not in", values, "departmentname");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentnameBetween(String value1, String value2) {
+            addCriterion("departmentname between", value1, value2, "departmentname");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentnameNotBetween(String value1, String value2) {
+            addCriterion("departmentname not between", value1, value2, "departmentname");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

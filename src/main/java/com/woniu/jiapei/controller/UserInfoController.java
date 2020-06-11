@@ -3,6 +3,7 @@ package com.woniu.jiapei.controller;
 
 import com.woniu.jiapei.condition.AccountingCondition;
 import com.woniu.jiapei.condition.CustomerCondition;
+import com.woniu.jiapei.condition.MedicalCondition;
 import com.woniu.jiapei.model.Customer;
 import com.woniu.jiapei.model.UserInfo;
 import com.woniu.jiapei.service.UserInfoService;
@@ -88,6 +89,36 @@ public class UserInfoController {
     @PostMapping("updateRepairman")
     public void updateRepairman(UserInfo userInfo){
         userInfoServiceImpl.updateRepairman(userInfo);
+    }
+    /**
+     * 获取医院科室对接人员列表
+     */
+    @GetMapping("/getAllMedical")
+    public Map<String,Object> getAllMedical(PageBean pageBean, MedicalCondition medicalCondition) throws ParseException {
+        Map<String,Object> map=new HashMap<String,Object>();
+        List<UserInfo> list=userInfoServiceImpl.findAllMedical(pageBean,medicalCondition);
+        Integer countMedical=userInfoServiceImpl.countMedical();
+        map.put("pageBean",pageBean);
+        map.put("medicalList",list);
+        map.put("countMedical",countMedical);
+        return map;
+    }
+    /**
+     * 添加一个医院科室对接人
+     * @param userInfo
+     */
+    @PostMapping("addMedical")
+    public void addMedical(UserInfo userInfo,int level){
+        userInfoServiceImpl.addMedical(userInfo,level);
+    }
+
+    /**
+     * 编辑维修人员信息
+     */
+    @PostMapping("updateMedical")
+    public void updateMedical(UserInfo userInfo,Boolean level){
+        System.out.println(level);
+        userInfoServiceImpl.updateMedical(userInfo,level);
     }
 
 }

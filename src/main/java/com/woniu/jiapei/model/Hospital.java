@@ -123,4 +123,5 @@ public class Hospital {
     public void setZoneId(Integer zoneId) {
         this.zoneId = zoneId;
     }
+
 }

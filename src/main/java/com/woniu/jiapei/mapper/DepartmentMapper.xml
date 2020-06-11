@@ -21,6 +21,10 @@
   <select id="findByHospitalId" resultMap="BaseResultMapWithBed" parameterType="int">
     select * from tb_jp_department where hospital_id=#{hospitalId}
   </select>
+
+  <select id="getByHospitalId" resultMap="BaseResultMap" parameterType="int">
+    select * from tb_jp_department where hospital_id=#{hospitalId}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

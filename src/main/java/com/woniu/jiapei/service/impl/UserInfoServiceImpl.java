@@ -3,6 +3,7 @@ package com.woniu.jiapei.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.jiapei.condition.AccountingCondition;
+import com.woniu.jiapei.condition.MedicalCondition;
 import com.woniu.jiapei.mapper.UserInfoMapper;
 import com.woniu.jiapei.mapper.UserInfoRoleMapper;
 import com.woniu.jiapei.model.Customer;
@@ -124,5 +125,49 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public void updateRepairman(UserInfo userInfo) {
         userInfoMapper.updateByPrimaryKeySelective(userInfo);
+    }
+
+    @Override
+    public List<UserInfo> findAllMedical(PageBean pageBean, MedicalCondition medicalCondition) {
+        PageHelper.startPage(pageBean.getPageNum(),pageBean.getPageSize());
+        List<UserInfo> list=userInfoMapper.getMedicalByCondition(medicalCondition);
+        PageInfo<UserInfo> pageInfo = new PageInfo<UserInfo>(list);
+        pageBean.setPages(pageInfo.getPages());
+        pageBean.setTotal((int) pageInfo.getTotal());
+        return list;
+    }
+
+    @Override
+    public Integer countMedical() {
+        return userInfoMapper.countMedical();
+    }
+
+    @Override
+    public void addMedical(UserInfo userInfo, int level) {
+        userInfo.setPassword("123456");
+        userInfo.setCreateTime(new Date());
+        userInfo.setIsdelete(true);
+        userInfoMapper.insert(userInfo);
+        System.out.println(userInfo.getUserinfoId());
+        UserInfoRoleKey userInfoRoleKey=new UserInfoRoleKey();
+        userInfoRoleKey.setUserinfoId(userInfo.getUserinfoId());
+        if (level==1){
+            userInfoRoleKey.setRoleId(5);
+        }else if (level==0){
+            userInfoRoleKey.setRoleId(6);
+        }
+        userInfoRoleMapper.insert(userInfoRoleKey);
+    }
+
+    @Override
+    public void updateMedical(UserInfo userInfo, Boolean level) {
+        userInfoMapper.updateByPrimaryKeySelective(userInfo);
+        if (level){
+            userInfoRoleMapper.changeRoleB(userInfo.getUserinfoId());
+            System.out.println("修改角色为医院对接人");
+        }else if(!level){
+            userInfoRoleMapper.changeRoleS(userInfo.getUserinfoId());
+            System.out.println("修改角色为科室对接人");
+        }
     }
 }

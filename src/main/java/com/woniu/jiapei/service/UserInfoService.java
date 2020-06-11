@@ -1,6 +1,7 @@
 package com.woniu.jiapei.service;
 
 import com.woniu.jiapei.condition.AccountingCondition;
+import com.woniu.jiapei.condition.MedicalCondition;
 import com.woniu.jiapei.model.Customer;
 import com.woniu.jiapei.model.UserInfo;
 import com.woniu.jiapei.tools.PageBean;
@@ -25,4 +26,12 @@ public interface UserInfoService {
     void addRepairman(UserInfo userInfo);
 
     void updateRepairman(UserInfo userInfo);
+
+    List<UserInfo> findAllMedical(PageBean pageBean, MedicalCondition medicalCondition);
+
+    Integer countMedical();
+
+    void addMedical(UserInfo userInfo, int level);
+
+    void updateMedical(UserInfo userInfo, Boolean level);
 }
