@@ -79,4 +79,9 @@ public class OrdersServiceImpl implements OrdersService {
 
         return ordersList;
     }
+
+    @Override
+    public List<Orders> getOrdersByCondition(OrderCondition orderCondition) {
+        return ordersMapper.getOrdersByCondition(orderCondition);
+    }
 }

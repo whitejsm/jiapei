@@ -28,5 +28,5 @@ public interface HospitalMapper {
 
     int updateByPrimaryKey(Hospital record);
 
-    Hospital findOneWithBed(Integer hospitalId);
+    Hospital findOneWithDepartment(Integer hospitalId);
 }

@@ -10,10 +10,12 @@ import java.util.List;
 /**
  * 床位管理的接口
  */
-public interface IBedService {
+public interface BedService {
     List<Bed> findAll(PageBean pageBean);
     Bed findById(String bedId);
     List<Bed> findByExample(BedCondition bedCondition, PageBean pageBean);
     void update(Bed bed);
     void save(Bed bed);
+
+    List<Bed> getBedsByCondition(BedCondition bedCondition);
 }

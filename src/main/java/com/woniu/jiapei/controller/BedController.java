@@ -1,17 +1,25 @@
 package com.woniu.jiapei.controller;
 
 import com.woniu.jiapei.condition.BedCondition;
+import com.woniu.jiapei.condition.OrderCondition;
+import com.woniu.jiapei.mapper.DepartmentMapper;
 import com.woniu.jiapei.mapper.HospitalMapper;
-import com.woniu.jiapei.model.Bed;
-import com.woniu.jiapei.model.Hospital;
-import com.woniu.jiapei.model.Message;
-import com.woniu.jiapei.service.IBedService;
+import com.woniu.jiapei.mapper.ManufacturerMapper;
+import com.woniu.jiapei.model.*;
+import com.woniu.jiapei.service.BedService;
+import com.woniu.jiapei.tools.DataFileUtil;
 import com.woniu.jiapei.tools.Msg;
 import com.woniu.jiapei.tools.PageBean;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 床位管理的控制器
@@ -20,7 +28,13 @@ import java.util.List;
 @RequestMapping("/bed/")
 public class BedController {
     @Resource
-    private IBedService bedServiceImpl;
+    private BedService bedServiceImpl;
+    @Resource
+    private HospitalMapper hospitalMapper;
+    @Resource
+    private DepartmentMapper departmentMapper;
+    @Resource
+    private ManufacturerMapper manufacturerMapper;
 
     @GetMapping("findAll")
     public Msg findAll(PageBean pageBean){
@@ -46,7 +60,17 @@ public class BedController {
         Msg msg = new Msg();
         try{
             System.out.println(bedCondition);
+
+            if(bedCondition.getEndTime()!=null)
+                bedCondition.setEndTime(new Date(bedCondition.getEndTime().getTime()+1000*3600*24));
+            System.out.println(bedCondition);
+
             List<Bed> bedList = bedServiceImpl.findByExample(bedCondition,pageBean);
+            List<Hospital> hospitalList = hospitalMapper.selectByExample(null);
+            List<Manufacturer> manufacturerList = manufacturerMapper.selectByExample(null);
+
+            msg.setManufacturerList(manufacturerList);
+            msg.setHospitalList(hospitalList);
             msg.setBedList(bedList);
             msg.setPageBean(pageBean);
             msg.setMsg("数据维护成功");
@@ -93,16 +117,15 @@ public class BedController {
             msg.setMsg("数据维护失败");
             msg.setResult(false);
             e.printStackTrace();
-        }finally {
-            return msg;
         }
+        return msg;
     }
 
     @PostMapping("update")
     public Msg update(Bed bed){
         Msg msg = new Msg();
         try{
-            System.out.println("ddd");
+            System.out.println(bed);
             bedServiceImpl.update(bed);
             msg.setMsg("数据维护成功");
             msg.setResult(true);
@@ -119,6 +142,12 @@ public class BedController {
     public Msg save(Bed bed){
         Msg msg = new Msg();
         try{
+            //生成新的bedID
+            bed.setBedId(bed.getBedId()+(new Date().getTime()+1000*3600*13)+ (new Random().nextInt(8999)+1000));
+            bed.setStatus("空闲");
+            bed.setPower(100);
+            bed.setCreateTime(new Date());
+            System.out.println(bed);
             bedServiceImpl.save(bed);
             msg.setMsg("数据维护成功");
             msg.setResult(true);
@@ -149,12 +178,38 @@ public class BedController {
         }
     }
 
-    @Resource
-    private HospitalMapper hospitalMapper;
-
-    @GetMapping("asd")
-    public Hospital asd(){
-        return hospitalMapper.findOneWithBed(3);
+    @GetMapping("findDepartment")
+    public Msg findDepartment(Integer hospitalId){
+        Msg msg = new Msg();
+        if(hospitalId==-1){
+            msg.setDepartmentList(null);
+            return msg;
+        }
+        msg.setDepartmentList(departmentMapper.findByHospitalId(hospitalId));
+        return msg;
     }
 
+    //导出报表
+    @GetMapping("downloadBedFile")
+    public void downloadBedFile(BedCondition bedCondition, HttpServletResponse response) throws IOException {
+        System.out.println(bedCondition+"!!!!!!!!!!!!!!!!!!!!!!");
+        List<Bed> bedList = bedServiceImpl.getBedsByCondition(bedCondition);
+        // 生成文件
+        XSSFWorkbook workBook = DataFileUtil.createScoreFile(Bed.class, bedList);
+//        XSSFWorkbook workBook = DataFileUtil.createScoreFile(Examination.class, examinationMapper.findAll());
+
+        String filename = "bed.xlsx";
+
+        //设置文件下载头
+        response.setHeader("content-disposition", "attachment;filename=" + filename);
+        //1.设置文件ContentType类型，这样设置，会自动判断下载文件类型
+//        response.setContentType("multipart/form-data");
+        response.setContentType("application/vnd.ms-excel");
+        //BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
+        // 不要使用ajax跳转到这个链接，否则会抛出管道中断错误
+        OutputStream out = response.getOutputStream();
+        workBook.write(out);
+        out.flush();
+        out.close();
+    }
 }

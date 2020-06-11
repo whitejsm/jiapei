@@ -18,8 +18,13 @@
     <collection property="bedList" column="department_id" select="com.woniu.jiapei.mapper.BedMapper.findByDepartmentId"></collection>
   </resultMap>
 
-  <select id="findByHospitalId" resultMap="BaseResultMapWithBed" parameterType="int">
-    select * from tb_jp_department where hospital_id=#{hospitalId}
+  <select id="findByHospitalId" resultMap="BaseResultMap" parameterType="Integer">
+    select * from tb_jp_department
+    <where>
+      <if test="hospitalId!=-1 and hospitalId!=null">
+        hospital_id=#{hospitalId}
+      </if>
+    </where>
   </select>
 
   <select id="getByHospitalId" resultMap="BaseResultMap" parameterType="int">

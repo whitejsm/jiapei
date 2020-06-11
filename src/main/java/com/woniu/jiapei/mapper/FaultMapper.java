@@ -1,8 +1,11 @@
 package com.woniu.jiapei.mapper;
 
+import com.woniu.jiapei.condition.FaultCondition;
 import com.woniu.jiapei.model.Fault;
 import com.woniu.jiapei.model.FaultExample;
 import java.util.List;
+
+import com.woniu.jiapei.tools.PageBean;
 import org.apache.ibatis.annotations.Param;
 
 public interface FaultMapper {
@@ -33,4 +36,6 @@ public interface FaultMapper {
     int updateByPrimaryKeyWithBLOBs(Fault record);
 
     int updateByPrimaryKey(Fault record);
+
+    List<Fault> findAll(FaultCondition faultCondition);
 }

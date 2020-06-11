@@ -28,19 +28,31 @@
     select * from tb_jp_bed where bed_id=#{bedId}
   </select>
 
-  <select id="findByExample" resultMap="BaseResultMapWithManufacturerAndDepartment" parameterType="com.woniu.jiapei.model.BedExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tb_jp_bed
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
+  <select id="findByExample" resultMap="BaseResultMapWithManufacturerAndDepartment" parameterType="com.woniu.jiapei.condition.BedCondition" >
+        select * from tb_jp_bed 
+        <where>
+          <if test="power!=null and power!=-1">
+               and power &lt; #{power}
+          </if>
+          <if test="status!=null and status!='' and status!='-1'">
+               and status = #{status}
+          </if>
+          <if test="bedId!=null and bedId!=''">
+                and bed_id like concat("%",#{bedId},"%")
+          </if>
+          <if test="hospitalId!=null and hospitalId!=-1">
+            and department_id in (select department_id from tb_jp_department where hospital_id=#{hospitalId})
+              <if test="departmentId!=null and departmentId!=-1">
+                and department_id = #{departmentId}
+              </if>
+          </if>
+          <if test="beginTime!=null">
+                and create_time &gt; #{beginTime}
+          </if>
+          <if test="endTime!=null">
+                and create_time &lt; #{endTime}
+          </if>
+        </where>
   </select>
 
   <sql id="Example_Where_Clause" >

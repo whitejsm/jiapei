@@ -8,11 +8,17 @@ package com.woniu.jiapei.controller;
 import com.woniu.jiapei.condition.OrderCondition;
 import com.woniu.jiapei.model.Orders;
 import com.woniu.jiapei.service.OrdersService;
+import com.woniu.jiapei.tools.DataFileUtil;
 import com.woniu.jiapei.tools.PageBean;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,5 +59,29 @@ public class OrderController {
         }
 
         return map;
+    }
+
+    @GetMapping("/downloadOrdersFile")
+    public void downloadOrdersFile(OrderCondition orderCondition,HttpServletResponse response) throws IOException {
+        System.out.println(orderCondition);
+        List<Orders> ordersList = ordersServiceImpl.getOrdersByCondition(orderCondition);
+        System.out.println(ordersList);
+        // 生成文件
+        XSSFWorkbook workBook = DataFileUtil.createScoreFile(Orders.class, ordersList);
+//        XSSFWorkbook workBook = DataFileUtil.createScoreFile(Examination.class, examinationMapper.findAll());
+
+        String filename = "orders.xlsx";
+
+        //设置文件下载头
+        response.setHeader("content-disposition", "attachment;filename=" + filename);
+        //1.设置文件ContentType类型，这样设置，会自动判断下载文件类型
+//        response.setContentType("multipart/form-data");
+        response.setContentType("application/vnd.ms-excel");
+        //BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
+        // 不要使用ajax跳转到这个链接，否则会抛出管道中断错误
+        OutputStream out = response.getOutputStream();
+        workBook.write(out);
+        out.flush();
+        out.close();
     }
 }
