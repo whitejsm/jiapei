@@ -25,11 +25,55 @@
   <select id="findByName" resultMap="BaseResultMapWithRolePermission" parameterType="string">
     select * from tb_jp_userinfo where username=#{uname}
   </select>
+  <!--查询会计 -->
+  <select id="getAccountingByCondition" parameterType="com.woniu.jiapei.condition.AccountingCondition"
+          resultMap="BaseResultMap">
+    select * from tb_jp_userinfo
+    <where>
+      userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id=(
+      select role_id from tb_jp_role where rolename='会计'))
+      <if test="phonenumber != null and phonenumber != ''">
+        <bind name="phonenumber" value="'%' + phonenumber + '%'" />
+        and phonenumber like #{phonenumber}
+      </if>
+      <if test="startTime != null">
+        and create_time &gt;= #{startTime}
+      </if>
+      <if test="endTime != null">
+        and create_time &lt;= #{endTime}
+      </if>
+    </where>
 
+  </select>
   <!-- 获取会计人数 -->
   <select id="countAccounting" resultType="int" >
     select count(userinfo_id) from tb_jp_userinforole where role_id=(
     select role_id from tb_jp_role where rolename='会计')
+  </select>
+  <!--查询维修人员 -->
+  <select id="getRepairmanByCondition" parameterType="com.woniu.jiapei.condition.AccountingCondition"
+          resultMap="BaseResultMap">
+    select * from tb_jp_userinfo
+    <where>
+      userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id=(
+      select role_id from tb_jp_role where rolename='维修人员'))
+      <if test="phonenumber != null and phonenumber != ''">
+        <bind name="phonenumber" value="'%' + phonenumber + '%'" />
+        and phonenumber like #{phonenumber}
+      </if>
+      <if test="startTime != null">
+        and create_time &gt;= #{startTime}
+      </if>
+      <if test="endTime != null">
+        and create_time &lt;= #{endTime}
+      </if>
+    </where>
+
+  </select>
+  <!-- 获取维修人员人数 -->
+  <select id="countRepairman" resultType="int" >
+    select count(userinfo_id) from tb_jp_userinforole where role_id=(
+    select role_id from tb_jp_role where rolename='维修人员')
   </select>
   <sql id="Example_Where_Clause" >
     <where >
@@ -123,7 +167,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.woniu.jiapei.model.UserInfo" >
+  <insert id="insert" parameterType="com.woniu.jiapei.model.UserInfo" useGeneratedKeys="true" keyProperty="userinfoId">
     insert into tb_jp_userinfo (userinfo_id, username, name, 
       password, gender, birth, create_time, 
       phonenumber, wechat, email, 

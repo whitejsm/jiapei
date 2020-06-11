@@ -13,6 +13,10 @@
   <resultMap id="ResultMapWithBLOBs" type="com.woniu.jiapei.model.Fault" extends="BaseResultMap" >
     <result column="fault_details" property="faultDetails" jdbcType="LONGVARCHAR" />
   </resultMap>
+  <select id="findAll" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.condition.FaultCondition">
+    select * from tb_jp_fault
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

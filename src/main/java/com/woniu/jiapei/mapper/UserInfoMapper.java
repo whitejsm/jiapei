@@ -1,5 +1,6 @@
 package com.woniu.jiapei.mapper;
 
+import com.woniu.jiapei.condition.AccountingCondition;
 import com.woniu.jiapei.model.UserInfo;
 import com.woniu.jiapei.model.UserInfoExample;
 import java.util.List;
@@ -31,4 +32,10 @@ public interface UserInfoMapper {
     UserInfo findByName(String username);
 
     Integer countAccounting();
+
+    List<UserInfo> getAccountingByCondition(AccountingCondition accountingCondition);
+
+    Integer countRepairman();
+
+    List<UserInfo> getRepairmanByCondition(AccountingCondition accountingCondition);
 }

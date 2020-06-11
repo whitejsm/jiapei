@@ -1,17 +1,19 @@
 package com.woniu.jiapei.controller;
 
 import com.woniu.jiapei.condition.BedCondition;
+import com.woniu.jiapei.mapper.DepartmentMapper;
 import com.woniu.jiapei.mapper.HospitalMapper;
-import com.woniu.jiapei.model.Bed;
-import com.woniu.jiapei.model.Hospital;
-import com.woniu.jiapei.model.Message;
-import com.woniu.jiapei.service.IBedService;
+import com.woniu.jiapei.mapper.ManufacturerMapper;
+import com.woniu.jiapei.model.*;
+import com.woniu.jiapei.service.BedService;
 import com.woniu.jiapei.tools.Msg;
 import com.woniu.jiapei.tools.PageBean;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 床位管理的控制器
@@ -20,7 +22,13 @@ import java.util.List;
 @RequestMapping("/bed/")
 public class BedController {
     @Resource
-    private IBedService bedServiceImpl;
+    private BedService bedServiceImpl;
+    @Resource
+    private HospitalMapper hospitalMapper;
+    @Resource
+    private DepartmentMapper departmentMapper;
+    @Resource
+    private ManufacturerMapper manufacturerMapper;
 
     @GetMapping("findAll")
     public Msg findAll(PageBean pageBean){
@@ -46,7 +54,19 @@ public class BedController {
         Msg msg = new Msg();
         try{
             System.out.println(bedCondition);
+            bedCondition.setBeginTime(new Date(bedCondition.getBeginTime().getTime()+1000*3600*13));
+            bedCondition.setEndTime(new Date(bedCondition.getEndTime().getTime()+1000*3600*37));
+            System.out.println(bedCondition);
+
             List<Bed> bedList = bedServiceImpl.findByExample(bedCondition,pageBean);
+            List<Hospital> hospitalList = hospitalMapper.selectByExample(null);
+            List<Manufacturer> manufacturerList = manufacturerMapper.selectByExample(null);
+
+            msg.setManufacturerList(manufacturerList);
+            msg.setHospitalList(hospitalList);
+            for (Bed bed : bedList) {
+                bed.setCreateTime(new Date(bed.getCreateTime().getTime()-1000*3600*13));
+            }
             msg.setBedList(bedList);
             msg.setPageBean(pageBean);
             msg.setMsg("数据维护成功");
@@ -93,16 +113,15 @@ public class BedController {
             msg.setMsg("数据维护失败");
             msg.setResult(false);
             e.printStackTrace();
-        }finally {
-            return msg;
         }
+        return msg;
     }
 
     @PostMapping("update")
     public Msg update(Bed bed){
         Msg msg = new Msg();
         try{
-            System.out.println("ddd");
+            System.out.println(bed);
             bedServiceImpl.update(bed);
             msg.setMsg("数据维护成功");
             msg.setResult(true);
@@ -119,6 +138,12 @@ public class BedController {
     public Msg save(Bed bed){
         Msg msg = new Msg();
         try{
+            //生成新的bedID
+            bed.setBedId(bed.getBedId()+(new Date().getTime()+1000*3600*13)+ (new Random().nextInt(8999)+1000));
+            bed.setStatus("空闲");
+            bed.setPower(100);
+            bed.setCreateTime(new Date(new Date().getTime()+1000*3600*13));
+            System.out.println(bed);
             bedServiceImpl.save(bed);
             msg.setMsg("数据维护成功");
             msg.setResult(true);
@@ -149,12 +174,14 @@ public class BedController {
         }
     }
 
-    @Resource
-    private HospitalMapper hospitalMapper;
-
-    @GetMapping("asd")
-    public Hospital asd(){
-        return hospitalMapper.findOneWithBed(3);
+    @GetMapping("findDepartment")
+    public Msg findDepartment(Integer hospitalId){
+        Msg msg = new Msg();
+        if(hospitalId==-1){
+            msg.setDepartmentList(null);
+            return msg;
+        }
+        msg.setDepartmentList(departmentMapper.findByHospitalId(hospitalId));
+        return msg;
     }
-
 }
