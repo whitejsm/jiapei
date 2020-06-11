@@ -16,4 +16,6 @@ public interface BedService {
     List<Bed> findByExample(BedCondition bedCondition, PageBean pageBean);
     void update(Bed bed);
     void save(Bed bed);
+
+    List<Bed> getBedsByCondition(BedCondition bedCondition);
 }

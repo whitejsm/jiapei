@@ -80,10 +80,8 @@ public class DataFileUtil {
                 rowLength++;
                 row = xssfSheet.createRow(rowLength);
                 for(int in = 0; in < ls.size(); in++) {
-                    System.out.println(transFieldToMethod(ls.get(in)));
                     Method meth = cls.getMethod(transFieldToMethod(ls.get(in)));
                     Object val = meth.invoke(t);
-                    System.out.println(val);
                     xssfCell = row.createCell(colNum++);
                     if (val == null){
                         xssfCell.setCellValue("");

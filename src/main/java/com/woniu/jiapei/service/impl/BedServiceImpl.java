@@ -111,4 +111,9 @@ public class BedServiceImpl implements BedService {
     public void save(Bed bed) {
         bedMapper.insert(bed);
     }
+
+    @Override
+    public List<Bed> getBedsByCondition(BedCondition bedCondition) {
+        return bedMapper.findByExample(bedCondition);
+    }
 }
