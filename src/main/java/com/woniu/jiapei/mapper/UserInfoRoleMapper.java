@@ -25,4 +25,8 @@ public interface UserInfoRoleMapper {
     void changeRoleB(Integer userinfoId);
 
     void changeRoleS(Integer userinfoId);
+
+    void changeRoleGD(Integer userinfoId);
+
+    void changeRoleFXS(Integer userinfoId);
 }

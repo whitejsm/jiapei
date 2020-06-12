@@ -4,11 +4,15 @@ package com.woniu.jiapei.controller;
 import com.woniu.jiapei.condition.AccountingCondition;
 import com.woniu.jiapei.condition.CustomerCondition;
 import com.woniu.jiapei.condition.MedicalCondition;
+import com.woniu.jiapei.condition.ShareholderCondition;
 import com.woniu.jiapei.model.Customer;
+import com.woniu.jiapei.model.Hospital;
+import com.woniu.jiapei.model.Shareholder;
 import com.woniu.jiapei.model.UserInfo;
 import com.woniu.jiapei.service.UserInfoService;
 import com.woniu.jiapei.tools.PageBean;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -119,6 +123,53 @@ public class UserInfoController {
     public void updateMedical(UserInfo userInfo,Boolean level){
         System.out.println(level);
         userInfoServiceImpl.updateMedical(userInfo,level);
+    }
+
+    @GetMapping("/getAllShareholder")
+    public Map<String,Object> getAllShareholder(PageBean pageBean, ShareholderCondition shareholderCondition) throws ParseException {
+        Map<String,Object> map=new HashMap<String,Object>();
+        List<UserInfo> list=userInfoServiceImpl.findAllShareholder(pageBean,shareholderCondition);
+        Integer countShareholder=userInfoServiceImpl.countShareholder();
+        map.put("pageBean",pageBean);
+        map.put("shareholderList",list);
+        map.put("countShareholder",countShareholder);
+        return map;
+    }
+
+    /**
+     * 添加一个股东或分销商
+     * @param userInfo
+     */
+    @PostMapping("addShareholder")
+    public void addShareholder(UserInfo userInfo, int level, Shareholder shareholder){
+
+        userInfoServiceImpl.addShareholder(userInfo,level,shareholder);
+    }
+
+    /**
+     * 编辑股东分销商信息
+     */
+    @PostMapping("updateShareholder")
+    public void updateShareholder(UserInfo userInfo,Boolean level,Shareholder shareholder){
+        System.out.println(level);
+        userInfoServiceImpl.updateShareholder(userInfo,level,shareholder);
+    }
+
+
+    /**
+     * 根据id查找分销商负责的医院
+     * @param userinfoId
+     * @return
+     * @throws ParseException
+     */
+    @PostMapping("/showInvestment")
+    public Map<String,Object> showInvestment(int userinfoId) throws ParseException {
+        Map<String,Object> map=new HashMap<String,Object>();
+        List<Hospital> list=userInfoServiceImpl.findAllInvestment(userinfoId);
+        Integer countHospital=userInfoServiceImpl.countInvestment(userinfoId);
+        map.put("hospitalList",list);
+        map.put("countHospital",countHospital);
+        return map;
     }
 
 }

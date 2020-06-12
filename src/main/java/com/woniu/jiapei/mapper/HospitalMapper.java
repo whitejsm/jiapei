@@ -29,4 +29,6 @@ public interface HospitalMapper {
     int updateByPrimaryKey(Hospital record);
 
     Hospital findOneWithDepartment(Integer hospitalId);
+
+    List<Hospital> findAllInvestment(int userinfoId);
 }

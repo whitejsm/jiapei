@@ -8,6 +8,9 @@
     <result column="shareholder_bankcard" property="shareholderBankcard" jdbcType="VARCHAR" />
     <result column="shareholder_moeny" property="shareholderMoeny" jdbcType="DECIMAL" />
   </resultMap>
+  <select id="findByUid" resultMap="BaseResultMap" parameterType="int">
+    select * from tb_jp_shareholder where userinfo_id=#{userinfo_id}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

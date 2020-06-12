@@ -2,7 +2,10 @@ package com.woniu.jiapei.service;
 
 import com.woniu.jiapei.condition.AccountingCondition;
 import com.woniu.jiapei.condition.MedicalCondition;
+import com.woniu.jiapei.condition.ShareholderCondition;
 import com.woniu.jiapei.model.Customer;
+import com.woniu.jiapei.model.Hospital;
+import com.woniu.jiapei.model.Shareholder;
 import com.woniu.jiapei.model.UserInfo;
 import com.woniu.jiapei.tools.PageBean;
 
@@ -34,4 +37,16 @@ public interface UserInfoService {
     void addMedical(UserInfo userInfo, int level);
 
     void updateMedical(UserInfo userInfo, Boolean level);
+
+    List<UserInfo> findAllShareholder(PageBean pageBean, ShareholderCondition shareholderCondition);
+
+    Integer countShareholder();
+
+    void addShareholder(UserInfo userInfo, int level, Shareholder shareholder);
+
+    void updateShareholder(UserInfo userInfo, Boolean level, Shareholder shareholder);
+
+    List<Hospital> findAllInvestment(int userinfoId);
+
+    Integer countInvestment(int userinfoId);
 }

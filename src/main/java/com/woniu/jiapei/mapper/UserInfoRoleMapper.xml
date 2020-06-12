@@ -150,4 +150,12 @@
     update tb_jp_userinforole
     set role_id = 6 where userinfo_id=#{userinfoId}
   </update>
+  <update id="changeRoleGD" parameterType="int" >
+    update tb_jp_userinforole
+    set role_id = 8 where userinfo_id=#{userinfoId}
+  </update>
+  <update id="changeRoleFXS" parameterType="int" >
+    update tb_jp_userinforole
+    set role_id = 7 where userinfo_id=#{userinfoId}
+  </update>
 </mapper>
