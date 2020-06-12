@@ -2,6 +2,7 @@ package com.woniu.jiapei.service;
 
 import com.woniu.jiapei.condition.AccountingCondition;
 import com.woniu.jiapei.model.Customer;
+import com.woniu.jiapei.model.Role;
 import com.woniu.jiapei.model.UserInfo;
 import com.woniu.jiapei.tools.PageBean;
 
@@ -25,4 +26,6 @@ public interface UserInfoService {
     void addRepairman(UserInfo userInfo);
 
     void updateRepairman(UserInfo userInfo);
+
+    Role findRoleByUserId(Integer userinfoId);
 }

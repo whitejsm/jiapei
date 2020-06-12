@@ -167,4 +167,12 @@
     set rolename = #{rolename,jdbcType=VARCHAR}
     where role_id = #{roleId,jdbcType=INTEGER}
   </update>
+
+  <select id="findRoleByUserId" resultMap="BaseResultMap">
+    select * from tb_jp_role
+    where role_id = (
+        select role_id from tb_jp_userinforole
+        where userinfo_id = #{userinfoId}
+    )
+  </select>
 </mapper>

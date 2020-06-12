@@ -1,5 +1,6 @@
 package com.woniu.jiapei.controller;
 
+import com.woniu.jiapei.model.Role;
 import com.woniu.jiapei.model.UserInfo;
 import com.woniu.jiapei.service.UserInfoService;
 import org.apache.shiro.SecurityUtils;
@@ -27,16 +28,20 @@ public class LoginController {
     登录
      */
     @GetMapping("/login")
-    public Map<String, String> login(String uname, String upass){
-        Map<String, String> map=new HashMap<>();
+    public Map<String, Object> login(String uname, String upass){
+        Map<String, Object> map=new HashMap<>();
 //        Subject subject = SecurityUtils.getSubject();
 //        UsernamePasswordToken token = new UsernamePasswordToken(uname,upass);
         try{
        //     subject.login(token);
             System.out.println("登录成功");
             UserInfo userinfo= userInfoServiceImpl.findByName(uname);
+            Role role = userInfoServiceImpl.findRoleByUserId(userinfo.getUserinfoId());
             Integer userId=userinfo.getUserinfoId();
             String  userName=userinfo.getName();
+
+            map.put("roleId", role.getRoleId());
+            map.put("roleName", role.getRolename());
             map.put("status","success");
             map.put("userId",String.valueOf(userId));
             map.put("userName",userName);

@@ -3,9 +3,11 @@ package com.woniu.jiapei.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.jiapei.condition.AccountingCondition;
+import com.woniu.jiapei.mapper.RoleMapper;
 import com.woniu.jiapei.mapper.UserInfoMapper;
 import com.woniu.jiapei.mapper.UserInfoRoleMapper;
 import com.woniu.jiapei.model.Customer;
+import com.woniu.jiapei.model.Role;
 import com.woniu.jiapei.model.UserInfo;
 import com.woniu.jiapei.model.UserInfoRoleKey;
 import com.woniu.jiapei.service.UserInfoService;
@@ -23,6 +25,8 @@ public class UserInfoServiceImpl implements UserInfoService {
     UserInfoMapper userInfoMapper;
     @Resource
     UserInfoRoleMapper userInfoRoleMapper;
+    @Resource
+    private RoleMapper roleMapper;
 
     /*
     根据登录用户名，查询用户是否存在，实现登录
@@ -124,5 +128,10 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public void updateRepairman(UserInfo userInfo) {
         userInfoMapper.updateByPrimaryKeySelective(userInfo);
+    }
+
+    @Override
+    public Role findRoleByUserId(Integer userinfoId) {
+        return roleMapper.findRoleByUserId(userinfoId);
     }
 }
