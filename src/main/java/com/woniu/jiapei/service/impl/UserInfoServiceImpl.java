@@ -7,9 +7,14 @@ import com.woniu.jiapei.condition.MedicalCondition;
 import com.woniu.jiapei.condition.ShareholderCondition;
 import com.woniu.jiapei.mapper.HospitalMapper;
 import com.woniu.jiapei.mapper.ShareholderMapper;
+import com.woniu.jiapei.mapper.RoleMapper;
 import com.woniu.jiapei.mapper.UserInfoMapper;
 import com.woniu.jiapei.mapper.UserInfoRoleMapper;
 import com.woniu.jiapei.model.*;
+import com.woniu.jiapei.model.Customer;
+import com.woniu.jiapei.model.Role;
+import com.woniu.jiapei.model.UserInfo;
+import com.woniu.jiapei.model.UserInfoRoleKey;
 import com.woniu.jiapei.service.UserInfoService;
 import com.woniu.jiapei.tools.PageBean;
 import org.springframework.stereotype.Service;
@@ -29,6 +34,9 @@ public class UserInfoServiceImpl implements UserInfoService {
     ShareholderMapper shareholderMapper;
     @Resource
     HospitalMapper hospitalMapper;
+    @Resource
+    private RoleMapper roleMapper;
+
     /*
     根据登录用户名，查询用户是否存在，实现登录
      */
@@ -129,6 +137,11 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public void updateRepairman(UserInfo userInfo) {
         userInfoMapper.updateByPrimaryKeySelective(userInfo);
+    }
+
+    @Override
+    public Role findRoleByUserId(Integer userinfoId) {
+        return roleMapper.findRoleByUserId(userinfoId);
     }
 
     @Override

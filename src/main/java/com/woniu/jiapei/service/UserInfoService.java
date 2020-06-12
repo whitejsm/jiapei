@@ -6,6 +6,7 @@ import com.woniu.jiapei.condition.ShareholderCondition;
 import com.woniu.jiapei.model.Customer;
 import com.woniu.jiapei.model.Hospital;
 import com.woniu.jiapei.model.Shareholder;
+import com.woniu.jiapei.model.Role;
 import com.woniu.jiapei.model.UserInfo;
 import com.woniu.jiapei.tools.PageBean;
 
@@ -49,4 +50,6 @@ public interface UserInfoService {
     List<Hospital> findAllInvestment(int userinfoId);
 
     Integer countInvestment(int userinfoId);
+
+    Role findRoleByUserId(Integer userinfoId);
 }

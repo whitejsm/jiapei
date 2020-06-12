@@ -10,6 +10,7 @@ import com.woniu.jiapei.model.OrdersExample;
 import com.woniu.jiapei.service.OrdersService;
 import com.woniu.jiapei.tools.PageBean;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.text.DateFormat;
@@ -22,6 +23,7 @@ import java.util.List;
  * 订单业务实现类
  */
 @Service
+@Transactional
 public class OrdersServiceImpl implements OrdersService {
 
     @Resource
@@ -83,5 +85,12 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public List<Orders> getOrdersByCondition(OrderCondition orderCondition) {
         return ordersMapper.getOrdersByCondition(orderCondition);
+    }
+
+    @Override
+    public void insertOrders(List<Orders> list) {
+        for (Orders order : list) {
+            ordersMapper.insertSelective(order);
+        }
     }
 }
