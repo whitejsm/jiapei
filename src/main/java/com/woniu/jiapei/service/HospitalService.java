@@ -11,4 +11,6 @@ import java.util.List;
 
 public interface HospitalService {
     List<Hospital> getAllHospital();
+
+    List<Hospital> getDistributorHospital(Integer distributorId);
 }

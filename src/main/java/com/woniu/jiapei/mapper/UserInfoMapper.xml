@@ -378,4 +378,9 @@
       parent_id = #{parentId,jdbcType=INTEGER}
     where userinfo_id = #{userinfoId,jdbcType=INTEGER}
   </update>
+
+  <select id="getDistributor" resultMap="BaseResultMap">
+    select * from tb_jp_userinfo
+    where parent_id = #{userId}
+  </select>
 </mapper>

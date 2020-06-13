@@ -39,4 +39,6 @@ public interface UserInfoMapper {
     Integer countRepairman();
 
     List<UserInfo> getRepairmanByCondition(AccountingCondition accountingCondition);
+
+    List<UserInfo> getDistributor(Integer userId);
 }

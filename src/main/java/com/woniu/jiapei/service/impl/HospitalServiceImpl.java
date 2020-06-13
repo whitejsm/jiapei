@@ -24,4 +24,9 @@ public class HospitalServiceImpl implements HospitalService {
     public List<Hospital> getAllHospital() {
         return hospitalMapper.selectByExample(null);
     }
+
+    @Override
+    public List<Hospital> getDistributorHospital(Integer distributorId) {
+        return hospitalMapper.selectByDistributorId(distributorId);
+    }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +26,6 @@ import java.util.Map;
 public class UserInfoController {
     @Resource
     UserInfoService userInfoServiceImpl;
-
 
     /**
      * 获取会计列表
@@ -90,4 +90,21 @@ public class UserInfoController {
         userInfoServiceImpl.updateRepairman(userInfo);
     }
 
+    /**
+     * 当登陆角色为经销商时获取二级分销商
+     */
+    @GetMapping("/getDistributor")
+    public Map<String, Object> getDistributor(HttpSession session) {
+        Map<String, Object> map = new HashMap<>();
+        try {
+            Integer userId = (Integer) session.getAttribute("userId");
+            List<UserInfo> distributorList = userInfoServiceImpl.getDistributor(userId);
+            map.put("distributorList", distributorList);
+            map.put("result", "success");
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("result", "error");
+        }
+        return map;
+    }
 }

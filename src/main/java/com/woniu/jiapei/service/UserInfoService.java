@@ -28,4 +28,6 @@ public interface UserInfoService {
     void updateRepairman(UserInfo userInfo);
 
     Role findRoleByUserId(Integer userinfoId);
+
+    List<UserInfo> getDistributor(Integer userId);
 }

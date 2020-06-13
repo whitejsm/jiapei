@@ -134,4 +134,9 @@ public class UserInfoServiceImpl implements UserInfoService {
     public Role findRoleByUserId(Integer userinfoId) {
         return roleMapper.findRoleByUserId(userinfoId);
     }
+
+    @Override
+    public List<UserInfo> getDistributor(Integer userId) {
+        return userInfoMapper.getDistributor(userId);
+    }
 }
