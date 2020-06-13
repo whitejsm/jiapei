@@ -10,7 +10,7 @@ import java.util.List;
  * 售后管理--故障模块接口
  */
 public interface FaultService {
-    List<Fault> findAll(FaultCondition faultCondition,PageBean pageBean);
+    List<Fault> findAll(FaultCondition faultCondition, PageBean pageBean);
     Fault findByFaultId(Integer faultId);
     void save(Fault fault);
     void update(Fault fault);
