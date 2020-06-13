@@ -154,4 +154,24 @@ public class Orders {
         this.timec = timec;
     }
 
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "ordersId='" + ordersId + '\'' +
+                ", customerId=" + customerId +
+                ", bedId='" + bedId + '\'' +
+                ", faultId=" + faultId +
+                ", rent=" + rent +
+                ", ordersStatus='" + ordersStatus + '\'' +
+                ", createTime=" + createTime +
+                ", endTime=" + endTime +
+                ", totalpay=" + totalpay +
+                ", payTime=" + payTime +
+                ", payStatus='" + payStatus + '\'' +
+                ", bed=" + bed +
+                ", fault=" + fault +
+                ", customer=" + customer +
+                ", timec='" + timec + '\'' +
+                '}';
+    }
 }

@@ -28,5 +28,7 @@ public interface DepartmentMapper {
 
     int updateByPrimaryKey(Department record);
 
+    List<Department> getByHospitalId(Integer hospitalId);
+
     List<Department>  findByHospitalId(Integer hospitalId);
 }

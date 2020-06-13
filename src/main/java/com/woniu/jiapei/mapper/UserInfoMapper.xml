@@ -21,6 +21,9 @@
   <resultMap id="BaseResultMapWithRolePermission" type="com.woniu.jiapei.model.UserInfo" extends="BaseResultMapWithRole">
     <collection property="permissions" column="userinfo_id" select="com.woniu.jiapei.mapper.PermissionMapper.findByUid"></collection>
   </resultMap>
+  <resultMap id="BaseResultMapWithShareholder" type="com.woniu.jiapei.model.UserInfo" extends="BaseResultMapWithRolePermission">
+    <collection property="shareholder" column="userinfo_id" select="com.woniu.jiapei.mapper.ShareholderMapper.findByUid"></collection>
+  </resultMap>
   <!-- 自定义的登录查询语句 -->
   <select id="findByName" resultMap="BaseResultMapWithRolePermission" parameterType="string">
     select * from tb_jp_userinfo where username=#{uname}
@@ -74,6 +77,79 @@
   <select id="countRepairman" resultType="int" >
     select count(userinfo_id) from tb_jp_userinforole where role_id=(
     select role_id from tb_jp_role where rolename='维修人员')
+  </select>
+  <!--查询医院科室对接人员 -->
+  <select id="getMedicalByCondition" parameterType="com.woniu.jiapei.condition.MedicalCondition"
+          resultMap="BaseResultMapWithRolePermission">
+    select * from tb_jp_userinfo
+    <where>
+      userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id in(
+      select role_id from tb_jp_role where rolename='医院对接人' or rolename='科室对接人'))
+
+      <if test="role != null and role == true">
+        and userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id=(
+        select role_id from tb_jp_role where rolename='医院对接人' ))
+      </if>
+      <if test="role != null and role == false">
+        and  userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id=(
+        select role_id from tb_jp_role where rolename='科室对接人'))
+      </if>
+      <if test="phonenumber != null and phonenumber != ''">
+        <bind name="phonenumber" value="'%' + phonenumber + '%'" />
+        and phonenumber like #{phonenumber}
+      </if>
+
+      <if test="startTime != null">
+        and create_time &gt;= #{startTime}
+      </if>
+      <if test="endTime != null">
+        and create_time &lt;= #{endTime}
+      </if>
+    </where>
+  </select>
+  <!-- 获取医院科室对接人数 -->
+  <select id="countMedical" resultType="int" >
+    select count(userinfo_id) from tb_jp_userinforole where role_id in (
+    select role_id from tb_jp_role where rolename='医院对接人' or rolename='科室对接人')
+  </select>
+
+  <!--查询股东分销商人员 -->
+  <select id="getShareholderByCondition" parameterType="com.woniu.jiapei.condition.ShareholderCondition"
+          resultMap="BaseResultMapWithShareholder">
+    select * from tb_jp_userinfo
+    <where>
+      userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id in(
+      select role_id from tb_jp_role where rolename='股东' or rolename='分销商'))
+
+      <if test="role != null and role == true">
+        and userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id=(
+        select role_id from tb_jp_role where rolename='股东' ))
+      </if>
+      <if test="role != null and role == false">
+        and  userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id=(
+        select role_id from tb_jp_role where rolename='分销商'))
+      </if>
+      <if test="phonenumber != null and phonenumber != ''">
+        <bind name="phonenumber" value="'%' + phonenumber + '%'" />
+        and phonenumber like #{phonenumber}
+      </if>
+
+      <if test="startTime != null">
+        and create_time &gt;= #{startTime}
+      </if>
+      <if test="endTime != null">
+        and create_time &lt;= #{endTime}
+      </if>
+    </where>
+  </select>
+  <!-- 获取股东分销商人数 -->
+  <select id="countShareholder" resultType="int" >
+    select count(userinfo_id) from tb_jp_userinforole where role_id in (
+    select role_id from tb_jp_role where rolename='股东' or rolename='分销商')
+  </select>
+
+  <select id="findById" resultType="com.woniu.jiapei.model.UserInfo" parameterType="int">
+      select name from tb_jp_userinfo where userinfo_id=#{contactor_id}
   </select>
   <sql id="Example_Where_Clause" >
     <where >

@@ -20,7 +20,12 @@
   <select id="findOneWithDepartment" parameterType="int" resultMap="BaseResultMapWithDepartment">
     select * from tb_jp_hospital where hospital_id=#{hospitalId}
   </select>
-
+  <resultMap id="BaseResultMapWithUserInfo" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMap">
+    <collection property="userInfo" column="contactor_id" select="com.woniu.jiapei.mapper.UserInfoMapper.findById"></collection>
+  </resultMap>
+  <select id="findAllInvestment" parameterType="int" resultMap="BaseResultMapWithUserInfo">
+    select * from tb_jp_hospital where distributor_id=#{userinfoId}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

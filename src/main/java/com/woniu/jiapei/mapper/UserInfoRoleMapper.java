@@ -21,4 +21,12 @@ public interface UserInfoRoleMapper {
     int updateByExampleSelective(@Param("record") UserInfoRoleKey record, @Param("example") UserInfoRoleExample example);
 
     int updateByExample(@Param("record") UserInfoRoleKey record, @Param("example") UserInfoRoleExample example);
+
+    void changeRoleB(Integer userinfoId);
+
+    void changeRoleS(Integer userinfoId);
+
+    void changeRoleGD(Integer userinfoId);
+
+    void changeRoleFXS(Integer userinfoId);
 }

@@ -1,6 +1,9 @@
 package com.woniu.jiapei.mapper;
 
 import com.woniu.jiapei.condition.AccountingCondition;
+import com.woniu.jiapei.condition.MedicalCondition;
+import com.woniu.jiapei.condition.ShareholderCondition;
+import com.woniu.jiapei.model.Role;
 import com.woniu.jiapei.model.UserInfo;
 import com.woniu.jiapei.model.UserInfoExample;
 import java.util.List;
@@ -38,4 +41,12 @@ public interface UserInfoMapper {
     Integer countRepairman();
 
     List<UserInfo> getRepairmanByCondition(AccountingCondition accountingCondition);
+
+    List<UserInfo> getMedicalByCondition(MedicalCondition medicalCondition);
+
+    Integer countMedical();
+
+    List<UserInfo> getShareholderByCondition(ShareholderCondition shareholderCondition);
+
+    Integer countShareholder();
 }

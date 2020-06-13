@@ -19,4 +19,6 @@ public interface RepairmanMapper {
     int updateByExampleSelective(@Param("record") Repairman record, @Param("example") RepairmanExample example);
 
     int updateByExample(@Param("record") Repairman record, @Param("example") RepairmanExample example);
+
+    Integer countHospital(int userinfoId);
 }
