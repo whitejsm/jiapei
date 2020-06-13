@@ -14,6 +14,16 @@ public class Hospital {
         this.departmentList = departmentList;
     }
 
+    private UserInfo userInfo;
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
     private Integer hospitalId;
 
     private String hospitalname;
@@ -123,4 +133,5 @@ public class Hospital {
     public void setZoneId(Integer zoneId) {
         this.zoneId = zoneId;
     }
+
 }

@@ -20,6 +20,9 @@
     select * from tb_jp_bed
   </select>
 
+  <select id="findDID" parameterType="string" resultMap="BaseResultMapWithManufacturerAndDepartment">
+    select * from tb_jp_bed where bed_id=#{bedId}
+  </select>
   <select id="findByDepartmentId" resultMap="BaseResultMap" parameterType="int">
     select * from tb_jp_bed where department_id=#{departmentId}
   </select>

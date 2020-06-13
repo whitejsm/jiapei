@@ -5,7 +5,12 @@
     <result column="repairman_id" property="repairmanId" jdbcType="INTEGER" />
     <result column="hospital_id" property="hospitalId" jdbcType="INTEGER" />
     <result column="department_id" property="departmentId" jdbcType="INTEGER" />
+    <result column="hospitalname" property="hospitalname" jdbcType="VARCHAR" />
+    <result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="countHospital" resultType="int" >
+    select count(hospital_id) from tb_jp_repairman where repairman_id=#{userinfoId}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -65,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    repairman_id, hospital_id, department_id
+    repairman_id, hospital_id, department_id, hospitalname, departmentname
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.model.RepairmanExample" >
     select
@@ -88,10 +93,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.woniu.jiapei.model.Repairman" >
-    insert into tb_jp_repairman (repairman_id, hospital_id, department_id
-      )
-    values (#{repairmanId,jdbcType=INTEGER}, #{hospitalId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER}
-      )
+    insert into tb_jp_repairman (repairman_id, hospital_id, department_id, 
+      hospitalname, departmentname)
+    values (#{repairmanId,jdbcType=INTEGER}, #{hospitalId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER}, 
+      #{hospitalname,jdbcType=VARCHAR}, #{departmentname,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Repairman" >
     insert into tb_jp_repairman
@@ -105,6 +110,12 @@
       <if test="departmentId != null" >
         department_id,
       </if>
+      <if test="hospitalname != null" >
+        hospitalname,
+      </if>
+      <if test="departmentname != null" >
+        departmentname,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="repairmanId != null" >
@@ -115,6 +126,12 @@
       </if>
       <if test="departmentId != null" >
         #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalname != null" >
+        #{hospitalname,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentname != null" >
+        #{departmentname,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -136,6 +153,12 @@
       <if test="record.departmentId != null" >
         department_id = #{record.departmentId,jdbcType=INTEGER},
       </if>
+      <if test="record.hospitalname != null" >
+        hospitalname = #{record.hospitalname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departmentname != null" >
+        departmentname = #{record.departmentname,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -145,7 +168,9 @@
     update tb_jp_repairman
     set repairman_id = #{record.repairmanId,jdbcType=INTEGER},
       hospital_id = #{record.hospitalId,jdbcType=INTEGER},
-      department_id = #{record.departmentId,jdbcType=INTEGER}
+      department_id = #{record.departmentId,jdbcType=INTEGER},
+      hospitalname = #{record.hospitalname,jdbcType=VARCHAR},
+      departmentname = #{record.departmentname,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

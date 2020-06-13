@@ -31,4 +31,6 @@ public interface HospitalMapper {
     Hospital findOneWithDepartment(Integer hospitalId);
 
     List<Hospital> selectByDistributorId(Integer distributorId);
+
+    List<Hospital> findAllInvestment(int userinfoId);
 }
