@@ -19,9 +19,10 @@ public interface RepairmanService {
 
     List<Department> getDeprtments(int hospitalId);
 
-    void RepairAddDepartment(int hospitalId, int[] departmentId);
 
     List<Fault> getRepair(int userinfoId);
 
     Integer countRepair(int userinfoId);
+
+    void RepairAddDepartment(int repairManId,String[] department);
 }
