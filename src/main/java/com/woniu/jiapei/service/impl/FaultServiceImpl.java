@@ -21,7 +21,7 @@ public class FaultServiceImpl implements FaultService {
     private FaultMapper faultMapper;
 
     @Override
-    public List<Fault> findAll(FaultCondition faultCondition,PageBean pageBean) {
+    public List<Fault> findAll(FaultCondition faultCondition, PageBean pageBean) {
         PageHelper.startPage(pageBean.getPageNum(),pageBean.getPageSize());
         List<Fault> faultList = faultMapper.findAll(faultCondition);
         PageInfo pageInfo = new PageInfo(faultList);

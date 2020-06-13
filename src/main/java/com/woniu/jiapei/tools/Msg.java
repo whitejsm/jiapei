@@ -1,9 +1,6 @@
 package com.woniu.jiapei.tools;
 
-import com.woniu.jiapei.model.Bed;
-import com.woniu.jiapei.model.Department;
-import com.woniu.jiapei.model.Hospital;
-import com.woniu.jiapei.model.Manufacturer;
+import com.woniu.jiapei.model.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,4 +21,8 @@ public class Msg {
     private List<Hospital> hospitalList;
     private List<Department> departmentList;
     private List<Manufacturer> manufacturerList;
+
+    private List<Fault> faultList;
+    private Fault fault;
+
 }
