@@ -40,6 +40,32 @@ select userinfo_id from tb_jp_userinforole where role_id in
 select role_id from tb_jp_role where rolename = #{name}
 )
 )
+    </select>
+  <!--查询会计 -->
+  <select id="getAccountingByCondition" parameterType="com.woniu.jiapei.condition.AccountingCondition"
+          resultMap="BaseResultMap">
+    select * from tb_jp_userinfo
+    <where>
+      userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id=(
+      select role_id from tb_jp_role where rolename='会计'))
+      <if test="phonenumber != null and phonenumber != ''">
+        <bind name="phonenumber" value="'%' + phonenumber + '%'" />
+        and phonenumber like #{phonenumber}
+      </if>
+      <if test="startTime != null">
+        and create_time &gt;= #{startTime}
+      </if>
+      <if test="endTime != null">
+        and create_time &lt;= #{endTime}
+      </if>
+    </where>
+
+  </select>
+
+  <!-- 获取会计人数 -->
+  <select id="countAccounting" resultType="int" >
+    select count(userinfo_id) from tb_jp_userinforole where role_id=(
+    select role_id from tb_jp_role where rolename='会计')
   </select>
 
   <select id="findByRoleNameDistributor1" resultMap="BaseResultMap" parameterType="string">
@@ -67,9 +93,88 @@ select userinfo_id from tb_jp_userinforole where role_id in
 select role_id from tb_jp_role where rolename = '分销商'
 )
 )
+</select>
+  <!-- 获取维修人员人数 -->
+  <select id="countRepairman" resultType="int" >
+    select count(userinfo_id) from tb_jp_userinforole where role_id=(
+    select role_id from tb_jp_role where rolename='维修人员')
   </select>
+  <!--查询医院科室对接人员 -->
+  <select id="getMedicalByCondition" parameterType="com.woniu.jiapei.condition.MedicalCondition"
+          resultMap="BaseResultMapWithRolePermission">
+    select * from tb_jp_userinfo
+    <where>
+      userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id in(
+      select role_id from tb_jp_role where rolename='医院对接人' or rolename='科室对接人'))
+
+      <if test="role != null and role == true">
+        and userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id=(
+        select role_id from tb_jp_role where rolename='医院对接人' ))
+      </if>
+      <if test="role != null and role == false">
+        and  userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id=(
+        select role_id from tb_jp_role where rolename='科室对接人'))
+      </if>
+      <if test="phonenumber != null and phonenumber != ''">
+        <bind name="phonenumber" value="'%' + phonenumber + '%'" />
+        and phonenumber like #{phonenumber}
+      </if>
 
   <!-- 自定义的登录查询语句 end-->
+      <if test="startTime != null">
+        and create_time &gt;= #{startTime}
+      </if>
+      <if test="endTime != null">
+        and create_time &lt;= #{endTime}
+      </if>
+    </where>
+  </select>
+  <!-- 获取医院科室对接人数 -->
+  <select id="countMedical" resultType="int" >
+    select count(userinfo_id) from tb_jp_userinforole where role_id in (
+    select role_id from tb_jp_role where rolename='医院对接人' or rolename='科室对接人')
+  </select>
+
+  <!--查询股东分销商人员 -->
+  <select id="getShareholderByCondition" parameterType="com.woniu.jiapei.condition.ShareholderCondition"
+          resultMap="BaseResultMapWithShareholder">
+    select * from tb_jp_userinfo
+    <where>
+      userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id in(
+      select role_id from tb_jp_role where rolename='股东' or rolename='分销商'))
+
+      <if test="role != null and role == true">
+        and userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id=(
+        select role_id from tb_jp_role where rolename='股东' ))
+      </if>
+      <if test="role != null and role == false">
+        and  userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id=(
+        select role_id from tb_jp_role where rolename='分销商'))
+      </if>
+      <if test="phonenumber != null and phonenumber != ''">
+        <bind name="phonenumber" value="'%' + phonenumber + '%'" />
+        and phonenumber like #{phonenumber}
+      </if>
+
+      <if test="startTime != null">
+        and create_time &gt;= #{startTime}
+      </if>
+      <if test="endTime != null">
+        and create_time &lt;= #{endTime}
+      </if>
+    </where>
+  </select>
+
+
+  <!-- 获取股东分销商人数 -->
+  <select id="countShareholder" resultType="int" >
+    select count(userinfo_id) from tb_jp_userinforole where role_id in (
+    select role_id from tb_jp_role where rolename='股东' or rolename='分销商')
+  </select>
+
+  <select id="findById" resultType="com.woniu.jiapei.model.UserInfo" parameterType="int">
+      select name from tb_jp_userinfo where userinfo_id=#{contactor_id}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -162,7 +267,7 @@ select role_id from tb_jp_role where rolename = '分销商'
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.woniu.jiapei.model.UserInfo" >
+  <insert id="insert" parameterType="com.woniu.jiapei.model.UserInfo" useGeneratedKeys="true" keyProperty="userinfoId">
     insert into tb_jp_userinfo (userinfo_id, username, name,
       password, gender, birth, create_time,
       phonenumber, wechat, email,
