@@ -24,11 +24,17 @@
   <!--连接医院科室-->
 
   <resultMap id="BaseResultMapContactorDepartment" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMapContactorDistributor">
-    <collection property="departments" column="department_id" select="com.woniu.jiapei.mapper.DepartmentMapper.findByHospitalId"></collection>
+    <collection property="departments" column="hospital_id" select="com.woniu.jiapei.mapper.DepartmentMapper.findByHospitalId"></collection>
+  </resultMap>
+
+  <resultMap id="BaseResultMapContactorDepartmentPCZ" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMapContactorDepartment">
+         <association property="province" column="province_id" select="com.woniu.jiapei.mapper.ProvinceMapper.selectByPrimaryKey"></association>
+         <association property="city" column="city_id" select="com.woniu.jiapei.mapper.CityMapper.selectByPrimaryKey"></association>
+         <association property="zone" column="zone_id" select="com.woniu.jiapei.mapper.ZoneMapper.selectByPrimaryKey"></association>
   </resultMap>
   <!--  查询所有方法-->
-  <select id="findAll" resultMap="BaseResultMapContactorDepartment">
-select * from tb_jp_hospital where isdelete=0
+  <select id="findAll" resultMap="BaseResultMapContactorDepartmentPCZ">
+select * from tb_jp_hospital where isdelete=1
 </select>
 
 
@@ -109,7 +115,7 @@ select * from tb_jp_hospital where isdelete=0
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMapContactorDepartmentPCZ" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
     from tb_jp_hospital

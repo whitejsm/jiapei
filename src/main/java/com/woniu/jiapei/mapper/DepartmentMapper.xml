@@ -10,8 +10,13 @@
     <result column="revenueshare" property="revenueshare" jdbcType="INTEGER" />
     <result column="isdelete" property="isdelete" jdbcType="BIT" />
   </resultMap>
-  <select id="findByHospitalId" resultMap="BaseResultMap" parameterType="int">
-    select * from tb_jp_department where hospital_id = #{hospitalId}
+  <resultMap id="BaseResultMapDepartorBedRepaire" type="com.woniu.jiapei.model.Department" extends="BaseResultMap">
+    <association property="departor" column="departor_id" select="com.woniu.jiapei.mapper.UserInfoMapper.selectByPrimaryKey"></association>
+    <association property="repairman" column="department_id" select="com.woniu.jiapei.mapper.RepairManMapper.findByDepartment"></association>
+    <collection property="bedList" column="department_id" select="com.woniu.jiapei.mapper.BedMapper.findByDept"></collection>
+  </resultMap>
+  <select id="findByHospitalId" resultMap="BaseResultMapDepartorBedRepaire" parameterType="int">
+    select * from tb_jp_department where hospital_id = #{hospitalId} and isdelete = 1
   </select>
   <sql id="Example_Where_Clause" >
     <where >
