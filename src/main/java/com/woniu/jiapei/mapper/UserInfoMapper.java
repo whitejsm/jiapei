@@ -49,4 +49,5 @@ public interface UserInfoMapper {
     List<UserInfo> getShareholderByCondition(ShareholderCondition shareholderCondition);
 
     Integer countShareholder();
+
 }

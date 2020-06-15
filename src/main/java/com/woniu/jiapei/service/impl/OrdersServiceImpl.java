@@ -93,4 +93,12 @@ public class OrdersServiceImpl implements OrdersService {
             ordersMapper.insertSelective(order);
         }
     }
+
+    @Override
+    public List<Orders> downOrdersByCid(Integer customerId) {
+        OrdersExample example=new OrdersExample();
+        OrdersExample.Criteria criteria=example.createCriteria();
+        criteria.andCustomerIdEqualTo(customerId);
+        return ordersMapper.selectByExample(example);
+    }
 }

@@ -12,4 +12,6 @@ public interface CustomerService {
     Integer countCustomer();
 
     void updateOne(Customer customer);
+
+    List<Customer> downByCondition(CustomerCondition customerCondition);
 }

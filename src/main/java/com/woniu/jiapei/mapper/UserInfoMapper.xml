@@ -48,6 +48,7 @@
     </where>
 
   </select>
+
   <!-- 获取会计人数 -->
   <select id="countAccounting" resultType="int" >
     select count(userinfo_id) from tb_jp_userinforole where role_id=(
@@ -73,6 +74,7 @@
     </where>
 
   </select>
+
   <!-- 获取维修人员人数 -->
   <select id="countRepairman" resultType="int" >
     select count(userinfo_id) from tb_jp_userinforole where role_id=(
@@ -142,6 +144,8 @@
       </if>
     </where>
   </select>
+
+
   <!-- 获取股东分销商人数 -->
   <select id="countShareholder" resultType="int" >
     select count(userinfo_id) from tb_jp_userinforole where role_id in (
