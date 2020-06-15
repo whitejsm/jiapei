@@ -133,6 +133,9 @@
     insert into tb_jp_repairman (repairman_id, hospital_id, department_id,
       hospitalname, departmentname)
     values (#{repairmanId,jdbcType=INTEGER}, #{hospitalId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER},
+    insert into tb_jp_repairman (repairman_id, hospital_id, department_id,
+      hospitalname, departmentname)
+    values (#{repairmanId,jdbcType=INTEGER}, #{hospitalId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER},
       #{hospitalname,jdbcType=VARCHAR}, #{departmentname,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.woniu.jiapei.model.RepairMan" >
@@ -212,4 +215,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+<<<<<<< HEAD
 </mapper>
+=======
+</mapper>
+>>>>>>> 58c4abc... Hospital
