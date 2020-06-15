@@ -86,7 +86,7 @@ public class Hospital {
 
     private Boolean isdelete;
 
-    private Boolean isdelete;
+
 
     public Integer getHospitalId() {
         return hospitalId;

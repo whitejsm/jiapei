@@ -11,7 +11,7 @@ public class Department {
     private Integer departorId;
     private UserInfo departor;
     private List<Bed> bedList;
-    private Repairman repairman;
+    private RepairMan repairman;
 
     public UserInfo getDepartor() {
         return departor;
