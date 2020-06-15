@@ -8,6 +8,7 @@ import com.woniu.jiapei.service.HospitalService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class HospitalServiceImpl implements HospitalService {
     public Boolean delete(int id) {
         Hospital hospital = new Hospital();
         hospital.setHospitalId(id);
-        hospital.setIsdelete(true);
+        hospital.setIsdelete(false);
         int i = hospitalMapper.updateByPrimaryKeySelective(hospital);
         return i==0?false:true;
     }
@@ -47,6 +48,7 @@ public class HospitalServiceImpl implements HospitalService {
     public HashMap<String, Object> findBySearch(HospitalSearch hospitalSearch, Integer currentPage) {
         HospitalExample example = new HospitalExample();
         HospitalExample.Criteria criteria = example.createCriteria();
+        criteria.andIsdeleteEqualTo(true);
         if (hospitalSearch.getName() != null && !"".equals(hospitalSearch.getName())) {
             criteria.andHospitalnameLike(hospitalSearch.getName());
         }
@@ -89,6 +91,18 @@ public class HospitalServiceImpl implements HospitalService {
         }
 
 
+    }
+
+    @Override
+    public void insert(Hospital hospital) {
+        hospital.setCreateTime(new Date());
+        hospital.setIsdelete(false);
+        hospitalMapper.insertSelective(hospital);
+    }
+
+    @Override
+    public Hospital findByPrimaryKey(int hospitalId) {
+        return hospitalMapper.selectByPrimaryKey(hospitalId);
     }
 
     @Override

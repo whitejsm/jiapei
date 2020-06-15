@@ -51,10 +51,38 @@ public class Hospital {
     private Integer contactorId;
 
     private Integer provinceId;
+    private Province province;
 
     private Integer cityId;
 
+    public Province getProvince() {
+        return province;
+    }
+
+    public void setProvince(Province province) {
+        this.province = province;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public Zone getZone() {
+        return zone;
+    }
+
+    public void setZone(Zone zone) {
+        this.zone = zone;
+    }
+
+    private City city;
+
     private Integer zoneId;
+    private Zone zone;
 
     private Boolean isdelete;
 

@@ -26,4 +26,8 @@ public interface HospitalService {
     HashMap<String, Object> findBySearch(HospitalSearch hospitalSearch, Integer currentPage);
 
     List<UserInfo> findPersons(String name);
+
+    void insert(Hospital hospital);
+
+    Hospital findByPrimaryKey(int hospitalId);
 }

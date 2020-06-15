@@ -8,6 +8,12 @@
     <result column="hospitalname" property="hospitalname" jdbcType="VARCHAR" />
     <result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="BaseResultMapUserinfo" type="com.woniu.jiapei.model.RepairMan" extends="BaseResultMap">
+    <association property="man" column="repairman_id" select="com.woniu.jiapei.mapper.UserInfoMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <select id="findByDepartment" resultMap="BaseResultMapUserinfo" parameterType="int">
+    select * from tb_jp_repairman where department_id = #{departmentId}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -90,9 +96,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.woniu.jiapei.model.RepairMan" >
-    insert into tb_jp_repairman (repairman_id, hospital_id, department_id, 
+    insert into tb_jp_repairman (repairman_id, hospital_id, department_id,
       hospitalname, departmentname)
-    values (#{repairmanId,jdbcType=INTEGER}, #{hospitalId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER}, 
+    values (#{repairmanId,jdbcType=INTEGER}, #{hospitalId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER},
       #{hospitalname,jdbcType=VARCHAR}, #{departmentname,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.woniu.jiapei.model.RepairMan" >

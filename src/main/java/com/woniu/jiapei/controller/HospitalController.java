@@ -13,6 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/hospital")
+//@CrossOrigin(origins = "*", maxAge = 3600)
 public class HospitalController {
 
     @Resource
@@ -32,6 +33,24 @@ public class HospitalController {
     public List<Province> findProvinces() {
 
         return hospitalService.findProvinces();
+    }
+//    pcz:'',
+//    name:'',
+//    connector:'',
+//    phone:'',
+//    rent:'',
+//    card:'',
+//    share:'',
+//    godong:'',
+//    distributor1:'',
+//    distributor2:'',
+//    depcount:'',
+//    time:''
+    @GetMapping("/{hospitalId}")
+    public Hospital showDetail(@PathVariable int hospitalId) {
+        Hospital hospital = hospitalService.findByPrimaryKey(hospitalId);
+        System.out.println(hospital);
+        return hospital;
     }
 
     @GetMapping("/findInsert")
@@ -95,6 +114,11 @@ public class HospitalController {
         map.put("pb", pb);
         return map;
 
+    }
+    @PostMapping("/insertSave")
+    public void insertSave(Hospital hospital) {
+
+        hospitalService.insert(hospital);
     }
 
 }
