@@ -19,7 +19,7 @@ public class ReportController {
     private ReportService reportServiceImpl;
 
     @GetMapping("/getSaleReport")
-    public Map<String, Object> getSaleReport(PageBean pageBean, ReportCondition condition) {
+    public Map<String, Object> getSaleReport(HttpSession session, PageBean pageBean, ReportCondition condition) {
         System.out.println(pageBean);
         System.out.println(condition);
 
@@ -27,7 +27,14 @@ public class ReportController {
         Map<String, Object> map = new HashMap<>();
 
         try {
+            Integer roleId = (Integer) session.getAttribute("roleId");
+            if(roleId == 7 && condition.getDistributorId() == -1) {
+                // 当登陆用户为分销商，且未子分销商时，以自身id查询结果
+                Integer userId = (Integer) session.getAttribute("userId");
+                condition.setDistributorId(userId);
+            }
             List<SaleReport> saleReportList = reportServiceImpl.findSaleReportByCondition(pageBean, condition);
+
             map.put("saleReportList", saleReportList);
             map.put("pageBean", pageBean);
             map.put("result", "success");

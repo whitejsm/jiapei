@@ -1,6 +1,7 @@
 package com.woniu.jiapei.mapper;
 
 import com.woniu.jiapei.condition.OrderCondition;
+import com.woniu.jiapei.condition.VisibleReportOccupancyCondition;
 import com.woniu.jiapei.model.Orders;
 import com.woniu.jiapei.model.OrdersExample;
 import java.util.List;
@@ -34,4 +35,7 @@ public interface OrdersMapper {
     String countMoneyById(Integer customerId);
 
     List<Orders> getOrdersByCondition(OrderCondition orderCondition);
+
+    Integer getCountByConditionAndDateStr(@Param("condition") VisibleReportOccupancyCondition condition,
+                                      @Param("date") String date);
 }

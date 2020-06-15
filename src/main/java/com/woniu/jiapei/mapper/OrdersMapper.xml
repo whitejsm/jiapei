@@ -1,126 +1,130 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.woniu.jiapei.mapper.OrdersMapper" >
-  <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.Orders" >
-    <id column="orders_id" property="ordersId" jdbcType="VARCHAR" />
-    <result column="customer_id" property="customerId" jdbcType="INTEGER" />
-    <result column="bed_id" property="bedId" jdbcType="VARCHAR" />
-    <result column="fault_id" property="faultId" jdbcType="INTEGER" />
-    <result column="rent" property="rent" jdbcType="DECIMAL" />
-    <result column="orders_status" property="ordersStatus" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
-    <result column="totalpay" property="totalpay" jdbcType="DECIMAL" />
-    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
-    <result column="pay_status" property="payStatus" jdbcType="VARCHAR" />
-  </resultMap>
+<mapper namespace="com.woniu.jiapei.mapper.OrdersMapper">
+    <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.Orders">
+        <id column="orders_id" property="ordersId" jdbcType="VARCHAR"/>
+        <result column="customer_id" property="customerId" jdbcType="INTEGER"/>
+        <result column="bed_id" property="bedId" jdbcType="VARCHAR"/>
+        <result column="fault_id" property="faultId" jdbcType="INTEGER"/>
+        <result column="rent" property="rent" jdbcType="DECIMAL"/>
+        <result column="orders_status" property="ordersStatus" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+        <result column="totalpay" property="totalpay" jdbcType="DECIMAL"/>
+        <result column="pay_time" property="payTime" jdbcType="TIMESTAMP"/>
+        <result column="pay_status" property="payStatus" jdbcType="VARCHAR"/>
+    </resultMap>
 
-  <resultMap id="resultByOthers" type="com.woniu.jiapei.model.Orders" extends="BaseResultMap">
-    <association property="bed" column="bed_id" select="com.woniu.jiapei.mapper.BedMapper.selectByPrimaryKey"/>
-    <association property="fault" column="fault_id" select="com.woniu.jiapei.mapper.FaultMapper.selectByPrimaryKey"/>
-    <association property="customer" column="customer_id" select="com.woniu.jiapei.mapper.CustomerMapper.selectByPrimaryKey"/>
-  </resultMap>
-  <!-- 根据顾客id查询订单总数 -->
-  <select id="countById" parameterType="int" resultType="int">
+    <resultMap id="resultByOthers" type="com.woniu.jiapei.model.Orders" extends="BaseResultMap">
+        <association property="bed" column="bed_id" select="com.woniu.jiapei.mapper.BedMapper.selectByPrimaryKey"/>
+        <association property="fault" column="fault_id"
+                     select="com.woniu.jiapei.mapper.FaultMapper.selectByPrimaryKey"/>
+        <association property="customer" column="customer_id"
+                     select="com.woniu.jiapei.mapper.CustomerMapper.selectByPrimaryKey"/>
+    </resultMap>
+    <!-- 根据顾客id查询订单总数 -->
+    <select id="countById" parameterType="int" resultType="int">
     select count(orders_id) from tb_jp_orders where customer_id=#{customerId}
    </select>
-  <!-- 根据顾客id查询消费金额 -->
-  <select id="countMoneyById" parameterType="int" resultType="string">
+    <!-- 根据顾客id查询消费金额 -->
+    <select id="countMoneyById" parameterType="int" resultType="string">
     select sum(totalpay) from tb_jp_orders where customer_id=#{customerId}
    </select>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     orders_id, customer_id, bed_id, fault_id, rent, orders_status, create_time, end_time, 
     totalpay, pay_time, pay_status
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.model.OrdersExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tb_jp_orders
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from tb_jp_orders
-    where orders_id = #{ordersId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.model.OrdersExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from tb_jp_orders
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_jp_orders
+        where orders_id = #{ordersId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tb_jp_orders
     where orders_id = #{ordersId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.woniu.jiapei.model.OrdersExample" >
-    delete from tb_jp_orders
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.woniu.jiapei.model.Orders" >
+    <delete id="deleteByExample" parameterType="com.woniu.jiapei.model.OrdersExample">
+        delete from tb_jp_orders
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.woniu.jiapei.model.Orders">
     insert into tb_jp_orders (orders_id, customer_id, bed_id, 
       fault_id, rent, orders_status, 
       create_time, end_time, totalpay, 
@@ -130,180 +134,180 @@
       #{createTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{totalpay,jdbcType=DECIMAL}, 
       #{payTime,jdbcType=TIMESTAMP}, #{payStatus,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Orders" >
-    insert into tb_jp_orders
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="ordersId != null" >
-        orders_id,
-      </if>
-      <if test="customerId != null" >
-        customer_id,
-      </if>
-      <if test="bedId != null" >
-        bed_id,
-      </if>
-      <if test="faultId != null" >
-        fault_id,
-      </if>
-      <if test="rent != null" >
-        rent,
-      </if>
-      <if test="ordersStatus != null" >
-        orders_status,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="endTime != null" >
-        end_time,
-      </if>
-      <if test="totalpay != null" >
-        totalpay,
-      </if>
-      <if test="payTime != null" >
-        pay_time,
-      </if>
-      <if test="payStatus != null" >
-        pay_status,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="ordersId != null" >
-        #{ordersId,jdbcType=VARCHAR},
-      </if>
-      <if test="customerId != null" >
-        #{customerId,jdbcType=INTEGER},
-      </if>
-      <if test="bedId != null" >
-        #{bedId,jdbcType=VARCHAR},
-      </if>
-      <if test="faultId != null" >
-        #{faultId,jdbcType=INTEGER},
-      </if>
-      <if test="rent != null" >
-        #{rent,jdbcType=DECIMAL},
-      </if>
-      <if test="ordersStatus != null" >
-        #{ordersStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endTime != null" >
-        #{endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="totalpay != null" >
-        #{totalpay,jdbcType=DECIMAL},
-      </if>
-      <if test="payTime != null" >
-        #{payTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="payStatus != null" >
-        #{payStatus,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.woniu.jiapei.model.OrdersExample" resultType="java.lang.Integer" >
-    select count(*) from tb_jp_orders
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update tb_jp_orders
-    <set >
-      <if test="record.ordersId != null" >
-        orders_id = #{record.ordersId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.customerId != null" >
+    <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Orders">
+        insert into tb_jp_orders
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ordersId != null">
+                orders_id,
+            </if>
+            <if test="customerId != null">
+                customer_id,
+            </if>
+            <if test="bedId != null">
+                bed_id,
+            </if>
+            <if test="faultId != null">
+                fault_id,
+            </if>
+            <if test="rent != null">
+                rent,
+            </if>
+            <if test="ordersStatus != null">
+                orders_status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="totalpay != null">
+                totalpay,
+            </if>
+            <if test="payTime != null">
+                pay_time,
+            </if>
+            <if test="payStatus != null">
+                pay_status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ordersId != null">
+                #{ordersId,jdbcType=VARCHAR},
+            </if>
+            <if test="customerId != null">
+                #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="bedId != null">
+                #{bedId,jdbcType=VARCHAR},
+            </if>
+            <if test="faultId != null">
+                #{faultId,jdbcType=INTEGER},
+            </if>
+            <if test="rent != null">
+                #{rent,jdbcType=DECIMAL},
+            </if>
+            <if test="ordersStatus != null">
+                #{ordersStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="totalpay != null">
+                #{totalpay,jdbcType=DECIMAL},
+            </if>
+            <if test="payTime != null">
+                #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payStatus != null">
+                #{payStatus,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.woniu.jiapei.model.OrdersExample" resultType="java.lang.Integer">
+        select count(*) from tb_jp_orders
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update tb_jp_orders
+        <set>
+            <if test="record.ordersId != null">
+                orders_id = #{record.ordersId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customerId != null">
+                customer_id = #{record.customerId,jdbcType=INTEGER},
+            </if>
+            <if test="record.bedId != null">
+                bed_id = #{record.bedId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.faultId != null">
+                fault_id = #{record.faultId,jdbcType=INTEGER},
+            </if>
+            <if test="record.rent != null">
+                rent = #{record.rent,jdbcType=DECIMAL},
+            </if>
+            <if test="record.ordersStatus != null">
+                orders_status = #{record.ordersStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.endTime != null">
+                end_time = #{record.endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.totalpay != null">
+                totalpay = #{record.totalpay,jdbcType=DECIMAL},
+            </if>
+            <if test="record.payTime != null">
+                pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.payStatus != null">
+                pay_status = #{record.payStatus,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update tb_jp_orders
+        set orders_id = #{record.ordersId,jdbcType=VARCHAR},
         customer_id = #{record.customerId,jdbcType=INTEGER},
-      </if>
-      <if test="record.bedId != null" >
         bed_id = #{record.bedId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.faultId != null" >
         fault_id = #{record.faultId,jdbcType=INTEGER},
-      </if>
-      <if test="record.rent != null" >
         rent = #{record.rent,jdbcType=DECIMAL},
-      </if>
-      <if test="record.ordersStatus != null" >
         orders_status = #{record.ordersStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.endTime != null" >
         end_time = #{record.endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.totalpay != null" >
         totalpay = #{record.totalpay,jdbcType=DECIMAL},
-      </if>
-      <if test="record.payTime != null" >
         pay_time = #{record.payTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.payStatus != null" >
-        pay_status = #{record.payStatus,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update tb_jp_orders
-    set orders_id = #{record.ordersId,jdbcType=VARCHAR},
-      customer_id = #{record.customerId,jdbcType=INTEGER},
-      bed_id = #{record.bedId,jdbcType=VARCHAR},
-      fault_id = #{record.faultId,jdbcType=INTEGER},
-      rent = #{record.rent,jdbcType=DECIMAL},
-      orders_status = #{record.ordersStatus,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      end_time = #{record.endTime,jdbcType=TIMESTAMP},
-      totalpay = #{record.totalpay,jdbcType=DECIMAL},
-      pay_time = #{record.payTime,jdbcType=TIMESTAMP},
-      pay_status = #{record.payStatus,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.jiapei.model.Orders" >
-    update tb_jp_orders
-    <set >
-      <if test="customerId != null" >
-        customer_id = #{customerId,jdbcType=INTEGER},
-      </if>
-      <if test="bedId != null" >
-        bed_id = #{bedId,jdbcType=VARCHAR},
-      </if>
-      <if test="faultId != null" >
-        fault_id = #{faultId,jdbcType=INTEGER},
-      </if>
-      <if test="rent != null" >
-        rent = #{rent,jdbcType=DECIMAL},
-      </if>
-      <if test="ordersStatus != null" >
-        orders_status = #{ordersStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endTime != null" >
-        end_time = #{endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="totalpay != null" >
-        totalpay = #{totalpay,jdbcType=DECIMAL},
-      </if>
-      <if test="payTime != null" >
-        pay_time = #{payTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="payStatus != null" >
-        pay_status = #{payStatus,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where orders_id = #{ordersId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.woniu.jiapei.model.Orders" >
+        pay_status = #{record.payStatus,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.woniu.jiapei.model.Orders">
+        update tb_jp_orders
+        <set>
+            <if test="customerId != null">
+                customer_id = #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="bedId != null">
+                bed_id = #{bedId,jdbcType=VARCHAR},
+            </if>
+            <if test="faultId != null">
+                fault_id = #{faultId,jdbcType=INTEGER},
+            </if>
+            <if test="rent != null">
+                rent = #{rent,jdbcType=DECIMAL},
+            </if>
+            <if test="ordersStatus != null">
+                orders_status = #{ordersStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="totalpay != null">
+                totalpay = #{totalpay,jdbcType=DECIMAL},
+            </if>
+            <if test="payTime != null">
+                pay_time = #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="payStatus != null">
+                pay_status = #{payStatus,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where orders_id = #{ordersId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.woniu.jiapei.model.Orders">
     update tb_jp_orders
     set customer_id = #{customerId,jdbcType=INTEGER},
       bed_id = #{bedId,jdbcType=VARCHAR},
@@ -318,37 +322,64 @@
     where orders_id = #{ordersId,jdbcType=VARCHAR}
   </update>
 
-  <select id="getOrdersByCondition" parameterType="com.woniu.jiapei.condition.OrderCondition"
-          resultMap="resultByOthers">
-    select * from tb_jp_orders
-    <where>
-      <if test="ordersId != null and ordersId != ''">
-        <bind name="ordersId" value="'%' + ordersId + '%'" />
-        and orders_id like #{ordersId}
-      </if>
-      <if test="hospitalId != null and hospitalId != -1">
-        and bed_id in (
-        select bed_id from tb_jp_bed
-          where department_id in (
-            select department_id from tb_jp_department where hospital_id = #{hospitalId}
-          )
-        )
-      </if>
-      <if test="departmentId != null and departmentId != -1">
-        and bed_id in (
-        select bed_id from tb_jp_bed
-        where department_id = #{departmentId}
-        )
-      </if>
-      <if test="ordersStatus != null and ordersStatus != '' and ordersStatus != '所有状态'">
-        and orders_status = #{ordersStatus}
-      </if>
-      <if test="createTime != null">
-        and create_time &gt;= #{createTime}
-      </if>
-      <if test="endTime != null">
-        and end_time &lt;= #{endTime}
-      </if>
-    </where>
-  </select>
+    <select id="getOrdersByCondition" parameterType="com.woniu.jiapei.condition.OrderCondition"
+            resultMap="resultByOthers">
+        select * from tb_jp_orders
+        <where>
+            <if test="ordersId != null and ordersId != ''">
+                <bind name="ordersId" value="'%' + ordersId + '%'"/>
+                and orders_id like #{ordersId}
+            </if>
+            <if test="hospitalId != null and hospitalId != -1">
+                and bed_id in (
+                select bed_id from tb_jp_bed
+                where department_id in (
+                select department_id from tb_jp_department where hospital_id = #{hospitalId}
+                )
+                )
+            </if>
+            <if test="departmentId != null and departmentId != -1">
+                and bed_id in (
+                select bed_id from tb_jp_bed
+                where department_id = #{departmentId}
+                )
+            </if>
+            <if test="ordersStatus != null and ordersStatus != '' and ordersStatus != '所有状态'">
+                and orders_status = #{ordersStatus}
+            </if>
+            <if test="createTime != null">
+                and create_time &gt;= #{createTime}
+            </if>
+            <if test="endTime != null">
+                and end_time &lt;= #{endTime}
+            </if>
+        </where>
+    </select>
+
+    <select id="getCountByConditionAndDateStr" resultType="int">
+        select  count(*) from (
+        select convert(tb_jp_orders.create_time, date) as `date`
+        from tb_jp_orders, tb_jp_bed
+        <where>
+            and tb_jp_orders.bed_id = tb_jp_bed.bed_id
+            and convert(tb_jp_orders.create_time, date) = convert(tb_jp_bed.create_time, date)
+            <if test="condition.hospitalId != null and condition.hospitalId != -1">
+                and tb_jp_orders.bed_id in (
+                select bed_id from tb_jp_bed where department_id in (
+                    select department_id from tb_jp_department where hospital_id = #{condition.hospitalId}
+                )
+                )
+            </if>
+            <if test="condition.departmentId != null and condition.departmentId != -1">
+                and tb_jp_orders.bed_id in (
+                select bed_id from tb_jp_bed where department_id = #{condition.departmentId}
+                )
+            </if>
+            <if test="condition.date != null">
+                and tb_jp_orders.create_time &lt;= #{condition.date}
+            </if>
+        </where>
+        ) a
+        where a.`date` = #{date}
+    </select>
 </mapper>

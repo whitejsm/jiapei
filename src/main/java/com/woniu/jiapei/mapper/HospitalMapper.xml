@@ -324,4 +324,65 @@
       </if>
     </where>
   </select>
+
+  <select id="selectByVisibleCondition" resultMap="BaseResultMap">
+    select * from tb_jp_hospital
+    <where>
+      <if test="provinceId != null and provinceId != -1">
+        and province_id = #{provinceId}
+      </if>
+      <if test="cityId != null and cityId != -1">
+        and city_id = #{cityId}
+      </if>
+      <if test="zoneId != null and zoneId != -1">
+        and zone_id = #{zoneId}
+      </if>
+    </where>
+    order by rent desc
+    limit 15
+  </select>
+
+  <select id="selectByContactorId" resultMap="BaseResultMapWithDepartment">
+    select * from tb_jp_hospital
+    <where>
+      <if test="contactorId != null">
+        and contactor_id = #{contactorId}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectByDepartorId" resultMap="BaseResultMapWithDepartment">
+    select * from tb_jp_hospital
+    <where>
+      <if test="departorId != null">
+        and hospital_id = (
+            select hospital_id where departor_id = #{departorId}
+        )
+      </if>
+    </where>
+  </select>
+
+  <select id="getCityListByProvinceId" resultType="String">
+    select (select city_name from city where city_id = a.city_id) from tb_jp_hospital a
+    <where>
+      <if test="provinceId != null and provinceId != -1">
+        and province_id = #{provinceId}
+      </if>
+    </where>
+    group by city_id
+    order by count(*) desc
+    limit 7
+  </select>
+
+  <select id="getCountListByProvinceId" resultType="int">
+    select count(*) from tb_jp_hospital a
+    <where>
+      <if test="provinceId != null and provinceId != -1">
+        and province_id = #{provinceId}
+      </if>
+    </where>
+    group by city_id
+    order by count(*) desc
+    limit 7
+  </select>
 </mapper>

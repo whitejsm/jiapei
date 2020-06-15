@@ -5,6 +5,12 @@
     <id column="province_id" property="provinceId" jdbcType="INTEGER" />
     <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="ResultMapWithCity" type="com.woniu.jiapei.model.Province" extends="BaseResultMap">
+    <collection property="cities" column="province_id" select="com.woniu.jiapei.mapper.CityMapper.findCityByProvinceId" />
+  </resultMap>
+
+  <cache />
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -161,4 +167,8 @@
     set province_name = #{provinceName,jdbcType=VARCHAR}
     where province_id = #{provinceId,jdbcType=INTEGER}
   </update>
+
+  <select id="findProvince" resultMap="ResultMapWithCity">
+    select * from province
+  </select>
 </mapper>

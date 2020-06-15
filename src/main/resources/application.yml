@@ -25,4 +25,7 @@ logging:
         boot:
           autoconfigure:
             ERROR
-
+#    com:
+#      woniu:
+#        jiapei:
+#          mapper: debug
