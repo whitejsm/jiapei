@@ -70,6 +70,7 @@ public class HospitalServiceImpl implements HospitalService {
             criteria.andCreateTimeBetween(hospitalSearch.getDate1(), hospitalSearch.getDate2());
         }
         PageHelper.startPage(currentPage, 15);
+        System.out.println("11111111111");
         List<Hospital> list = hospitalMapper.selectByExample(example);
         PageInfo<Hospital> info = new PageInfo<>(list);
         HashMap<String, Object> map = new HashMap<>();
