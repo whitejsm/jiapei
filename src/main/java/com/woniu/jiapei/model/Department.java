@@ -1,6 +1,7 @@
 package com.woniu.jiapei.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Department {
     private Integer departmentId;
@@ -8,12 +9,41 @@ public class Department {
     private Integer hospitalId;
 
     private Integer departorId;
+    private UserInfo departor;
+    private List<Bed> bedList;
+    private RepairMan repairman;
+
+    public UserInfo getDepartor() {
+        return departor;
+    }
+
+    public void setDepartor(UserInfo departor) {
+        this.departor = departor;
+    }
+
+    public List<Bed> getBedList() {
+        return bedList;
+    }
+
+    public void setBedList(List<Bed> bedList) {
+        this.bedList = bedList;
+    }
+
+    public RepairMan getRepairman() {
+        return repairman;
+    }
+
+    public void setRepairman(RepairMan repairman) {
+        this.repairman = repairman;
+    }
 
     private String departmentname;
 
     private Date createTime;
 
     private Integer revenueshare;
+
+    private Boolean isdelete;
 
     public Integer getDepartmentId() {
         return departmentId;
@@ -61,5 +91,13 @@ public class Department {
 
     public void setRevenueshare(Integer revenueshare) {
         this.revenueshare = revenueshare;
+    }
+
+    public Boolean getIsdelete() {
+        return isdelete;
+    }
+
+    public void setIsdelete(Boolean isdelete) {
+        this.isdelete = isdelete;
     }
 }

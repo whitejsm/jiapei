@@ -10,6 +10,9 @@
     <result column="power" property="power" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
+  <select id="findByDept" resultMap="BaseResultMap" parameterType="int">
+    select * from tb_jp_bed where department_id= #{departmentId}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -86,7 +89,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from tb_jp_bed
     where bed_id = #{bedId,jdbcType=VARCHAR}
@@ -102,11 +105,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.woniu.jiapei.model.Bed" >
-    insert into tb_jp_bed (bed_id, manufacturer_id, department_id, 
-      number, status, power, 
+    insert into tb_jp_bed (bed_id, manufacturer_id, department_id,
+      number, status, power,
       create_time)
-    values (#{bedId,jdbcType=VARCHAR}, #{manufacturerId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER}, 
-      #{number,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{power,jdbcType=INTEGER}, 
+    values (#{bedId,jdbcType=VARCHAR}, #{manufacturerId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER},
+      #{number,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{power,jdbcType=INTEGER},
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Bed" >

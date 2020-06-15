@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.woniu.jiapei.mapper.CityMapper" >
-  <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.City" >
-    <id column="city_id" property="cityId" jdbcType="INTEGER" />
-    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
-    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
-<!--    <collection property="zones" column="city_id" select="com.woniu.jiapei.mapper.ZoneMapper.findByCityId">-->
-<!--    </collection>-->
-
+<mapper namespace="com.woniu.jiapei.mapper.RepairManMapper" >
+  <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.RepairMan" >
+    <result column="repairman_id" property="repairmanId" jdbcType="INTEGER" />
+    <result column="hospital_id" property="hospitalId" jdbcType="INTEGER" />
+    <result column="department_id" property="departmentId" jdbcType="INTEGER" />
+    <result column="hospitalname" property="hospitalname" jdbcType="VARCHAR" />
+    <result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
   </resultMap>
-  <select id="findByProvinceId" resultMap="BaseResultMap" parameterType="int">
-
-    select * from city where province_id=#{provinceId}
+  <resultMap id="BaseResultMapUserinfo" type="com.woniu.jiapei.model.RepairMan" extends="BaseResultMap">
+    <association property="man" column="repairman_id" select="com.woniu.jiapei.mapper.UserInfoMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <select id="findByDepartment" resultMap="BaseResultMapUserinfo" parameterType="int">
+    select * from tb_jp_repairman where department_id = #{departmentId}
   </select>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,15 +73,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    city_id, province_id, city_name
+    repairman_id, hospital_id, department_id, hospitalname, departmentname
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.model.CityExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.model.RepairManExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from city
+    from tb_jp_repairman
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,70 +89,78 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select
-    <include refid="Base_Column_List" />
-    from city
-    where city_id = #{cityId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from city
-    where city_id = #{cityId,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.woniu.jiapei.model.CityExample" >
-    delete from city
+  <delete id="deleteByExample" parameterType="com.woniu.jiapei.model.RepairManExample" >
+    delete from tb_jp_repairman
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.woniu.jiapei.model.City" >
-    insert into city (city_id, province_id, city_name
-      )
-    values (#{cityId,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER}, #{cityName,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="com.woniu.jiapei.model.RepairMan" >
+    insert into tb_jp_repairman (repairman_id, hospital_id, department_id,
+      hospitalname, departmentname)
+    values (#{repairmanId,jdbcType=INTEGER}, #{hospitalId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER},
+      #{hospitalname,jdbcType=VARCHAR}, #{departmentname,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.woniu.jiapei.model.City" >
-    insert into city
+  <insert id="insertSelective" parameterType="com.woniu.jiapei.model.RepairMan" >
+    insert into tb_jp_repairman
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="cityId != null" >
-        city_id,
+      <if test="repairmanId != null" >
+        repairman_id,
       </if>
-      <if test="provinceId != null" >
-        province_id,
+      <if test="hospitalId != null" >
+        hospital_id,
       </if>
-      <if test="cityName != null" >
-        city_name,
+      <if test="departmentId != null" >
+        department_id,
+      </if>
+      <if test="hospitalname != null" >
+        hospitalname,
+      </if>
+      <if test="departmentname != null" >
+        departmentname,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="cityId != null" >
-        #{cityId,jdbcType=INTEGER},
+      <if test="repairmanId != null" >
+        #{repairmanId,jdbcType=INTEGER},
       </if>
-      <if test="provinceId != null" >
-        #{provinceId,jdbcType=INTEGER},
+      <if test="hospitalId != null" >
+        #{hospitalId,jdbcType=INTEGER},
       </if>
-      <if test="cityName != null" >
-        #{cityName,jdbcType=VARCHAR},
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalname != null" >
+        #{hospitalname,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentname != null" >
+        #{departmentname,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.woniu.jiapei.model.CityExample" resultType="java.lang.Integer" >
-    select count(*) from city
+  <select id="countByExample" parameterType="com.woniu.jiapei.model.RepairManExample" resultType="java.lang.Integer" >
+    select count(*) from tb_jp_repairman
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update city
+    update tb_jp_repairman
     <set >
-      <if test="record.cityId != null" >
-        city_id = #{record.cityId,jdbcType=INTEGER},
+      <if test="record.repairmanId != null" >
+        repairman_id = #{record.repairmanId,jdbcType=INTEGER},
       </if>
-      <if test="record.provinceId != null" >
-        province_id = #{record.provinceId,jdbcType=INTEGER},
+      <if test="record.hospitalId != null" >
+        hospital_id = #{record.hospitalId,jdbcType=INTEGER},
       </if>
-      <if test="record.cityName != null" >
-        city_name = #{record.cityName,jdbcType=VARCHAR},
+      <if test="record.departmentId != null" >
+        department_id = #{record.departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.hospitalname != null" >
+        hospitalname = #{record.hospitalname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departmentname != null" >
+        departmentname = #{record.departmentname,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -159,30 +168,14 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update city
-    set city_id = #{record.cityId,jdbcType=INTEGER},
-      province_id = #{record.provinceId,jdbcType=INTEGER},
-      city_name = #{record.cityName,jdbcType=VARCHAR}
+    update tb_jp_repairman
+    set repairman_id = #{record.repairmanId,jdbcType=INTEGER},
+      hospital_id = #{record.hospitalId,jdbcType=INTEGER},
+      department_id = #{record.departmentId,jdbcType=INTEGER},
+      hospitalname = #{record.hospitalname,jdbcType=VARCHAR},
+      departmentname = #{record.departmentname,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.jiapei.model.City" >
-    update city
-    <set >
-      <if test="provinceId != null" >
-        province_id = #{provinceId,jdbcType=INTEGER},
-      </if>
-      <if test="cityName != null" >
-        city_name = #{cityName,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where city_id = #{cityId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.woniu.jiapei.model.City" >
-    update city
-    set province_id = #{provinceId,jdbcType=INTEGER},
-      city_name = #{cityName,jdbcType=VARCHAR}
-    where city_id = #{cityId,jdbcType=INTEGER}
   </update>
 </mapper>

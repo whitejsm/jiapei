@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface ZoneMapper {
+    List findByCityId(int cityId);
+
     int countByExample(ZoneExample example);
 
     int deleteByExample(ZoneExample example);
