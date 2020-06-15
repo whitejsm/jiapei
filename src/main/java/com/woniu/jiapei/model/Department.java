@@ -4,9 +4,28 @@ import java.util.Date;
 import java.util.List;
 
 public class Department {
+    private List<Bed> bedList;
+
+    public List<Bed> getBedList() {
+        return bedList;
+    }
+
+    public void setBedList(List<Bed> bedList) {
+        this.bedList = bedList;
+    }
+
     private Integer departmentId;
 
     private Integer hospitalId;
+    private Hospital hospital;
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
 
     private Integer departorId;
     private UserInfo departor;

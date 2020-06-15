@@ -141,4 +141,15 @@ public class UserInfo {
     public void setPermissions(List permissions) {
         this.permissions = permissions;
     }
+
+    public Shareholder getShareholder() {
+        return shareholder;
+    }
+
+    public void setShareholder(Shareholder shareholder) {
+        this.shareholder = shareholder;
+    }
+
+    private Shareholder shareholder;
+
 }

@@ -23,4 +23,9 @@ public class PermissionServiceImpl implements PermissionService {
     public List findAll() {
         return permissionMapper.selectByExample(null);
     }
+
+    @Override
+    public List findPermissionsById(int userInfoId) {
+        return  permissionMapper.findByUid(userInfoId);
+    }
 }

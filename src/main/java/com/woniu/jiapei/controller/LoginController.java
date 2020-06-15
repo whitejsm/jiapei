@@ -1,5 +1,8 @@
 package com.woniu.jiapei.controller;
 
+import com.woniu.jiapei.model.Role;
+import com.woniu.jiapei.model.UserInfo;
+import com.woniu.jiapei.service.UserInfoService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -9,39 +12,53 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * @author 周元皓丶
  */
 @RestController
 public class LoginController {
-    public void dev(){
-        System.out.println("123");
-    }
+    @Resource
+    UserInfoService userInfoServiceImpl;
     /*
     登录
      */
     @GetMapping("/login")
-    public String login(String uname, String upass, ModelMap map){
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(uname,upass);
+    public Map<String, Object> login(String uname, String upass){
+        Map<String, Object> map=new HashMap<>();
+//        Subject subject = SecurityUtils.getSubject();
+//        UsernamePasswordToken token = new UsernamePasswordToken(uname,upass);
         try{
-            subject.login(token);
+       //     subject.login(token);
             System.out.println("登录成功");
-            return "redirect:/admin/index.jsp";
+            UserInfo userinfo= userInfoServiceImpl.findByName(uname);
+            Role role = userInfoServiceImpl.findRoleByUserId(userinfo.getUserinfoId());
+            Integer userId=userinfo.getUserinfoId();
+            String  userName=userinfo.getName();
+
+            map.put("roleId", role.getRoleId());
+            map.put("roleName", role.getRolename());
+            map.put("status","success");
+            map.put("userId",String.valueOf(userId));
+            map.put("userName",userName);
         }catch(UnknownAccountException unknownAccountException){
             System.out.println("账户不存在");
-            map.put("error","账户不存在");
-            return "/index";
+            map.put("status","error");
+            map.put("msg","账户不存在");
         }catch(IncorrectCredentialsException incorrectCredentialsException){
             System.out.println("口令和账户不匹配");
-            map.put("error","口令和账户不匹配");
-            return "/index";
+            map.put("status","error");
+            map.put("msg","口令和账户不匹配");
         }catch (Exception e){
-            map.put("error","登录失败");
+            map.put("status","error");
             System.out.println("登录失败");
-            return "/index";
+            map.put("msg","登录失败");
         }
+        return map;
     }
     /*
     注销

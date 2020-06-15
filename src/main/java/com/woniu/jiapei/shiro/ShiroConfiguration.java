@@ -12,11 +12,13 @@ import org.springframework.context.annotation.Configuration;
 
 
 import javax.annotation.Resource;
+import javax.servlet.Filter;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@Configuration
+//@Configuration
 public class ShiroConfiguration {
     @Resource
     PermissionService permissionServiceImpl;
@@ -33,8 +35,6 @@ public class ShiroConfiguration {
 
         Map<String,String> map = new LinkedHashMap<>();
         map.put("/*","anon");
-        map.put("/login","anon");
-        map.put("/index.jsp","anon");
         map.put("/static/**","anon");
         map.put("/css/**","anon");
         map.put("/jquery/**","anon");

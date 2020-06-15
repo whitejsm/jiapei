@@ -10,9 +10,54 @@
     <result column="power" property="power" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
-  <select id="findByDept" resultMap="BaseResultMap" parameterType="int">
-    select * from tb_jp_bed where department_id= #{departmentId}
+  <resultMap id="BaseResultMapWithManufacturer" type="com.woniu.jiapei.model.Bed" extends="BaseResultMap">
+    <association property="manufacturer" column="manufacturer_id" select="com.woniu.jiapei.mapper.ManufacturerMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <resultMap id="BaseResultMapWithManufacturerAndDepartment" type="com.woniu.jiapei.model.Bed" extends="BaseResultMapWithManufacturer">
+    <association property="department" column="department_id" select="com.woniu.jiapei.mapper.DepartmentMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <select id="findAll" resultMap="BaseResultMapWithManufacturerAndDepartment">
+    select * from tb_jp_bed
   </select>
+
+  <select id="findDID" parameterType="string" resultMap="BaseResultMapWithManufacturerAndDepartment">
+    select * from tb_jp_bed where bed_id=#{bedId}
+  </select>
+  <select id="findByDepartmentId" resultMap="BaseResultMap" parameterType="int">
+    select * from tb_jp_bed where department_id=#{departmentId}
+  </select>
+
+  <select id="findBedById" parameterType="string" resultMap="BaseResultMapWithManufacturerAndDepartment">
+    select * from tb_jp_bed where bed_id=#{bedId}
+  </select>
+
+  <select id="findByExample" resultMap="BaseResultMapWithManufacturerAndDepartment" parameterType="com.woniu.jiapei.condition.BedCondition" >
+        select * from tb_jp_bed 
+        <where>
+          <if test="power!=null and power!=-1">
+               and power &lt; #{power}
+          </if>
+          <if test="status!=null and status!='' and status!='-1'">
+               and status = #{status}
+          </if>
+          <if test="bedId!=null and bedId!=''">
+                and bed_id like concat("%",#{bedId},"%")
+          </if>
+          <if test="hospitalId!=null and hospitalId!=-1">
+            and department_id in (select department_id from tb_jp_department where hospital_id=#{hospitalId})
+              <if test="departmentId!=null and departmentId!=-1">
+                and department_id = #{departmentId}
+              </if>
+          </if>
+          <if test="beginTime!=null">
+                and create_time &gt; #{beginTime}
+          </if>
+          <if test="endTime!=null">
+                and create_time &lt; #{endTime}
+          </if>
+        </where>
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -88,8 +133,8 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select
+  <select id="selectByPrimaryKey" resultMap="BaseResultMapWithManufacturerAndDepartment" parameterType="java.lang.String" >
+    select 
     <include refid="Base_Column_List" />
     from tb_jp_bed
     where bed_id = #{bedId,jdbcType=VARCHAR}
@@ -105,11 +150,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.woniu.jiapei.model.Bed" >
-    insert into tb_jp_bed (bed_id, manufacturer_id, department_id,
-      number, status, power,
+    insert into tb_jp_bed (bed_id, manufacturer_id, department_id, 
+      number, status, power, 
       create_time)
-    values (#{bedId,jdbcType=VARCHAR}, #{manufacturerId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER},
-      #{number,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{power,jdbcType=INTEGER},
+    values (#{bedId,jdbcType=VARCHAR}, #{manufacturerId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER}, 
+      #{number,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{power,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Bed" >

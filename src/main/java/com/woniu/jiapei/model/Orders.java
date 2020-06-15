@@ -1,5 +1,7 @@
 package com.woniu.jiapei.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Orders {
@@ -24,6 +26,36 @@ public class Orders {
     private Date payTime;
 
     private String payStatus;
+
+    private Bed bed;
+
+    private Fault fault;
+
+    private Customer customer;
+
+    public Bed getBed() {
+        return bed;
+    }
+
+    public void setBed(Bed bed) {
+        this.bed = bed;
+    }
+
+    public Fault getFault() {
+        return fault;
+    }
+
+    public void setFault(Fault fault) {
+        this.fault = fault;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     public String getOrdersId() {
         return ordersId;
@@ -111,5 +143,35 @@ public class Orders {
 
     public void setPayStatus(String payStatus) {
         this.payStatus = payStatus;
+    }
+    private String timec;
+
+    public String getTimec() {
+        return timec;
+    }
+
+    public void setTimec(String timec) {
+        this.timec = timec;
+    }
+
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "ordersId='" + ordersId + '\'' +
+                ", customerId=" + customerId +
+                ", bedId='" + bedId + '\'' +
+                ", faultId=" + faultId +
+                ", rent=" + rent +
+                ", ordersStatus='" + ordersStatus + '\'' +
+                ", createTime=" + createTime +
+                ", endTime=" + endTime +
+                ", totalpay=" + totalpay +
+                ", payTime=" + payTime +
+                ", payStatus='" + payStatus + '\'' +
+                ", bed=" + bed +
+                ", fault=" + fault +
+                ", customer=" + customer +
+                ", timec='" + timec + '\'' +
+                '}';
     }
 }

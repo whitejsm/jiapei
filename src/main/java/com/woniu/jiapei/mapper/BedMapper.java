@@ -1,12 +1,13 @@
 package com.woniu.jiapei.mapper;
 
+import com.woniu.jiapei.condition.BedCondition;
 import com.woniu.jiapei.model.Bed;
 import com.woniu.jiapei.model.BedExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface BedMapper {
-    List<Bed> findByDept(int departmentId);
+    List<Bed> findByExample(BedCondition bedCondition);
 
     int countByExample(BedExample example);
 
@@ -17,7 +18,7 @@ public interface BedMapper {
     int insert(Bed record);
 
     int insertSelective(Bed record);
-
+    List<Bed> findAll();
     List<Bed> selectByExample(BedExample example);
 
     Bed selectByPrimaryKey(String bedId);
@@ -29,4 +30,6 @@ public interface BedMapper {
     int updateByPrimaryKeySelective(Bed record);
 
     int updateByPrimaryKey(Bed record);
+
+    Bed findBedById(String bedId);
 }

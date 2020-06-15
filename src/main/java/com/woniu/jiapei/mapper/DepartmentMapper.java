@@ -6,8 +6,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface DepartmentMapper {
-    List<Department> findByHospitalId(int hospitalId);
-
     int countByExample(DepartmentExample example);
 
     int deleteByExample(DepartmentExample example);
@@ -29,4 +27,8 @@ public interface DepartmentMapper {
     int updateByPrimaryKeySelective(Department record);
 
     int updateByPrimaryKey(Department record);
+
+    List<Department> getByHospitalId(Integer hospitalId);
+
+    List<Department>  findByHospitalId(Integer hospitalId);
 }

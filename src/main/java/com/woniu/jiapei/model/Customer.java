@@ -102,4 +102,22 @@ public class Customer {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+    private int orderCount;
+    private String sumMoney;
+
+    public int getOrderCount() {
+        return orderCount;
+    }
+
+    public void setOrderCount(int orderCount) {
+        this.orderCount = orderCount;
+    }
+
+    public String getSumMoney() {
+        return sumMoney;
+    }
+
+    public void setSumMoney(String sumMoney) {
+        this.sumMoney = sumMoney;
+    }
 }

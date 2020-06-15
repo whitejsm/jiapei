@@ -39,6 +39,18 @@ select * from tb_jp_hospital where isdelete=1
 
 
 
+  <resultMap id="BaseResultMapWithDepartment" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMap">
+    <collection property="departmentList" column="hospital_id" select="com.woniu.jiapei.mapper.DepartmentMapper.findByHospitalId"></collection>
+  </resultMap>
+  <select id="findOneWithDepartment" parameterType="int" resultMap="BaseResultMapWithDepartment">
+    select * from tb_jp_hospital where hospital_id=#{hospitalId}
+  </select>
+  <resultMap id="BaseResultMapWithUserInfo" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMap">
+    <collection property="userInfo" column="contactor_id" select="com.woniu.jiapei.mapper.UserInfoMapper.findById"></collection>
+  </resultMap>
+  <select id="findAllInvestment" parameterType="int" resultMap="BaseResultMapWithUserInfo">
+    select * from tb_jp_hospital where distributor_id=#{userinfoId}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -101,6 +113,7 @@ select * from tb_jp_hospital where isdelete=1
     hospital_id, hospitalname, bankcard, rent, revenueshare, create_time, distributor_id,
     contactor_id, province_id, city_id, zone_id, isdelete
   </sql>
+  <select id="selectByExample" resultMap="BaseResultMapWithDepartment" parameterType="com.woniu.jiapei.model.HospitalExample" >
   <select id="selectByExample" resultMap="BaseResultMapContactorDepartmentPCZ" parameterType="com.woniu.jiapei.model.HospitalExample" >
     select
     <if test="distinct" >

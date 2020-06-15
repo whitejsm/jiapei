@@ -1,5 +1,6 @@
 package com.woniu.jiapei.mapper;
 
+import com.woniu.jiapei.condition.CustomerCondition;
 import com.woniu.jiapei.model.Customer;
 import com.woniu.jiapei.model.CustomerExample;
 import java.util.List;
@@ -27,4 +28,8 @@ public interface CustomerMapper {
     int updateByPrimaryKeySelective(Customer record);
 
     int updateByPrimaryKey(Customer record);
+
+    Integer countCustomer();
+
+    List<Customer> getCusetomerByCondition(CustomerCondition customerCondition);
 }
