@@ -1,11 +1,14 @@
 package com.woniu.jiapei.mapper;
 
+import com.woniu.jiapei.model.UserInfo;
 import com.woniu.jiapei.model.UserLoginInfo;
 import com.woniu.jiapei.model.UserLoginInfoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserLoginInfoMapper {
+
+
     int countByExample(UserLoginInfoExample example);
 
     int deleteByExample(UserLoginInfoExample example);

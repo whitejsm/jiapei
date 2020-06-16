@@ -3,7 +3,6 @@ package com.woniu.jiapei.service.impl;
 import com.woniu.jiapei.mapper.DepartmentMapper;
 import com.woniu.jiapei.mapper.FaultMapper;
 import com.woniu.jiapei.mapper.HospitalMapper;
-import com.woniu.jiapei.mapper.RepairmanMapper;
 import com.woniu.jiapei.model.*;
 import com.woniu.jiapei.service.RepairmanService;
 import org.springframework.stereotype.Service;
