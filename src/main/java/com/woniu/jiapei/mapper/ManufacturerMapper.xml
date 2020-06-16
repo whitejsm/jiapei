@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.woniu.jiapei.mapper.ManufacturerMapper" >
+  <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.Manufacturer" >
+    <id column="manufacturer_id" property="manufacturerId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phonenumber" property="phonenumber" jdbcType="VARCHAR" />
+    <result column="contactperson" property="contactperson" jdbcType="VARCHAR" />
+    <result column="contactphone" property="contactphone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    manufacturer_id, name, phonenumber, contactperson, contactphone, address
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.model.ManufacturerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_jp_manufacturer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_jp_manufacturer
+    where manufacturer_id = #{manufacturerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_jp_manufacturer
+    where manufacturer_id = #{manufacturerId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.woniu.jiapei.model.ManufacturerExample" >
+    delete from tb_jp_manufacturer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.woniu.jiapei.model.Manufacturer" >
+    insert into tb_jp_manufacturer (manufacturer_id, name, phonenumber, 
+      contactperson, contactphone, address
+      )
+    values (#{manufacturerId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR}, 
+      #{contactperson,jdbcType=VARCHAR}, #{contactphone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Manufacturer" >
+    insert into tb_jp_manufacturer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="manufacturerId != null" >
+        manufacturer_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="phonenumber != null" >
+        phonenumber,
+      </if>
+      <if test="contactperson != null" >
+        contactperson,
+      </if>
+      <if test="contactphone != null" >
+        contactphone,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="manufacturerId != null" >
+        #{manufacturerId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contactperson != null" >
+        #{contactperson,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphone != null" >
+        #{contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.woniu.jiapei.model.ManufacturerExample" resultType="java.lang.Integer" >
+    select count(*) from tb_jp_manufacturer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_jp_manufacturer
+    <set >
+      <if test="record.manufacturerId != null" >
+        manufacturer_id = #{record.manufacturerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phonenumber != null" >
+        phonenumber = #{record.phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactperson != null" >
+        contactperson = #{record.contactperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactphone != null" >
+        contactphone = #{record.contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_jp_manufacturer
+    set manufacturer_id = #{record.manufacturerId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      phonenumber = #{record.phonenumber,jdbcType=VARCHAR},
+      contactperson = #{record.contactperson,jdbcType=VARCHAR},
+      contactphone = #{record.contactphone,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.jiapei.model.Manufacturer" >
+    update tb_jp_manufacturer
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        phonenumber = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contactperson != null" >
+        contactperson = #{contactperson,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphone != null" >
+        contactphone = #{contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where manufacturer_id = #{manufacturerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.jiapei.model.Manufacturer" >
+    update tb_jp_manufacturer
+    set name = #{name,jdbcType=VARCHAR},
+      phonenumber = #{phonenumber,jdbcType=VARCHAR},
+      contactperson = #{contactperson,jdbcType=VARCHAR},
+      contactphone = #{contactphone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR}
+    where manufacturer_id = #{manufacturerId,jdbcType=INTEGER}
+  </update>
+</mapper>
