@@ -181,4 +181,23 @@ public class Hospital {
     public void setIsdelete(Boolean isdelete) {
         this.isdelete = isdelete;
     }
+    private List<Department> departmentList;
+
+    public List<Department> getDepartmentList() {
+        return departmentList;
+    }
+
+    public void setDepartmentList(List<Department> departmentList) {
+        this.departmentList = departmentList;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
+    private UserInfo userInfo;
 }

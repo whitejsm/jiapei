@@ -57,4 +57,5 @@ public interface UserInfoMapper {
 
     Integer countShareholder();
 
+    Integer countAccounting();
 }

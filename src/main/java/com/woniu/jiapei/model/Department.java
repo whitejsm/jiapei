@@ -29,8 +29,7 @@ public class Department {
 
     private Integer departorId;
     private UserInfo departor;
-    private List<Bed> bedList;
-    private RepairMan repairman;
+    private Repairman repairman;
 
     public UserInfo getDepartor() {
         return departor;
@@ -40,23 +39,15 @@ public class Department {
         this.departor = departor;
     }
 
-    public List<Bed> getBedList() {
-        return bedList;
-    }
+    private String departmentname;
 
-    public void setBedList(List<Bed> bedList) {
-        this.bedList = bedList;
-    }
-
-    public RepairMan getRepairman() {
+    public Repairman getRepairman() {
         return repairman;
     }
 
-    public void setRepairman(RepairMan repairman) {
+    public void setRepairman(Repairman repairman) {
         this.repairman = repairman;
     }
-
-    private String departmentname;
 
     private Date createTime;
 
