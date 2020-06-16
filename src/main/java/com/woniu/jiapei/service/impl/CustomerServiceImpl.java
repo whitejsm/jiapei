@@ -49,6 +49,7 @@ public class CustomerServiceImpl implements CustomerService {
         customerMapper.updateByPrimaryKeySelective(customer);
     }
 
+
     @Override
     public List<Customer> downByCondition(CustomerCondition customerCondition) {
         return customerMapper.downByCondition(customerCondition);
