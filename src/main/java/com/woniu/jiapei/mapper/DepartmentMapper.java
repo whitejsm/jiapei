@@ -1,5 +1,6 @@
 package com.woniu.jiapei.mapper;
 
+import com.woniu.jiapei.condition.BedCondition;
 import com.woniu.jiapei.model.Department;
 import com.woniu.jiapei.model.DepartmentExample;
 import java.util.List;
@@ -30,5 +31,5 @@ public interface DepartmentMapper {
 
     List<Department> getByHospitalId(Integer hospitalId);
 
-    List<Department>  findByHospitalId(Integer hospitalId);
+    List<Department> findByDepartorId(BedCondition bedCondition);
 }

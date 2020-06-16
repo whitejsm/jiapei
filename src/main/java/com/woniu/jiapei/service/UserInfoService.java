@@ -1,6 +1,7 @@
 package com.woniu.jiapei.service;
 
 import com.woniu.jiapei.condition.AccountingCondition;
+import com.woniu.jiapei.condition.FaultCondition;
 import com.woniu.jiapei.condition.MedicalCondition;
 import com.woniu.jiapei.condition.ShareholderCondition;
 import com.woniu.jiapei.model.Customer;
@@ -52,6 +53,10 @@ public interface UserInfoService {
     Integer countInvestment(int userinfoId);
 
     Role findRoleByUserId(Integer userinfoId);
+
+    List<UserInfo> findByFaultSource(FaultCondition faultCondition);
+
+    UserInfo findById(Integer userinfoId);
 
     List<UserInfo> getDistributor(Integer userId);
 

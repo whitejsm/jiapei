@@ -3,6 +3,16 @@ package com.woniu.jiapei.model;
 import java.util.Date;
 
 public class Repair {
+    private UserInfo userInfo;
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
     private String repairId;
 
     private Integer faultId;
@@ -12,6 +22,8 @@ public class Repair {
     private String repairStatus;
 
     private Date createTime;
+
+    private Integer repairmanId;
 
     private String repairInstructions;
 
@@ -53,6 +65,14 @@ public class Repair {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Integer getRepairmanId() {
+        return repairmanId;
+    }
+
+    public void setRepairmanId(Integer repairmanId) {
+        this.repairmanId = repairmanId;
     }
 
     public String getRepairInstructions() {

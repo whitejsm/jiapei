@@ -3,6 +3,7 @@ package com.woniu.jiapei.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.jiapei.condition.AccountingCondition;
+import com.woniu.jiapei.condition.FaultCondition;
 import com.woniu.jiapei.condition.MedicalCondition;
 import com.woniu.jiapei.condition.ShareholderCondition;
 import com.woniu.jiapei.mapper.HospitalMapper;
@@ -143,6 +144,8 @@ public class UserInfoServiceImpl implements UserInfoService {
     public Role findRoleByUserId(Integer userinfoId) {
         return roleMapper.findRoleByUserId(userinfoId);
     }
+
+
 
     @Override
     public List<UserInfo> getDistributor(Integer userId) {
@@ -296,4 +299,13 @@ public class UserInfoServiceImpl implements UserInfoService {
         return hospitalMapper.countByExample(example);
     }
 
+    @Override
+    public List<UserInfo> findByFaultSource(FaultCondition faultCondition) {
+        return userInfoMapper.findByFaultSource(faultCondition);
+    }
+
+    @Override
+    public UserInfo findById(Integer userinfoId) {
+        return userInfoMapper.selectByPrimaryKey(userinfoId);
+    }
 }

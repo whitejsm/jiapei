@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Department {
     private List<Bed> bedList;
+    private Integer hospitalId;
+    private Hospital hospital;
 
     public List<Bed> getBedList() {
         return bedList;
@@ -15,9 +17,6 @@ public class Department {
     }
 
     private Integer departmentId;
-
-    private Integer hospitalId;
-    private Hospital hospital;
 
     public Hospital getHospital() {
         return hospital;

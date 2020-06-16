@@ -14,4 +14,7 @@ public interface FaultService {
     Fault findByFaultId(Integer faultId);
     void save(Fault fault);
     void update(Fault fault);
+    void delFaultById(Fault fault);
+
+    List<Fault> getFaultsByCondition(FaultCondition faultCondition);
 }

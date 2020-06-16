@@ -1,8 +1,56 @@
 package com.woniu.jiapei.model;
 
+
 import java.util.Date;
 
 public class Fault {
+    private Bed bed;
+    private Repair repair;
+    private UserInfo userInfo;
+    private Role role;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    private Customer customer;
+
+    public Bed getBed() {
+        return bed;
+    }
+
+    public void setBed(Bed bed) {
+        this.bed = bed;
+    }
+
+    public Repair getRepair() {
+        return repair;
+    }
+
+    public void setRepair(Repair repair) {
+        this.repair = repair;
+    }
+
     private Integer faultId;
 
     private Integer contactorId;
@@ -12,6 +60,8 @@ public class Fault {
     private String bedId;
 
     private String faultTitle;
+
+    private String faultType;
 
     private String faultStatus;
 
@@ -59,6 +109,14 @@ public class Fault {
         this.faultTitle = faultTitle;
     }
 
+    public String getFaultType() {
+        return faultType;
+    }
+
+    public void setFaultType(String faultType) {
+        this.faultType = faultType;
+    }
+
     public String getFaultStatus() {
         return faultStatus;
     }
@@ -81,15 +139,5 @@ public class Fault {
 
     public void setFaultDetails(String faultDetails) {
         this.faultDetails = faultDetails;
-    }
-
-    private Bed bed;
-
-    public Bed getBed() {
-        return bed;
-    }
-
-    public void setBed(Bed bed) {
-        this.bed = bed;
     }
 }

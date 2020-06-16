@@ -36,6 +36,12 @@ public interface HospitalMapper {
 
     List<Hospital> findAllInvestment(int userinfoId);
 
+    List<Hospital> findByRepairMan(Integer userinfoId);
+
+    List<Hospital> findByHospitalMan(Integer userinfoId);
+
+    List<Hospital> findByDepartmentMan(Integer userinfoId);
+
     List<Hospital> selectByVisibleCondition(VisibleReportRentCondition condition);
 
     List<Hospital> selectByContactorId(Integer contactorId);

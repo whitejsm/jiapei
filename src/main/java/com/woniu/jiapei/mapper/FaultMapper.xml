@@ -7,15 +7,80 @@
     <result column="customer_id" property="customerId" jdbcType="INTEGER" />
     <result column="bed_id" property="bedId" jdbcType="VARCHAR" />
     <result column="fault_title" property="faultTitle" jdbcType="VARCHAR" />
+    <result column="fault_type" property="faultType" jdbcType="VARCHAR" />
     <result column="fault_status" property="faultStatus" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.woniu.jiapei.model.Fault" extends="BaseResultMap" >
     <result column="fault_details" property="faultDetails" jdbcType="LONGVARCHAR" />
   </resultMap>
+  <!--查询结果附带故障来源-->
+  <resultMap id="ResultMapWithBLOBsAndSource" type="com.woniu.jiapei.model.Fault" extends="ResultMapWithBLOBs">
+    <association property="userInfo" column="contactor_id" select="com.woniu.jiapei.mapper.UserInfoMapper.selectByPrimaryKey"></association>
+    <association property="customer" column="customer_id" select="com.woniu.jiapei.mapper.CustomerMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <!--查询结果附带维修信息-->
+  <resultMap id="ResultMapWithBLOBsAndSourceAndRepair" type="com.woniu.jiapei.model.Fault" extends="ResultMapWithBLOBsAndSource">
+    <association property="repair" column="fault_id" select="com.woniu.jiapei.mapper.RepairMapper.findByFaultId"></association>
+  </resultMap>
+  <!--查询结果附带床位信息-->
+  <resultMap id="ResultMapWithBLOBsAndSourceAndRepairAndBed" type="com.woniu.jiapei.model.Fault" extends="ResultMapWithBLOBsAndSourceAndRepair">
+    <association property="bed" column="bed_id" select="com.woniu.jiapei.mapper.BedMapper.findByFaultBedId"></association>
+  </resultMap>
+  <!--查询结果附带角色的身份-->
+  <resultMap id="ResultMapWithBLOBsAndSourceAndRepairAndBedAndRoleInfo" type="com.woniu.jiapei.model.Fault" extends="ResultMapWithBLOBsAndSourceAndRepairAndBed">
+    <association property="role" column="contactor_id" select="com.woniu.jiapei.mapper.RoleMapper.findByUid"></association>
+  </resultMap>
 
-  <select id="findAll" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.condition.FaultCondition">
-    select * from tb_jp_fault
+  <!--查询所有故障信息-->
+  <select id="findAll" resultMap="ResultMapWithBLOBsAndSourceAndRepairAndBedAndRoleInfo" parameterType="com.woniu.jiapei.condition.FaultCondition">
+        select * from tb_jp_fault
+        <where>
+            and fault_status !='已删除'
+          <if test="faultId!=null and faultId!=''">
+            and fault_id like concat("%",#{faultId},"%")
+          </if>
+          <if test="hospitalId!=null and hospitalId!=-1">
+            <if test="departmentId!=null and departmentId!=-1">
+              and bed_id in (select bed_id from tb_jp_bed where department_id =#{departmentId})
+            </if>
+            <if test="departmentId==null or departmentId==-1">
+              and bed_id in (select bed_id from tb_jp_bed where department_id in(select department_id from tb_jp_department where hospital_id=#{hospitalId}))
+            </if>
+          </if>
+          <if test="faultType!=null and faultType!='-1'">
+            and fault_type=#{faultType}
+          </if>
+          <if test="faultStatus!=null and faultStatus!='-1'">
+            and fault_status =#{faultStatus}
+          </if>
+          <if test="repairStatus!=null and repairStatus!='-1'">
+            and fault_id in (select fault_id from tb_jp_repair where repair_status=#{repairStatus})
+          </if>
+          <if test="faultSource!=null and faultSource!='-1'">
+            <if test="faultSource!='顾客'">
+                and contactor_id in (select userinfo_id from tb_jp_userinfo where userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id = (select role_id from tb_jp_role where rolename=#{faultSource})))
+            </if>
+            <if test="faultSource=='顾客'">
+                and contactor_id is null
+            </if>
+          </if>
+          <if test="roleId==4">
+            and bed_id in (select bed_id from tb_jp_bed where department_id in (select department_id from tb_jp_repairman where repairman_id = #{userInfoId}))
+          </if>
+          <if test="roleId==5">
+            and bed_id in (select bed_id from tb_jp_bed where department_id in (select department_id from tb_jp_department where hospital_id in (select hospital_id from tb_jp_hospital where contactor_id = #{userInfoId})))
+          </if>
+          <if test="roleId==6">
+            and bed_id in (select bed_id from tb_jp_bed where department_id in (select department_id from tb_jp_department where departor_id = #{userInfoId}))
+          </if>
+          <if test="beginTime!=null">
+            and create_time &gt; #{beginTime}
+          </if>
+          <if test="endTime!=null">
+            and create_time &lt; #{endTime}
+          </if>
+        </where>
   </select>
 
   <resultMap id="ResultMapWithDepartment" type="com.woniu.jiapei.model.Fault" extends="BaseResultMap">
@@ -54,6 +119,7 @@
       </foreach>
     </where>
   </sql>
+
   <sql id="Update_By_Example_Where_Clause" >
     <where >
       <foreach collection="example.oredCriteria" item="criteria" separator="or" >
@@ -84,7 +150,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    fault_id, contactor_id, customer_id, bed_id, fault_title, fault_status, create_time
+    fault_id, contactor_id, customer_id, bed_id, fault_title, fault_type, fault_status,
+    create_time
   </sql>
   <sql id="Blob_Column_List" >
     fault_details
@@ -137,13 +204,15 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.woniu.jiapei.model.Fault" >
-    insert into tb_jp_fault (fault_id, contactor_id, customer_id, 
-      bed_id, fault_title, fault_status, 
-      create_time, fault_details)
-    values (#{faultId,jdbcType=INTEGER}, #{contactorId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, 
-      #{bedId,jdbcType=VARCHAR}, #{faultTitle,jdbcType=VARCHAR}, #{faultStatus,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{faultDetails,jdbcType=LONGVARCHAR})
+  <insert id="insert" parameterType="com.woniu.jiapei.model.Fault" useGeneratedKeys="true" keyProperty="faultId">
+    insert into tb_jp_fault (fault_id, contactor_id, customer_id,
+      bed_id, fault_title, fault_type,
+      fault_status, create_time, fault_details
+      )
+    values (#{faultId,jdbcType=INTEGER}, #{contactorId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER},
+      #{bedId,jdbcType=VARCHAR}, #{faultTitle,jdbcType=VARCHAR}, #{faultType,jdbcType=VARCHAR},
+      #{faultStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{faultDetails,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Fault" >
     insert into tb_jp_fault
@@ -162,6 +231,9 @@
       </if>
       <if test="faultTitle != null" >
         fault_title,
+      </if>
+      <if test="faultType != null" >
+        fault_type,
       </if>
       <if test="faultStatus != null" >
         fault_status,
@@ -188,6 +260,9 @@
       </if>
       <if test="faultTitle != null" >
         #{faultTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="faultType != null" >
+        #{faultType,jdbcType=VARCHAR},
       </if>
       <if test="faultStatus != null" >
         #{faultStatus,jdbcType=VARCHAR},
@@ -224,6 +299,9 @@
       <if test="record.faultTitle != null" >
         fault_title = #{record.faultTitle,jdbcType=VARCHAR},
       </if>
+      <if test="record.faultType != null" >
+        fault_type = #{record.faultType,jdbcType=VARCHAR},
+      </if>
       <if test="record.faultStatus != null" >
         fault_status = #{record.faultStatus,jdbcType=VARCHAR},
       </if>
@@ -245,6 +323,7 @@
       customer_id = #{record.customerId,jdbcType=INTEGER},
       bed_id = #{record.bedId,jdbcType=VARCHAR},
       fault_title = #{record.faultTitle,jdbcType=VARCHAR},
+      fault_type = #{record.faultType,jdbcType=VARCHAR},
       fault_status = #{record.faultStatus,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       fault_details = #{record.faultDetails,jdbcType=LONGVARCHAR}
@@ -259,6 +338,7 @@
       customer_id = #{record.customerId,jdbcType=INTEGER},
       bed_id = #{record.bedId,jdbcType=VARCHAR},
       fault_title = #{record.faultTitle,jdbcType=VARCHAR},
+      fault_type = #{record.faultType,jdbcType=VARCHAR},
       fault_status = #{record.faultStatus,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
@@ -280,6 +360,9 @@
       <if test="faultTitle != null" >
         fault_title = #{faultTitle,jdbcType=VARCHAR},
       </if>
+      <if test="faultType != null" >
+        fault_type = #{faultType,jdbcType=VARCHAR},
+      </if>
       <if test="faultStatus != null" >
         fault_status = #{faultStatus,jdbcType=VARCHAR},
       </if>
@@ -298,6 +381,7 @@
       customer_id = #{customerId,jdbcType=INTEGER},
       bed_id = #{bedId,jdbcType=VARCHAR},
       fault_title = #{faultTitle,jdbcType=VARCHAR},
+      fault_type = #{faultType,jdbcType=VARCHAR},
       fault_status = #{faultStatus,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       fault_details = #{faultDetails,jdbcType=LONGVARCHAR}
@@ -309,6 +393,7 @@
       customer_id = #{customerId,jdbcType=INTEGER},
       bed_id = #{bedId,jdbcType=VARCHAR},
       fault_title = #{faultTitle,jdbcType=VARCHAR},
+      fault_type = #{faultType,jdbcType=VARCHAR},
       fault_status = #{faultStatus,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where fault_id = #{faultId,jdbcType=INTEGER}

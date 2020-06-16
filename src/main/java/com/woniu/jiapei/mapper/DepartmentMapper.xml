@@ -18,6 +18,10 @@
     <collection property="bedList" column="department_id" select="com.woniu.jiapei.mapper.BedMapper.findByDepartmentId"></collection>
   </resultMap>
 
+  <select id="findByDepartmentId" resultMap="BaseResultMapWithHospital" parameterType="int">
+    select * from tb_jp_department where department_id = #{departmentId}
+  </select>
+
   <select id="findByHospitalId" resultMap="BaseResultMap" parameterType="Integer">
     select * from tb_jp_department
     <where>
@@ -29,6 +33,18 @@
 
   <select id="getByHospitalId" resultMap="BaseResultMap" parameterType="int">
     select * from tb_jp_department where hospital_id=#{hospitalId}
+  </select>
+
+  <select id="findByDepartorId" parameterType="com.woniu.jiapei.condition.BedCondition" resultMap="BaseResultMap">
+    select * from tb_jp_department
+    <where>
+      <if test="hospitalId!=-1 and hospitalId!=null">
+        and hospital_id=#{hospitalId}
+      </if>
+      <if test="roleId==6">
+        and departor_id=#{userInfoId}
+      </if>
+    </where>
   </select>
   <sql id="Example_Where_Clause" >
     <where >
