@@ -10,12 +10,19 @@
     <result column="power" property="power" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
+  <!--查询结果附带科室医院信息-->
+  <resultMap id="BaseResultMapWithDepartmentAndHospital" type="com.woniu.jiapei.model.Bed" extends="BaseResultMap">
+    <association property="department" column="department_id" select="com.woniu.jiapei.mapper.DepartmentMapper.findByDepartmentId"></association>
+  </resultMap>
+
   <resultMap id="BaseResultMapWithManufacturer" type="com.woniu.jiapei.model.Bed" extends="BaseResultMap">
     <association property="manufacturer" column="manufacturer_id" select="com.woniu.jiapei.mapper.ManufacturerMapper.selectByPrimaryKey"></association>
   </resultMap>
+
   <resultMap id="BaseResultMapWithManufacturerAndDepartment" type="com.woniu.jiapei.model.Bed" extends="BaseResultMapWithManufacturer">
     <association property="department" column="department_id" select="com.woniu.jiapei.mapper.DepartmentMapper.selectByPrimaryKey"></association>
   </resultMap>
+
   <select id="findAll" resultMap="BaseResultMapWithManufacturerAndDepartment">
     select * from tb_jp_bed
   </select>
@@ -28,6 +35,9 @@
     select * from tb_jp_bed where bed_id=#{bedId}
   </select>
 
+  <select id="findByFaultBedId" parameterType="String" resultMap="BaseResultMapWithDepartmentAndHospital">
+    select * from tb_jp_bed where bed_id = #{bedId}
+  </select>
   <select id="findByExample" resultMap="BaseResultMapWithManufacturerAndDepartment" parameterType="com.woniu.jiapei.condition.BedCondition" >
         select * from tb_jp_bed 
         <where>
@@ -51,6 +61,12 @@
           </if>
           <if test="endTime!=null">
                 and create_time &lt; #{endTime}
+          </if>
+          <if test="roleId==5">
+                and department_id in (select department_id from tb_jp_department where hospital_id in (select hospital_id from tb_jp_hospital where contactor_id = #{userInfoId}))
+          </if>
+          <if test="roleId==6">
+                and department_id in (select department_id from tb_jp_department where departor_id = #{userInfoId})
           </if>
         </where>
   </select>

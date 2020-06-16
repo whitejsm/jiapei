@@ -1,6 +1,7 @@
 package com.woniu.jiapei.mapper;
 
 import com.woniu.jiapei.condition.AccountingCondition;
+import com.woniu.jiapei.condition.FaultCondition;
 import com.woniu.jiapei.condition.MedicalCondition;
 import com.woniu.jiapei.condition.ShareholderCondition;
 import com.woniu.jiapei.model.Role;
@@ -49,4 +50,6 @@ public interface UserInfoMapper {
     List<UserInfo> getShareholderByCondition(ShareholderCondition shareholderCondition);
 
     Integer countShareholder();
+
+    List<UserInfo> findByFaultSource(FaultCondition faultCondition);
 }

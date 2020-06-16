@@ -6,6 +6,7 @@ import com.woniu.jiapei.condition.BedCondition;
 import com.woniu.jiapei.mapper.BedMapper;
 import com.woniu.jiapei.mapper.DepartmentMapper;
 import com.woniu.jiapei.model.Bed;
+import com.woniu.jiapei.model.BedExample;
 import com.woniu.jiapei.service.BedService;
 import com.woniu.jiapei.tools.PageBean;
 import org.springframework.stereotype.Service;
@@ -115,5 +116,13 @@ public class BedServiceImpl implements BedService {
     @Override
     public List<Bed> getBedsByCondition(BedCondition bedCondition) {
         return bedMapper.findByExample(bedCondition);
+    }
+
+    @Override
+    public List<Bed> findByDepartmentId(Integer departmentId) {
+        BedExample example = new BedExample();
+        BedExample.Criteria criteria = example.createCriteria();
+        criteria.andDepartmentIdEqualTo(departmentId);
+        return bedMapper.selectByExample(example);
     }
 }

@@ -34,12 +34,12 @@ public class LoginController {
 //        UsernamePasswordToken token = new UsernamePasswordToken(uname,upass);
         try{
        //     subject.login(token);
-            System.out.println("登录成功");
             UserInfo userinfo= userInfoServiceImpl.findByName(uname);
             Role role = userInfoServiceImpl.findRoleByUserId(userinfo.getUserinfoId());
             Integer userId=userinfo.getUserinfoId();
             String  userName=userinfo.getName();
 
+            System.out.println("登录成功");
             map.put("roleId", role.getRoleId());
             map.put("roleName", role.getRolename());
             map.put("status","success");

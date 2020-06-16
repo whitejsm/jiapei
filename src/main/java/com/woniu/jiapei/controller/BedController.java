@@ -7,6 +7,7 @@ import com.woniu.jiapei.mapper.HospitalMapper;
 import com.woniu.jiapei.mapper.ManufacturerMapper;
 import com.woniu.jiapei.model.*;
 import com.woniu.jiapei.service.BedService;
+import com.woniu.jiapei.service.ManufacturerService;
 import com.woniu.jiapei.tools.DataFileUtil;
 import com.woniu.jiapei.tools.Msg;
 import com.woniu.jiapei.tools.PageBean;
@@ -34,7 +35,7 @@ public class BedController {
     @Resource
     private DepartmentMapper departmentMapper;
     @Resource
-    private ManufacturerMapper manufacturerMapper;
+    private ManufacturerService manufacturerServiceImpl;
 
     @GetMapping("findAll")
     public Msg findAll(PageBean pageBean){
@@ -66,8 +67,18 @@ public class BedController {
             System.out.println(bedCondition);
 
             List<Bed> bedList = bedServiceImpl.findByExample(bedCondition,pageBean);
-            List<Hospital> hospitalList = hospitalMapper.selectByExample(null);
-            List<Manufacturer> manufacturerList = manufacturerMapper.selectByExample(null);
+            List<Manufacturer> manufacturerList = manufacturerServiceImpl.findAll();
+
+            List<Hospital> hospitalList = null;
+            if(bedCondition.getRoleId()!=null){
+                if(bedCondition.getRoleId()==5){
+                    hospitalList = hospitalMapper.findByHospitalMan(bedCondition.getUserInfoId());
+                }else if(bedCondition.getRoleId()==6){
+                    hospitalList = hospitalMapper.findByDepartmentMan(bedCondition.getUserInfoId());
+                }else{
+                    hospitalList = hospitalMapper.selectByExample(null);
+                }
+            }
 
             msg.setManufacturerList(manufacturerList);
             msg.setHospitalList(hospitalList);
@@ -179,14 +190,19 @@ public class BedController {
     }
 
     @GetMapping("findDepartment")
-    public Msg findDepartment(Integer hospitalId){
+    public Msg findDepartment(BedCondition bedCondition){
         Msg msg = new Msg();
-        if(hospitalId==-1){
+        if(bedCondition.getHospitalId()==-1){
             msg.setDepartmentList(null);
             return msg;
         }
-        msg.setDepartmentList(departmentMapper.findByHospitalId(hospitalId));
+        msg.setDepartmentList(departmentMapper.findByDepartorId(bedCondition));
         return msg;
+    }
+
+    @GetMapping("findManufacturerById")
+    public Manufacturer findManufacturerById(Integer manufacturerId){
+        return manufacturerServiceImpl.findById(manufacturerId);
     }
 
     //导出报表
@@ -194,6 +210,7 @@ public class BedController {
     public void downloadBedFile(BedCondition bedCondition, HttpServletResponse response) throws IOException {
         System.out.println(bedCondition+"!!!!!!!!!!!!!!!!!!!!!!");
         List<Bed> bedList = bedServiceImpl.getBedsByCondition(bedCondition);
+        System.out.println(bedList);
         // 生成文件
         XSSFWorkbook workBook = DataFileUtil.createScoreFile(Bed.class, bedList);
 //        XSSFWorkbook workBook = DataFileUtil.createScoreFile(Examination.class, examinationMapper.findAll());

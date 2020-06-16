@@ -15,9 +15,10 @@ public class FaultCondition {
     private Integer departmentId;
     private String faultType;
     private String faultStatus;
-    private String repaitStatus;
+    private String repairStatus;
     private String faultSource;
     private Date beginTime;
     private Date endTime;
-
+    private Integer roleId;
+    private Integer userInfoId;
 }

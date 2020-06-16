@@ -9,14 +9,14 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BedCondition {
-    private String bedId;
+public class RepairCondition {
+    private Integer repairId;
     private Integer hospitalId;
     private Integer departmentId;
-    private Integer power;
-    private String status;
+    private String repairManId;
+    private String repairStatus;
     private Date beginTime;
     private Date endTime;
-    private Integer userInfoId;
     private Integer roleId;
+    private Integer userInfoId;
 }

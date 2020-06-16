@@ -151,6 +151,15 @@
   <select id="findById" resultType="com.woniu.jiapei.model.UserInfo" parameterType="int">
       select name from tb_jp_userinfo where userinfo_id=#{contactor_id}
   </select>
+
+  <select id="findByFaultSource" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.condition.FaultCondition">
+    select * from tb_jp_userinfo
+    <where>
+      <if test="faultSource!=null">
+        and userinfo_id in (select userInfo_id from tb_jp_userinforole where role_id in (select role_id from tb_jp_role where rolename=#{faultSource}))
+      </if>
+    </where>
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

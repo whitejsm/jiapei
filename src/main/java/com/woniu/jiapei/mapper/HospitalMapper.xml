@@ -17,15 +17,30 @@
   <resultMap id="BaseResultMapWithDepartment" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMap">
     <collection property="departmentList" column="hospital_id" select="com.woniu.jiapei.mapper.DepartmentMapper.findByHospitalId"></collection>
   </resultMap>
-  <select id="findOneWithDepartment" parameterType="int" resultMap="BaseResultMapWithDepartment">
-    select * from tb_jp_hospital where hospital_id=#{hospitalId}
-  </select>
   <resultMap id="BaseResultMapWithUserInfo" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMap">
     <collection property="userInfo" column="contactor_id" select="com.woniu.jiapei.mapper.UserInfoMapper.findById"></collection>
   </resultMap>
+
+  <select id="findOneWithDepartment" parameterType="int" resultMap="BaseResultMapWithDepartment">
+    select * from tb_jp_hospital where hospital_id=#{hospitalId}
+  </select>
+
   <select id="findAllInvestment" parameterType="int" resultMap="BaseResultMapWithUserInfo">
     select * from tb_jp_hospital where distributor_id=#{userinfoId}
   </select>
+
+  <select id="findByRepairMan" parameterType="int" resultMap="BaseResultMap">
+    select * from tb_jp_hospital where hospital_id in (select hospital_id from tb_jp_repairman where repairman_id=#{userInfoId})
+  </select>
+
+  <select id="findByHospitalMan" parameterType="int" resultMap="BaseResultMap">
+    select * from tb_jp_hospital where contactor_id=#{userinfoId}
+  </select>
+
+  <select id="findByDepartmentMan" parameterType="int" resultMap="BaseResultMap">
+    select * from tb_jp_hospital where hospital_id in (select hospital_id from tb_jp_department where departor_id = #{userInfoId})
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

@@ -44,4 +44,15 @@ public class FaultServiceImpl implements FaultService {
     public void update(Fault fault) {
         faultMapper.updateByPrimaryKeySelective(fault);
     }
+
+    @Override
+    public void delFaultById(Fault fault) {
+        fault.setFaultStatus("已删除");
+        faultMapper.updateByPrimaryKeySelective(fault);
+    }
+
+    @Override
+    public List<Fault> getFaultsByCondition(FaultCondition faultCondition) {
+        return faultMapper.findAll(faultCondition);
+    }
 }
