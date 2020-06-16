@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-  <classPathEntry location="G:\apache\Maven\apache-maven-3.6.3\myresp\mysql\mysql-connector-java\8.0.20\mysql-connector-java-8.0.20.jar"/>
+  <classPathEntry location="D:\apache-maven-3.6.3\myRepository\mysql\mysql-connector-java\8.0.20\mysql-connector-java-8.0.20.jar"/>
   <context id="context1" targetRuntime="mybatis3">
     <commentGenerator>
       <property name="suppressAllComments" value="true"></property>
@@ -74,7 +74,9 @@
 <!--    <table schema="jiapei" tableName="zone" domainObjectName="Zone">-->
 <!--    </table>-->
 
-    <table schema="jiapei" tableName="tb_jp_repairman" domainObjectName="Repairman">
+<!--    <table schema="jiapei" tableName="tb_jp_repairman" domainObjectName="Repairman">-->
+<!--    </table>-->
+    <table schema="jiapei" tableName="tb_jp_repair" domainObjectName="Repair">
     </table>
   </context>
 
