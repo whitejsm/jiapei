@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e8f777ee-a9ad-4fb2-98d5-24e070793122" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jiapei.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_4_0.xml" afterDir="false" />
@@ -118,64 +120,263 @@
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_1_8_RELEASE.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_xmlunit_xmlunit_core_2_6_2.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_23.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/jiapei.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/banner.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/JiapeiApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/condition/AccountingCondition.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/condition/BedCondition.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/condition/CustomerCondition.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/condition/FaultCondition.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/condition/MedicalCondition.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/condition/OrderCondition.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/condition/ReportController.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/condition/ShareholderCondition.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/config/CorsFilter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/config/CrossDomainConfig.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/controller/BedController.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/controller/CustomerController.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/controller/FaultController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/controller/HospitalController.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/controller/LoginController.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/controller/OrderController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/controller/PermissionController.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/controller/RepairmanController.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/controller/UserInfoController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/BedMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/BedMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/CityMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/CityMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/CustomerLoginInfoMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/CustomerLoginInfoMapper.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/CustomerMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/CustomerMapper.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/DepartmentMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/DepartmentMapper.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/FaultMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/FaultMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/FeedbackMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/FeedbackMapper.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/HospitalMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/HospitalMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/LogMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/LogMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/ManufacturerMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/ManufacturerMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/MessageDetailsMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/MessageDetailsMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/MessageListMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/MessageListMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/MessageMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/MessageMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/MessageTypeMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/MessageTypeMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/OperationModuleMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/OperationModuleMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/OrdersMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/OrdersMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/PermissionMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/PermissionMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/ProvinceMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/ProvinceMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/RepairMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/RepairMapper.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/RepairmanMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/RepairmanMapper.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/RoleMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/RoleMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/RolePermissionMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/RolePermissionMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/ShareholderMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/ShareholderMapper.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/UserInfoMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/UserInfoMapper.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/UserInfoRoleMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/UserInfoRoleMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/UserLoginInfoMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/UserLoginInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/ZoneMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/mapper/ZoneMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Bed.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/BedExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/BedExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/BedExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/BedExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/City.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CityExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CityExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CityExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CityExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Customer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerLoginInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerLoginInfoExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerLoginInfoExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerLoginInfoExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/CustomerLoginInfoExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Department.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/DepartmentExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/DepartmentExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/DepartmentExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/DepartmentExample.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Fault.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/FaultExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/FaultExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/FaultExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/FaultExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Feedback.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/FeedbackExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/FeedbackExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/FeedbackExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/FeedbackExample.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Hospital.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/HospitalExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/HospitalExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/HospitalExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/HospitalExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/HospitalSearch.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Log.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/LogExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/LogExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/LogExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/LogExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Manufacturer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ManufacturerExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ManufacturerExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ManufacturerExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ManufacturerExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Message.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageDetails.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageDetailsExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageDetailsExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageDetailsExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageDetailsExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageList.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageListExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageListExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageListExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageListExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageType.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageTypeExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageTypeExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageTypeExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/MessageTypeExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OperationModule.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OperationModuleExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OperationModuleExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OperationModuleExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OperationModuleExample.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Orders.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OrdersExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OrdersExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OrdersExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/OrdersExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/PageBean.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Permission.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/PermissionExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/PermissionExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/PermissionExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/PermissionExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Province.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ProvinceExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ProvinceExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ProvinceExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ProvinceExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Repair.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RepairExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RepairExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RepairExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RepairExample.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Repairman.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RepairmanExample$Criteria.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RepairmanExample$Criterion.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RepairmanExample$GeneratedCriteria.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RepairmanExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Role.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RoleExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RoleExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RoleExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RoleExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RolePermission.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RolePermissionExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RolePermissionExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RolePermissionExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RolePermissionExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/RolePermissionKey.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Shareholder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ShareholderExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ShareholderExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ShareholderExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ShareholderExample.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoRoleExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoRoleExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoRoleExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoRoleExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserInfoRoleKey.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserLoginInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserLoginInfoExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserLoginInfoExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserLoginInfoExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/UserLoginInfoExample.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/Zone.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ZoneExample$Criteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ZoneExample$Criterion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ZoneExample$GeneratedCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/model/ZoneExample.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/BedService.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/CustomerService.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/FaultService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/HospitalService.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/OrdersService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/PermissionService.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/RepairmanService.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/ReportService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/RoleService.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/UserInfoService.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/impl/BedServiceImpl.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/impl/CustomerServiceImpl.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/impl/FaultServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/impl/HospitalServiceImpl.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/impl/OrdersServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/impl/PermissionServiceImpl.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/impl/RepairmanServiceImpl.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/impl/ReportServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/impl/RolePermissionImpl.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/service/impl/UserInfoServiceImpl.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/shiro/ShiroConfiguration.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/shiro/ShiroRealm.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/tools/DataFileUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/tools/DateFormat.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/tools/IPrimaryKey.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/tools/Msg.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/tools/OrderProperties.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/tools/PageBean.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/tools/UploadFile.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/com/woniu/jiapei/tools/impl/OrderPrimaryKey.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/RepairmanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/RepairmanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/RepairManMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/model/RepairMan.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/model/RepairManExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/RepairmanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/RepairmanService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/datafile.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/datafileImport.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/com/woniu/jiapei/JiapeiApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/HospitalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/HospitalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/UserInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/UserInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/HospitalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/HospitalService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/impl/HospitalServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/impl/HospitalServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,6 +421,7 @@
     <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/DepartmentMapper.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/shiro/ShiroRealm.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/controller/RepairmanController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/RoleMapper.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/service/impl/UserInfoServiceImpl.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/mapper/PermissionMapper.xml" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/woniu/jiapei/model/Shareholder.java" root0="SKIP_INSPECTION" />
@@ -294,6 +496,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\网站建设\IDEA_Java_code\jiapei\src\main\java\com\woniu\jiapei\model" />
+      <recent name="G:\网站建设\IDEA_Java_code\jiapei\src\main\java\com\woniu\jiapei\mapper" />
       <recent name="G:\网站建设\IDEA_Java_code\jiapei\src\main\resources" />
     </key>
   </component>
@@ -385,7 +589,8 @@
       <workItem from="1591941515163" duration="12416000" />
       <workItem from="1592183190303" duration="554000" />
       <workItem from="1592285439896" duration="838000" />
-      <workItem from="1592286289205" duration="362000" />
+      <workItem from="1592286289205" duration="3744000" />
+      <workItem from="1592290218180" duration="1111000" />
     </task>
     <task id="LOCAL-00001" summary="first test">
       <created>1591274568359</created>
@@ -541,7 +746,21 @@
       <option name="project" value="LOCAL" />
       <updated>1592285587315</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Hospital">
+      <created>1592286730839</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1592286730839</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Hospital">
+      <created>1592288767402</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1592288767402</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,8 +794,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="154" y="62" width="1382" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1592286351812" />
-    <state x="530" y="45" key="#com.intellij.ide.util.MemberChooser" timestamp="1592271377792" />
-    <state x="530" y="45" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1592271377792" />
+    <state x="530" y="45" key="#com.intellij.ide.util.MemberChooser" timestamp="1592288005507">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="530" y="45" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1592288005507" />
     <state x="579" y="296" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1592286186974">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -585,10 +806,14 @@
     <state x="335" y="327" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1592271377792" />
     <state x="436" y="103" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1592271377792" />
     <state x="436" y="103" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1592271377792" />
-    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1592285584896">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1592288764430">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1592285584896" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1592288764430" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1592290039787">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1592290039787" />
     <state x="501" y="193" key="FileChooserDialogImpl" timestamp="1592285517488">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -597,22 +822,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="560" y="309" width="445" height="206" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1592286225421" />
-    <state width="1485" height="621" key="GridCell.Tab.0.bottom" timestamp="1592271377792" />
-    <state width="1485" height="621" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592271377792" />
-    <state width="1485" height="621" key="GridCell.Tab.0.center" timestamp="1592271377792" />
-    <state width="1485" height="621" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1592271377792" />
-    <state width="1485" height="621" key="GridCell.Tab.0.left" timestamp="1592271377792" />
-    <state width="1485" height="621" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1592271377792" />
-    <state width="1485" height="621" key="GridCell.Tab.0.right" timestamp="1592271377792" />
-    <state width="1485" height="621" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1592271377792" />
-    <state width="1485" height="621" key="GridCell.Tab.1.bottom" timestamp="1592271377792" />
-    <state width="1485" height="621" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592271377792" />
-    <state width="1485" height="621" key="GridCell.Tab.1.center" timestamp="1592271377792" />
-    <state width="1485" height="621" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1592271377792" />
-    <state width="1485" height="621" key="GridCell.Tab.1.left" timestamp="1592271377792" />
-    <state width="1485" height="621" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1592271377792" />
-    <state width="1485" height="621" key="GridCell.Tab.1.right" timestamp="1592271377792" />
-    <state width="1485" height="621" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1592271377792" />
+    <state width="1485" height="629" key="GridCell.Tab.0.bottom" timestamp="1592290914705">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1485" height="629" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592290914705" />
+    <state width="1485" height="629" key="GridCell.Tab.0.center" timestamp="1592290914705">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1485" height="629" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1592290914705" />
+    <state width="1485" height="629" key="GridCell.Tab.0.left" timestamp="1592290914705">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1485" height="629" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1592290914705" />
+    <state width="1485" height="629" key="GridCell.Tab.0.right" timestamp="1592290914705">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1485" height="629" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1592290914705" />
+    <state width="1485" height="629" key="GridCell.Tab.1.bottom" timestamp="1592290914706">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1485" height="629" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592290914706" />
+    <state width="1485" height="629" key="GridCell.Tab.1.center" timestamp="1592290914705">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1485" height="629" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1592290914705" />
+    <state width="1485" height="629" key="GridCell.Tab.1.left" timestamp="1592290914705">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1485" height="629" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1592290914705" />
+    <state width="1485" height="629" key="GridCell.Tab.1.right" timestamp="1592290914705">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1485" height="629" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1592290914705" />
     <state x="249" y="88" key="IDE.errors.dialog" timestamp="1592271377792" />
     <state x="249" y="88" key="IDE.errors.dialog/0.0.1536.824@0.0.1536.824" timestamp="1592271377792" />
     <state x="147" y="70" key="MergeDialog" timestamp="1592285647357">
@@ -631,10 +872,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="198" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1592286312459" />
-    <state x="261" y="82" key="Vcs.Push.Dialog.v2" timestamp="1592285599136">
+    <state x="261" y="82" key="Vcs.Push.Dialog.v2" timestamp="1592288780335">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="261" y="82" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1592285599136" />
+    <state x="261" y="82" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1592288780335" />
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1592271557437">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -749,8 +990,10 @@
     <state x="93" y="93" width="1350" height="638" key="dock-window-8/0.0.1536.824@0.0.1536.824" timestamp="1592271377792" />
     <state x="93" y="93" width="1350" height="638" key="dock-window-9" timestamp="1592271377792" />
     <state x="93" y="93" width="1350" height="638" key="dock-window-9/0.0.1536.824@0.0.1536.824" timestamp="1592271377792" />
-    <state x="435" y="161" key="git4idea.merge.GitPullDialog" timestamp="1592271377792" />
-    <state x="435" y="161" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1592271377792" />
+    <state x="435" y="161" key="git4idea.merge.GitPullDialog" timestamp="1592287213440">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="435" y="161" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1592287213440" />
     <state x="341" y="185" key="run.anything.popup" timestamp="1592271377792" />
     <state x="341" y="185" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1592271377792" />
     <state x="347" y="-1" width="840" height="1034" key="search.everywhere.popup" timestamp="1592271377792" />

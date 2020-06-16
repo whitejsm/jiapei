@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.woniu.jiapei.mapper.UserLoginInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.UserLoginInfo" >
+    <id column="userinfo_id" property="userinfoId" jdbcType="INTEGER" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="lougou_time" property="lougouTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    userinfo_id, login_ip, count, lougou_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.model.UserLoginInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_jp_user_login
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_jp_user_login
+    where userinfo_id = #{userinfoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_jp_user_login
+    where userinfo_id = #{userinfoId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.woniu.jiapei.model.UserLoginInfoExample" >
+    delete from tb_jp_user_login
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.woniu.jiapei.model.UserLoginInfo" >
+    insert into tb_jp_user_login (userinfo_id, login_ip, count,
+      lougou_time)
+    values (#{userinfoId,jdbcType=INTEGER}, #{loginIp,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER},
+      #{lougouTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.woniu.jiapei.model.UserLoginInfo" >
+    insert into tb_jp_user_login
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userinfoId != null" >
+        userinfo_id,
+      </if>
+      <if test="loginIp != null" >
+        login_ip,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="lougouTime != null" >
+        lougou_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userinfoId != null" >
+        #{userinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="lougouTime != null" >
+        #{lougouTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.woniu.jiapei.model.UserLoginInfoExample" resultType="java.lang.Integer" >
+    select count(*) from tb_jp_user_login
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_jp_user_login
+    <set >
+      <if test="record.userinfoId != null" >
+        userinfo_id = #{record.userinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginIp != null" >
+        login_ip = #{record.loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.count != null" >
+        count = #{record.count,jdbcType=INTEGER},
+      </if>
+      <if test="record.lougouTime != null" >
+        lougou_time = #{record.lougouTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_jp_user_login
+    set userinfo_id = #{record.userinfoId,jdbcType=INTEGER},
+      login_ip = #{record.loginIp,jdbcType=VARCHAR},
+      count = #{record.count,jdbcType=INTEGER},
+      lougou_time = #{record.lougouTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.jiapei.model.UserLoginInfo" >
+    update tb_jp_user_login
+    <set >
+      <if test="loginIp != null" >
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="lougouTime != null" >
+        lougou_time = #{lougouTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where userinfo_id = #{userinfoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.jiapei.model.UserLoginInfo" >
+    update tb_jp_user_login
+    set login_ip = #{loginIp,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      lougou_time = #{lougouTime,jdbcType=TIMESTAMP}
+    where userinfo_id = #{userinfoId,jdbcType=INTEGER}
+  </update>
+</mapper>
