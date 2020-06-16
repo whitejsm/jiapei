@@ -150,6 +150,30 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
+    public List<UserInfo> downloadAccount(AccountingCondition accountingCondition) {
+        List<UserInfo> list=userInfoMapper.getAccountingByCondition(accountingCondition);
+        return list;
+    }
+
+    @Override
+    public List<UserInfo> downloadRepairman(AccountingCondition accountingCondition) {
+        List<UserInfo> list=userInfoMapper.getRepairmanByCondition(accountingCondition);
+        return list;
+    }
+
+    @Override
+    public List<UserInfo> downloadShareholder(ShareholderCondition shareholderCondition) {
+        List<UserInfo> list=userInfoMapper.getShareholderByCondition(shareholderCondition);
+        return list;
+    }
+
+    @Override
+    public List<UserInfo> downloadMedicalList(MedicalCondition medicalCondition) {
+        List<UserInfo> list=userInfoMapper.getMedicalByCondition(medicalCondition);
+        return list;
+    }
+
+    @Override
     public List<UserInfo> findAllMedical(PageBean pageBean, MedicalCondition medicalCondition) {
         PageHelper.startPage(pageBean.getPageNum(),pageBean.getPageSize());
         List<UserInfo> list=userInfoMapper.getMedicalByCondition(medicalCondition);

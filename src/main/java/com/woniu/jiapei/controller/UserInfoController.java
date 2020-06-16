@@ -5,12 +5,11 @@ import com.woniu.jiapei.condition.AccountingCondition;
 import com.woniu.jiapei.condition.CustomerCondition;
 import com.woniu.jiapei.condition.MedicalCondition;
 import com.woniu.jiapei.condition.ShareholderCondition;
-import com.woniu.jiapei.model.Customer;
-import com.woniu.jiapei.model.Hospital;
-import com.woniu.jiapei.model.Shareholder;
-import com.woniu.jiapei.model.UserInfo;
+import com.woniu.jiapei.model.*;
 import com.woniu.jiapei.service.UserInfoService;
+import com.woniu.jiapei.tools.DataFileUtil;
 import com.woniu.jiapei.tools.PageBean;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
@@ -172,6 +174,76 @@ public class UserInfoController {
         return map;
     }
 
+    @GetMapping("/downloadAccount")
+    public void downloadAccount(AccountingCondition accountingCondition, HttpServletResponse response) throws IOException {
+        List<UserInfo> accountList = userInfoServiceImpl.downloadAccount(accountingCondition);
+        // 生成文件
+        XSSFWorkbook workBook = DataFileUtil.createScoreFile(UserInfo.class, accountList);
+
+        String filename = "accountReport.xlsx";
+
+        //设置文件下载头
+        response.setHeader("content-disposition", "attachment;filename=" + filename);
+        response.setContentType("application/vnd.ms-excel");
+        // 不要使用ajax跳转到这个链接，否则会抛出管道中断错误
+        OutputStream out = response.getOutputStream();
+        workBook.write(out);
+        out.flush();
+        out.close();
+    }
+
+    @GetMapping("/downloadRepairman")
+    public void downloadRepairman(AccountingCondition accountingCondition, HttpServletResponse response) throws IOException {
+        List<UserInfo> repairmanList = userInfoServiceImpl.downloadRepairman(accountingCondition);
+        // 生成文件
+        XSSFWorkbook workBook = DataFileUtil.createScoreFile(UserInfo.class, repairmanList);
+
+        String filename = "repairmanReport.xlsx";
+
+        //设置文件下载头
+        response.setHeader("content-disposition", "attachment;filename=" + filename);
+        response.setContentType("application/vnd.ms-excel");
+        // 不要使用ajax跳转到这个链接，否则会抛出管道中断错误
+        OutputStream out = response.getOutputStream();
+        workBook.write(out);
+        out.flush();
+        out.close();
+    }
+    @GetMapping("/downloadShareholder")
+    public void downloadShareholder(ShareholderCondition shareholderCondition, HttpServletResponse response) throws IOException {
+        List<UserInfo> shareholderList = userInfoServiceImpl.downloadShareholder(shareholderCondition);
+        // 生成文件
+        XSSFWorkbook workBook = DataFileUtil.createScoreFile(UserInfo.class, shareholderList);
+
+        String filename = "shareholderReport.xlsx";
+
+        //设置文件下载头
+        response.setHeader("content-disposition", "attachment;filename=" + filename);
+        response.setContentType("application/vnd.ms-excel");
+        // 不要使用ajax跳转到这个链接，否则会抛出管道中断错误
+        OutputStream out = response.getOutputStream();
+        workBook.write(out);
+        out.flush();
+        out.close();
+    }
+
+    @GetMapping("/downloadHospitalers")
+    public void downloadHospitalers(MedicalCondition medicalCondition, HttpServletResponse response) throws IOException {
+        List<UserInfo> medicalList = userInfoServiceImpl.downloadMedicalList(medicalCondition);
+        // 生成文件
+        XSSFWorkbook workBook = DataFileUtil.createScoreFile(UserInfo.class, medicalList);
+
+        String filename = "medicalReport.xlsx";
+
+        //设置文件下载头
+        response.setHeader("content-disposition", "attachment;filename=" + filename);
+        response.setContentType("application/vnd.ms-excel");
+        // 不要使用ajax跳转到这个链接，否则会抛出管道中断错误
+        OutputStream out = response.getOutputStream();
+        workBook.write(out);
+        out.flush();
+        out.close();
+    }
     /**
      * 当登陆角色为经销商时获取二级分销商
      */

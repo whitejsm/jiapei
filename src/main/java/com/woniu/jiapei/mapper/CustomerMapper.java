@@ -32,4 +32,6 @@ public interface CustomerMapper {
     Integer countCustomer();
 
     List<Customer> getCusetomerByCondition(CustomerCondition customerCondition);
+
+    List<Customer> downByCondition(CustomerCondition customerCondition);
 }

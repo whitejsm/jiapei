@@ -54,4 +54,12 @@ public interface UserInfoService {
     Role findRoleByUserId(Integer userinfoId);
 
     List<UserInfo> getDistributor(Integer userId);
+
+    List<UserInfo> downloadAccount(AccountingCondition accountingCondition);
+
+    List<UserInfo> downloadRepairman(AccountingCondition accountingCondition);
+
+    List<UserInfo> downloadShareholder(ShareholderCondition shareholderCondition);
+
+    List<UserInfo> downloadMedicalList(MedicalCondition medicalCondition);
 }

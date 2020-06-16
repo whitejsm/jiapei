@@ -53,4 +53,5 @@ public interface UserInfoMapper {
     Integer countShareholder();
 
     UserInfo findById(Integer id);
+
 }
