@@ -65,6 +65,7 @@ public class LoginController {
             map.put("status","error");
             System.out.println("登录失败");
             map.put("msg","登录失败");
+            e.printStackTrace();
         }
         return map;
     }

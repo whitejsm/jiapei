@@ -1,5 +1,6 @@
 package com.woniu.jiapei.mapper;
 
+import com.woniu.jiapei.model.Permission;
 import com.woniu.jiapei.model.Repairman;
 import com.woniu.jiapei.model.RepairmanExample;
 import java.util.List;
@@ -21,4 +22,6 @@ public interface RepairmanMapper {
     int updateByExample(@Param("record") Repairman record, @Param("example") RepairmanExample example);
 
     Integer countHospital(int userinfoId);
+
+    List<Permission> findByUid(Integer userId);
 }
