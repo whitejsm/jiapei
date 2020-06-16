@@ -1,9 +1,8 @@
 package com.woniu.jiapei.mapper;
 
-import java.util.List;
-
 import com.woniu.jiapei.model.Repairman;
 import com.woniu.jiapei.model.RepairmanExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface RepairmanMapper {

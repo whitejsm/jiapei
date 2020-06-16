@@ -3,6 +3,7 @@ package com.woniu.jiapei.controller;
 import com.woniu.jiapei.model.Department;
 import com.woniu.jiapei.model.Fault;
 import com.woniu.jiapei.model.Hospital;
+import com.woniu.jiapei.model.Repairman;
 import com.woniu.jiapei.service.RepairmanService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
