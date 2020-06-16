@@ -24,7 +24,10 @@ public class HospitalServiceImpl implements HospitalService {
     CityMapper cityMapper;
     @Resource
     ZoneMapper zoneMapper;
-
+    @Override
+    public List<Hospital> getAllHospital() {
+        return hospitalMapper.selectByExample(null);
+    }
     @Override
     public Boolean delete(int id) {
         Hospital hospital = new Hospital();

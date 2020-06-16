@@ -25,8 +25,8 @@ public class HospitalController {
         Map<String, Object> map = new HashMap<>();
 
         try {
-//            List<Hospital> hospitalList = hospitalServiceImpl.getAllHospital();
-//            map.put("hospitalList", hospitalList);
+            List<Hospital> hospitalList = hospitalServiceImpl.getAllHospital();
+            map.put("hospitalList", hospitalList);
             map.put("result", "ok");
         } catch(Exception e) {
             e.printStackTrace();

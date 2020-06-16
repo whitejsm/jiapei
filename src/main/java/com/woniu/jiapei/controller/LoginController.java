@@ -33,8 +33,7 @@ public class LoginController {
 //        Subject subject = SecurityUtils.getSubject();
 //        UsernamePasswordToken token = new UsernamePasswordToken(uname,upass);
         try{
-       //     subject.login(token);
-            System.out.println("登录成功");
+//            subject.login(token);
             UserInfo userinfo= userInfoServiceImpl.findByName(uname);
             Role role = userInfoServiceImpl.findRoleByUserId(userinfo.getUserinfoId());
             Integer userId=userinfo.getUserinfoId();

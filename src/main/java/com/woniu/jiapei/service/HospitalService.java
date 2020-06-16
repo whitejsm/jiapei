@@ -30,4 +30,6 @@ public interface HospitalService {
     void insert(Hospital hospital);
 
     Hospital findByPrimaryKey(int hospitalId);
+
+    List<Hospital> getAllHospital();
 }
