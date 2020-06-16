@@ -8,11 +8,13 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,18 +30,24 @@ public class LoginController {
     登录
      */
     @GetMapping("/login")
-    public Map<String, Object> login(String uname, String upass){
+    public Map<String, Object> login(HttpSession session, String uname, String upass){
         Map<String, Object> map=new HashMap<>();
 //        Subject subject = SecurityUtils.getSubject();
 //        UsernamePasswordToken token = new UsernamePasswordToken(uname,upass);
         try{
        //     subject.login(token);
+            System.out.println("登录成功");
             UserInfo userinfo= userInfoServiceImpl.findByName(uname);
             Role role = userInfoServiceImpl.findRoleByUserId(userinfo.getUserinfoId());
             Integer userId=userinfo.getUserinfoId();
             String  userName=userinfo.getName();
 
-            System.out.println("登录成功");
+            // 用户信息存入session
+            session.setAttribute( "userId", userId);
+            session.setAttribute( "userName", userName);
+            session.setAttribute( "roleId", role.getRoleId());
+            session.setAttribute( "roleName", role.getRolename());
+
             map.put("roleId", role.getRoleId());
             map.put("roleName", role.getRolename());
             map.put("status","success");
@@ -57,6 +65,7 @@ public class LoginController {
             map.put("status","error");
             System.out.println("登录失败");
             map.put("msg","登录失败");
+            e.printStackTrace();
         }
         return map;
     }

@@ -1,9 +1,8 @@
 package com.woniu.jiapei.model;
 
-import lombok.Data;
 
 import java.util.Date;
-@Data
+
 public class Fault {
     private Bed bed;
     private Repair repair;

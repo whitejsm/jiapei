@@ -1,9 +1,14 @@
 package com.woniu.jiapei.model;
 
-public class Province {
+import java.io.Serializable;
+import java.util.List;
+
+public class Province implements Serializable {
     private Integer provinceId;
 
     private String provinceName;
+
+    private List<City> cities;
 
     public Integer getProvinceId() {
         return provinceId;
@@ -19,5 +24,22 @@ public class Province {
 
     public void setProvinceName(String provinceName) {
         this.provinceName = provinceName;
+    }
+
+    public List<City> getCities() {
+        return cities;
+    }
+
+    public void setCities(List<City> cities) {
+        this.cities = cities;
+    }
+
+    @Override
+    public String toString() {
+        return "Province{" +
+                "provinceId=" + provinceId +
+                ", provinceName='" + provinceName + '\'' +
+                ", cities=" + cities +
+                '}';
     }
 }

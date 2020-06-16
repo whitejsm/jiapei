@@ -8,6 +8,7 @@
     <result column="hospitalname" property="hospitalname" jdbcType="VARCHAR" />
     <result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
   </resultMap>
+
   <select id="countHospital" resultType="int" >
     select count(hospital_id) from tb_jp_repairman where repairman_id=#{userinfoId}
   </select>

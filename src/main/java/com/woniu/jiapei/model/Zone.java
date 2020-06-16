@@ -1,6 +1,8 @@
 package com.woniu.jiapei.model;
 
-public class Zone {
+import java.io.Serializable;
+
+public class Zone implements Serializable {
     private Integer zoneId;
 
     private Integer cityId;

@@ -1,6 +1,7 @@
 package com.woniu.jiapei.mapper;
 
 import com.woniu.jiapei.condition.BedCondition;
+import com.woniu.jiapei.condition.VisibleReportOccupancyCondition;
 import com.woniu.jiapei.model.Bed;
 import com.woniu.jiapei.model.BedExample;
 import java.util.List;
@@ -32,4 +33,8 @@ public interface BedMapper {
     int updateByPrimaryKey(Bed record);
 
     Bed findBedById(String bedId);
+
+    List<Integer> getCountByCondition(VisibleReportOccupancyCondition condition);
+
+    List<String> getDateListByCondition(VisibleReportOccupancyCondition condition);
 }

@@ -27,4 +27,6 @@ public interface ZoneMapper {
     int updateByPrimaryKeySelective(Zone record);
 
     int updateByPrimaryKey(Zone record);
+
+    List<Zone> findZoneByCityId(Integer cityId);
 }

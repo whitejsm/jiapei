@@ -83,6 +83,13 @@
         </where>
   </select>
 
+  <resultMap id="ResultMapWithDepartment" type="com.woniu.jiapei.model.Fault" extends="BaseResultMap">
+    <association property="bed" column="bed_id" select="com.woniu.jiapei.mapper.BedMapper.findDID"></association>
+  </resultMap>
+
+  <select id="findByRepairId" resultMap="ResultMapWithDepartment" parameterType="int">
+    select * from tb_jp_fault where contactor_id=#{userinfoId}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -143,7 +150,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    fault_id, contactor_id, customer_id, bed_id, fault_title, fault_type, fault_status, 
+    fault_id, contactor_id, customer_id, bed_id, fault_title, fault_type, fault_status,
     create_time
   </sql>
   <sql id="Blob_Column_List" >
@@ -198,12 +205,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.woniu.jiapei.model.Fault" useGeneratedKeys="true" keyProperty="faultId">
-    insert into tb_jp_fault (fault_id, contactor_id, customer_id, 
-      bed_id, fault_title, fault_type, 
+    insert into tb_jp_fault (fault_id, contactor_id, customer_id,
+      bed_id, fault_title, fault_type,
       fault_status, create_time, fault_details
       )
-    values (#{faultId,jdbcType=INTEGER}, #{contactorId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, 
-      #{bedId,jdbcType=VARCHAR}, #{faultTitle,jdbcType=VARCHAR}, #{faultType,jdbcType=VARCHAR}, 
+    values (#{faultId,jdbcType=INTEGER}, #{contactorId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER},
+      #{bedId,jdbcType=VARCHAR}, #{faultTitle,jdbcType=VARCHAR}, #{faultType,jdbcType=VARCHAR},
       #{faultStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{faultDetails,jdbcType=LONGVARCHAR}
       )
   </insert>

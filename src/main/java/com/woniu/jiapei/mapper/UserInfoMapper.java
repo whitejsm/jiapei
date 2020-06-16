@@ -43,6 +43,8 @@ public interface UserInfoMapper {
 
     List<UserInfo> getRepairmanByCondition(AccountingCondition accountingCondition);
 
+    List<UserInfo> getDistributor(Integer userId);
+
     List<UserInfo> getMedicalByCondition(MedicalCondition medicalCondition);
 
     Integer countMedical();
@@ -52,4 +54,7 @@ public interface UserInfoMapper {
     Integer countShareholder();
 
     List<UserInfo> findByFaultSource(FaultCondition faultCondition);
+
+    UserInfo findById(Integer id);
+
 }

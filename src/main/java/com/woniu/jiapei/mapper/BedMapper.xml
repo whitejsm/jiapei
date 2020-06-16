@@ -27,7 +27,10 @@
     select * from tb_jp_bed
   </select>
 
-  <select id="findByDepartmentId" resultMap="BaseResultMap" parameterType="int">
+    <select id="findDID" parameterType="string" resultMap="BaseResultMapWithManufacturerAndDepartment">
+    select * from tb_jp_bed where bed_id=#{bedId}
+  </select>
+    <select id="findByDepartmentId" resultMap="BaseResultMap" parameterType="int">
     select * from tb_jp_bed where department_id=#{departmentId}
   </select>
 
@@ -301,4 +304,48 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where bed_id = #{bedId,jdbcType=VARCHAR}
   </update>
+
+    <select id="getCountByCondition" parameterType="com.woniu.jiapei.condition.VisibleReportOccupancyCondition"
+            resultType="int">
+        select count(*) from (
+            select convert(create_time, date) as `date` from tb_jp_bed
+            <where>
+                <if test="hospitalId != null and hospitalId != -1">
+                    and department_id in (
+                    select department_id from tb_jp_department where hospital_id = #{hospitalId}
+                    )
+                </if>
+                <if test="departmentId != null and departmentId != -1">
+                    and department_id = #{departmentId}
+                </if>
+                <if test="date != null">
+                    and create_time &lt;= #{date}
+                </if>
+            </where>
+            ) a
+        group by a.`date`
+        order by a.`date` desc
+    </select>
+
+    <select id="getDateListByCondition" parameterType="com.woniu.jiapei.condition.VisibleReportOccupancyCondition"
+            resultType="String">
+        select a.`date` from (
+        select convert(create_time, date) as `date` from tb_jp_bed
+        <where>
+            <if test="hospitalId != null and hospitalId != -1">
+                and department_id in (
+                select department_id from tb_jp_department where hospital_id = #{hospitalId}
+                )
+            </if>
+            <if test="departmentId != null and departmentId != -1">
+                and department_id = #{departmentId}
+            </if>
+            <if test="date != null">
+                and create_time &lt;= #{date}
+            </if>
+        </where>
+        ) a
+        group by a.`date`
+        order by a.`date` desc
+    </select>
 </mapper>

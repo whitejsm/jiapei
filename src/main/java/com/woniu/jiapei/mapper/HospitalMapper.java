@@ -1,5 +1,7 @@
 package com.woniu.jiapei.mapper;
 
+import com.woniu.jiapei.condition.VisibleReportRentCondition;
+import com.woniu.jiapei.model.City;
 import com.woniu.jiapei.model.Hospital;
 import com.woniu.jiapei.model.HospitalExample;
 import java.util.List;
@@ -30,6 +32,8 @@ public interface HospitalMapper {
 
     Hospital findOneWithDepartment(Integer hospitalId);
 
+    List<Hospital> selectByDistributorId(Integer distributorId);
+
     List<Hospital> findAllInvestment(int userinfoId);
 
     List<Hospital> findByRepairMan(Integer userinfoId);
@@ -37,4 +41,14 @@ public interface HospitalMapper {
     List<Hospital> findByHospitalMan(Integer userinfoId);
 
     List<Hospital> findByDepartmentMan(Integer userinfoId);
+
+    List<Hospital> selectByVisibleCondition(VisibleReportRentCondition condition);
+
+    List<Hospital> selectByContactorId(Integer contactorId);
+
+    List<Hospital> selectByDepartorId(Integer departorId);
+
+    List<String> getCityListByProvinceId(Integer provinceId);
+
+    List<Integer> getCountListByProvinceId(Integer provinceId);
 }

@@ -57,4 +57,14 @@ public interface UserInfoService {
     List<UserInfo> findByFaultSource(FaultCondition faultCondition);
 
     UserInfo findById(Integer userinfoId);
+
+    List<UserInfo> getDistributor(Integer userId);
+
+    List<UserInfo> downloadAccount(AccountingCondition accountingCondition);
+
+    List<UserInfo> downloadRepairman(AccountingCondition accountingCondition);
+
+    List<UserInfo> downloadShareholder(ShareholderCondition shareholderCondition);
+
+    List<UserInfo> downloadMedicalList(MedicalCondition medicalCondition);
 }

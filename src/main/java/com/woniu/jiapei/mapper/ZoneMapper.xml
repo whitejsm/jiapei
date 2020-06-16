@@ -178,4 +178,8 @@
       zone_name = #{zoneName,jdbcType=VARCHAR}
     where zone_id = #{zoneId,jdbcType=INTEGER}
   </update>
+
+  <select id="findZoneByCityId" resultMap="BaseResultMap">
+    select * from zone where city_id = #{cityId}
+  </select>
 </mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.woniu.jiapei.mapper.SaleReportMapper">
+    <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.SaleReport">
+      <result column="order_date" property="orderDate" />
+      <result column="distributor_name" property="distributorName" />
+      <result column="hospital_name" property="hospitalName" />
+      <result column="department_name" property="departmentName" />
+      <result column="bed_count" property="bedCount" />
+      <result column="lease_count" property="leaseCount" />
+      <result column="rent_count" property="rentCount" />
+    </resultMap>
+    <select id="findSaleReportByCondition" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.condition.ReportCondition">
+        select k.order_date, (
+            select (
+                select username from tb_jp_userinfo where userinfo_id = b.distributor_id
+            ) from tb_jp_hospital b where hospital_id = (
+                select hospital_id from tb_jp_department where department_id = k.department_id
+            )
+        ) as `distributor_name`, (
+            select hospitalname from tb_jp_hospital b where hospital_id = (
+                select hospital_id from tb_jp_department where department_id = k.department_id
+            )
+        ) as `hospital_name`, (
+            select departmentname from tb_jp_department where department_id = k.department_id
+        ) as `department_name`, (
+            select count(*) from tb_jp_bed where department_id = k.department_id
+        ) as `bed_count`,
+        count(1) as `lease_count`,
+        sum(k.totalpay) as `rent_count`
+        from (
+            select convert(pay_time,date) as `order_date`,  (
+                select department_id from tb_jp_bed where bed_id = a.bed_id
+            ) as `department_id`,
+            a.totalpay
+            from tb_jp_orders a
+            where orders_status = '已完成'
+        ) k
+        <where>
+            <if test="distributorId != null and distributorId != -1">
+                and department_id in (
+                    select department_id from tb_jp_department where hospital_id in (
+                        select hospital_id from tb_jp_hospital where distributor_id = #{distributorId}
+                    )
+                )
+            </if>
+            <if test="hospitalId != null and hospitalId != -1">
+                and department_id in (
+                    select department_id from tb_jp_department where hospital_id = #{hospitalId}
+                )
+            </if>
+            <if test="departmentId != null and departmentId != -1">
+                and department_id = #{departmentId}
+            </if>
+        </where>
+        group by k.order_date, k.department_id
+        order by k.order_date desc
+    </select>
+</mapper>

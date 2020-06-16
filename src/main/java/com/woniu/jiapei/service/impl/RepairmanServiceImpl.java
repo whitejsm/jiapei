@@ -9,6 +9,7 @@ import com.woniu.jiapei.service.RepairmanService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -55,18 +56,10 @@ public class RepairmanServiceImpl implements RepairmanService {
         return list;
     }
 
-    @Override
-    public void RepairAddDepartment(int hospitalId, int[] departmentId) {
-        System.out.println(hospitalId);
-        System.out.println(departmentId);
-    }
 
     @Override
     public List<Fault> getRepair(int userinfoId) {
-        FaultExample example=new FaultExample();
-        FaultExample.Criteria criteria=example.createCriteria();
-        criteria.andContactorIdEqualTo(userinfoId);
-        List<Fault> list=faultMapper.selectByExample(example);
+        List<Fault> list=faultMapper.findByRepairId(userinfoId);
         return list;
     }
 
@@ -77,4 +70,24 @@ public class RepairmanServiceImpl implements RepairmanService {
         criteria.andContactorIdEqualTo(userinfoId);
         return faultMapper.countByExample(example);
     }
+
+    @Override
+    public void RepairAddDepartment(int repairManId,String[] department) {
+          List<Department> departmentList=new ArrayList<>();
+        for (String s : department) {
+            Department department1=departmentMapper.selectByPrimaryKey(Integer.parseInt(s));
+            departmentList.add(department1);
+        }
+        for (Department department1 : departmentList) {
+            System.out.println("增加维修负责");
+            Repairman repairman=new Repairman();
+            repairman.setRepairmanId(repairManId);
+            repairman.setHospitalId(department1.getHospitalId());
+            repairman.setDepartmentId(department1.getDepartmentId());
+            repairman.setDepartmentname(department1.getDepartmentname());
+            repairman.setHospitalname(department1.getHospital().getHospitalname());
+            repairmanMapper.insertSelective(repairman);
+        }
+    }
+
 }
