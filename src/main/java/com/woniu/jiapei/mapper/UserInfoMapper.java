@@ -57,4 +57,5 @@ public interface UserInfoMapper {
 
     UserInfo findById(Integer id);
 
+    List<UserInfo> findAllDistributor();
 }

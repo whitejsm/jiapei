@@ -3,7 +3,7 @@ package com.woniu.jiapei.model;
 import java.util.Date;
 
 public class SaleReport {
-    private Date orderDate;
+    private String orderDate;
     private String distributorName;
     private String hospitalName;
     private String departmentName;
@@ -13,11 +13,11 @@ public class SaleReport {
     // 租金总数
     private Integer rentCount;
 
-    public Date getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 

@@ -468,8 +468,19 @@
     where userinfo_id = #{userinfoId,jdbcType=INTEGER}
   </update>
 
+  <sql id="userNameAndId">
+    userinfo_id, username, name
+  </sql>
+
   <select id="getDistributor" resultMap="BaseResultMap">
-    select * from tb_jp_userinfo
+    select <include refid="userNameAndId" /> from tb_jp_userinfo
     where parent_id = #{userId}
+  </select>
+
+  <select id="findAllDistributor" resultMap="BaseResultMap">
+    select <include refid="userNameAndId" /> from tb_jp_userinfo
+    where userinfo_id in (
+        select userinfo_id from tb_jp_userinforole where role_id = 7
+    )
   </select>
 </mapper>

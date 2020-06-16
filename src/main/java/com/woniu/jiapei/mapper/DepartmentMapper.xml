@@ -262,4 +262,18 @@
       revenueshare = #{revenueshare,jdbcType=INTEGER}
     where department_id = #{departmentId,jdbcType=INTEGER}
   </update>
+
+  <select id="findDepartmentByHospitalManId" resultMap="BaseResultMap">
+    select * from tb_jp_department
+    where hospital_id in (
+        select hospital_id from tb_jp_hospital where contactor_id = #{userId}
+    )
+  </select>
+
+  <select id="findDepartmentByDistributorId" resultMap="BaseResultMap">
+    select * from tb_jp_department
+    where hospital_id in (
+        select hospital_id from tb_jp_hospital where distributor_id = #{userId}
+    )
+  </select>
 </mapper>
