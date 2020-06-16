@@ -1,16 +1,7 @@
 package com.woniu.jiapei.model;
 
-public class RepairMan {
+public class Repairman {
     private Integer repairmanId;
-    private UserInfo man;
-
-    public UserInfo getMan() {
-        return man;
-    }
-
-    public void setMan(UserInfo man) {
-        this.man = man;
-    }
 
     private Integer hospitalId;
 
