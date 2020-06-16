@@ -3,12 +3,12 @@ package com.woniu.jiapei.service;
 import com.woniu.jiapei.model.Department;
 import com.woniu.jiapei.model.Fault;
 import com.woniu.jiapei.model.Hospital;
-import com.woniu.jiapei.model.Repairman;
+import com.woniu.jiapei.model.RepairMan;
 
 import java.util.List;
 
 public interface RepairmanService {
-    List<Repairman> findHospital(int userinfoId);
+    List<RepairMan> findHospital(int userinfoId);
 
     Integer countHospital(int userinfoId);
 

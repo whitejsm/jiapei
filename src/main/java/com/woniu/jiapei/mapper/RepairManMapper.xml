@@ -8,13 +8,13 @@
     <result column="hospitalname" property="hospitalname" jdbcType="VARCHAR" />
     <result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
   </resultMap>
-<<<<<<< HEAD:src/main/java/com/woniu/jiapei/mapper/RepairManMapper.xml
+
   <resultMap id="BaseResultMapUserinfo" type="com.woniu.jiapei.model.RepairMan" extends="BaseResultMap">
     <association property="man" column="repairman_id" select="com.woniu.jiapei.mapper.UserInfoMapper.selectByPrimaryKey"></association>
   </resultMap>
   <select id="findByDepartment" resultMap="BaseResultMapUserinfo" parameterType="int">
     select * from tb_jp_repairman where department_id = #{departmentId}
-=======
+    </select>
 
   <resultMap id="BaseResultMapWithHospital" type="com.woniu.jiapei.model.Department" extends="BaseResultMap">
     <association property="hospital" column="hospital_id" select="com.woniu.jiapei.mapper.HospitalMapper.selectByPrimaryKey"></association>
@@ -113,7 +113,7 @@
     delete from tb_jp_repairman
 =======
   <select id="selectByPrimaryKey" resultMap="BaseResultMapWithHospital" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from tb_jp_department
     where department_id = #{departmentId,jdbcType=INTEGER}
@@ -215,8 +215,4 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-<<<<<<< HEAD
-</mapper>
-=======
-</mapper>
->>>>>>> 58c4abc... Hospital
+

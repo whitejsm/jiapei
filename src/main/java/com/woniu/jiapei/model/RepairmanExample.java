@@ -3,14 +3,14 @@ package com.woniu.jiapei.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepairmanExample {
+public class RepairManExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public RepairmanExample() {
+    public RepairManExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

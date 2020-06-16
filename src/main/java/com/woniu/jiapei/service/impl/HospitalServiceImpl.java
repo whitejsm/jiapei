@@ -106,6 +106,10 @@ public class HospitalServiceImpl implements HospitalService {
         return hospitalMapper.selectByPrimaryKey(hospitalId);
     }
 
+    public List<Hospital> getAllHospital() {
+        return hospitalMapper.selectByExample(null);
+    }
+
     @Override
     public List<Province> findProvinces() {
         return provinceMapper.selectByExample(null);

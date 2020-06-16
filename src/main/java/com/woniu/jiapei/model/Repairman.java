@@ -1,6 +1,6 @@
 package com.woniu.jiapei.model;
 
-public class Repairman {
+public class RepairMan {
     private Integer repairmanId;
 
     private Integer hospitalId;
