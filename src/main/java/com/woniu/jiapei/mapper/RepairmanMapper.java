@@ -22,6 +22,4 @@ public interface RepairmanMapper {
     int updateByExample(@Param("record") Repairman record, @Param("example") RepairmanExample example);
 
     Integer countHospital(int userinfoId);
-
-    List<Permission> findByUid(Integer userId);
 }

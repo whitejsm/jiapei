@@ -9,12 +9,6 @@
     <result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
   </resultMap>
 
-  <select id="findByUid" resultMap="BaseResultMap" parameterType="int">
-   select * from tb_jp_permission where id in(
-    select permission_id from tb_jp_rolepermission where role_id in(
-        select role_id from tb_jp_userinforole where userinfo_id=#{userinfo_id}
-    ))
-      </select>
   <select id="countHospital" resultType="int" >
     select count(hospital_id) from tb_jp_repairman where repairman_id=#{userinfoId}
   </select>
