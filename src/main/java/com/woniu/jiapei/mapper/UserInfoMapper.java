@@ -10,6 +10,14 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserInfoMapper {
+    List<UserInfo> findByRoleNameDistributor1(String name);
+
+    List<UserInfo> findByRoleNameDistributor2(String name);
+
+    List<UserInfo> findByRoleName(String name);
+
+    List<UserInfo> findDistributor();
+
     int countByExample(UserInfoExample example);
 
     int deleteByExample(UserInfoExample example);
@@ -34,7 +42,6 @@ public interface UserInfoMapper {
 
     UserInfo findByName(String username);
 
-    Integer countAccounting();
 
     List<UserInfo> getAccountingByCondition(AccountingCondition accountingCondition);
 

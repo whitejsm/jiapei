@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.Province" >
     <id column="province_id" property="provinceId" jdbcType="INTEGER" />
     <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+<!--    <collection property="cities" column="province_id" select="com.woniu.jiapei.mapper.CityMapper.findByProvinceId"></collection>-->
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -81,7 +82,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from province
     where province_id = #{provinceId,jdbcType=INTEGER}
