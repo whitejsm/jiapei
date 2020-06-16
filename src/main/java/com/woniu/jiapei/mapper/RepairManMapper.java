@@ -1,22 +1,25 @@
 package com.woniu.jiapei.mapper;
 
-import com.woniu.jiapei.model.RepairMan;
-import com.woniu.jiapei.model.RepairManExample;
 import java.util.List;
+
+import com.woniu.jiapei.model.Repairman;
+import com.woniu.jiapei.model.RepairmanExample;
 import org.apache.ibatis.annotations.Param;
 
-public interface RepairManMapper {
-    int countByExample(RepairManExample example);
+public interface RepairmanMapper {
+    int countByExample(RepairmanExample example);
 
-    int deleteByExample(RepairManExample example);
+    int deleteByExample(RepairmanExample example);
 
-    int insert(RepairMan record);
+    int insert(Repairman record);
 
-    int insertSelective(RepairMan record);
+    int insertSelective(Repairman record);
 
-    List<RepairMan> selectByExample(RepairManExample example);
+    List<Repairman> selectByExample(RepairmanExample example);
 
-    int updateByExampleSelective(@Param("record") RepairMan record, @Param("example") RepairManExample example);
+    int updateByExampleSelective(@Param("record") Repairman record, @Param("example") RepairmanExample example);
 
-    int updateByExample(@Param("record") RepairMan record, @Param("example") RepairManExample example);
+    int updateByExample(@Param("record") Repairman record, @Param("example") RepairmanExample example);
+
+    Integer countHospital(int userinfoId);
 }
