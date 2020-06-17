@@ -382,4 +382,14 @@
         ) a
         where a.`date` = #{date}
     </select>
+
+    <select id="getBedLeaseCount" resultType="int">
+        select count(*) from tb_jp_orders
+        where orders_status = '已完成'
+    </select>
+
+    <select id="getRentCount" resultType="int">
+        select sum(totalpay) from tb_jp_orders
+        where orders_status = '已完成'
+    </select>
 </mapper>

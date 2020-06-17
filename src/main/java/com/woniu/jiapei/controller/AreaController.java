@@ -17,12 +17,30 @@ public class AreaController {
     private ProvinceService provinceServiceImpl;
 
     @GetMapping("/getProvinceList")
-    public Map<String, Object> getProvinceList(HttpSession session) {
+    public Map<String, Object> getProvinceList() {
         Map<String, Object> map = new HashMap<>();
 
         try {
             List<Province> provinceList = provinceServiceImpl.getProvinceList();
+
             map.put("provinceList", provinceList);
+            map.put("result", "success");
+        } catch(Exception e) {
+            e.printStackTrace();
+            map.put("result", "error");
+        }
+
+        return map;
+    }
+
+    @GetMapping("/getProvinceValueList")
+    public Map<String, Object> getProvinceValueList() {
+        Map<String, Object> map = new HashMap<>();
+
+        try {
+            List<Integer> valueList = provinceServiceImpl.getProvinceValueList();
+
+            map.put("valueList", valueList);
             map.put("result", "success");
         } catch(Exception e) {
             e.printStackTrace();

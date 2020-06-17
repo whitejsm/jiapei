@@ -1,14 +1,9 @@
 package com.woniu.jiapei.model;
 
-public class SaleReport {
+public class SimpleReport {
     private String orderDate;
-    private String distributorName;
-    private String hospitalName;
-    private String departmentName;
     private Integer bedCount;
-    // 租赁次数
     private Integer leaseCount;
-    // 租金总数
     private Integer rentCount;
 
     public String getOrderDate() {
@@ -17,30 +12,6 @@ public class SaleReport {
 
     public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
-    }
-
-    public String getDistributorName() {
-        return distributorName;
-    }
-
-    public void setDistributorName(String distributorName) {
-        this.distributorName = distributorName;
-    }
-
-    public String getHospitalName() {
-        return hospitalName;
-    }
-
-    public void setHospitalName(String hospitalName) {
-        this.hospitalName = hospitalName;
-    }
-
-    public String getDepartmentName() {
-        return departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
     }
 
     public Integer getBedCount() {
@@ -69,11 +40,8 @@ public class SaleReport {
 
     @Override
     public String toString() {
-        return "SaleReport{" +
-                "orderDate=" + orderDate +
-                ", distributorName='" + distributorName + '\'' +
-                ", hospitalName='" + hospitalName + '\'' +
-                ", departmentName='" + departmentName + '\'' +
+        return "SimpleReport{" +
+                "orderDate='" + orderDate + '\'' +
                 ", bedCount=" + bedCount +
                 ", leaseCount=" + leaseCount +
                 ", rentCount=" + rentCount +

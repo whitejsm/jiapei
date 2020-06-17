@@ -142,13 +142,6 @@ public class UserInfoServiceImpl implements UserInfoService {
         return roleMapper.findRoleByUserId(userinfoId);
     }
 
-
-
-    @Override
-    public List<UserInfo> getDistributor(Integer userId) {
-        return userInfoMapper.getDistributor(userId);
-    }
-
     @Override
     public List<UserInfo> downloadAccount(AccountingCondition accountingCondition) {
         List<UserInfo> list=userInfoMapper.getAccountingByCondition(accountingCondition);

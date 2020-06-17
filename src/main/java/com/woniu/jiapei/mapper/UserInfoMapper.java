@@ -1,6 +1,10 @@
 package com.woniu.jiapei.mapper;
 
 import com.woniu.jiapei.condition.*;
+import com.woniu.jiapei.condition.AccountingCondition;
+import com.woniu.jiapei.condition.FaultCondition;
+import com.woniu.jiapei.condition.MedicalCondition;
+import com.woniu.jiapei.condition.ShareholderCondition;
 import com.woniu.jiapei.model.Role;
 import com.woniu.jiapei.model.UserInfo;
 import com.woniu.jiapei.model.UserInfoExample;
@@ -55,4 +59,5 @@ public interface UserInfoMapper {
     UserInfo findById(Integer id);
 
     List<UserInfo> findRepairman(RepairCondition repairCondition);
+    List<UserInfo> findAllDistributor();
 }

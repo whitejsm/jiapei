@@ -244,21 +244,21 @@ public class UserInfoController {
         out.flush();
         out.close();
     }
-    /**
-     * 当登陆角色为经销商时获取二级分销商
-     */
-    @GetMapping("/getDistributor")
-    public Map<String, Object> getDistributor(HttpSession session) {
-        Map<String, Object> map = new HashMap<>();
-        try {
-            Integer userId = (Integer) session.getAttribute("userId");
-            List<UserInfo> distributorList = userInfoServiceImpl.getDistributor(userId);
-            map.put("distributorList", distributorList);
-            map.put("result", "success");
-        } catch (Exception e) {
-            e.printStackTrace();
-            map.put("result", "error");
-        }
-        return map;
-    }
+//    /**
+//     * 当登陆角色为经销商时获取二级分销商
+//     */
+//    @GetMapping("/getDistributor")
+//    public Map<String, Object> getDistributor(HttpSession session) {
+//        Map<String, Object> map = new HashMap<>();
+//        try {
+//            Integer userId = (Integer) session.getAttribute("userId");
+//            List<UserInfo> distributorList = userInfoServiceImpl.getDistributor(userId);
+//            map.put("distributorList", distributorList);
+//            map.put("result", "success");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            map.put("result", "error");
+//        }
+//        return map;
+//    }
 }

@@ -348,4 +348,8 @@
         group by a.`date`
         order by a.`date` desc
     </select>
+
+    <select id="getBedCount" resultType="int">
+        select count(*) from tb_jp_bed
+    </select>
 </mapper>
