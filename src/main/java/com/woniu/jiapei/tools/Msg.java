@@ -25,4 +25,5 @@ public class Msg {
     private List<Fault> faultList;
     private Fault fault;
 
+    private List<Repair> repairList;
 }

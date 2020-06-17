@@ -145,6 +145,31 @@
     </where>
   </select>
 
+  <!--找出所有维修人员-->
+  <select id="findRepairman" parameterType="com.woniu.jiapei.condition.RepairCondition" resultMap="BaseResultMap">
+    select * from tb_jp_userinfo
+        <where>
+            <if test="hospitalId!=-1">
+                and userinfo_id in (select repairman_id from tb_jp_repairman where hospital_id = #{hospitalId})
+            </if>
+            <if test="departmentId!=-1">
+                and userinfo_id in (select repairman_id from tb_jp_repairman where department_id = #{departmentId})
+            </if>
+            <if test="hospitalId==-1 and departmentId==-1">
+                and userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id = 4)
+            </if>
+            <if test="roleId==4">
+                and userinfo_id in (select repairman_id from tb_jp_repairman where hospital_id in (select hospital_id from tb_jp_repairman where repairman_id = #{userInfoId}))
+            </if>
+            <if test="roleId==5">
+                and userinfo_id in (select repairman_id from tb_jp_repairman where hospital_id in (select hospital_id from tb_jp_hospital where contactor_id = #{userInfoId}))
+            </if>
+            <if test="roleId==6">
+                and userinfo_id in (select repairman_id from tb_jp_repairman where department_id in (select department_id from tb_jp_department where departor_id = #{userInfoId}))
+            </if>
+        </where>
+  </select>
+
 
   <!-- 获取股东分销商人数 -->
   <select id="countShareholder" resultType="int" >

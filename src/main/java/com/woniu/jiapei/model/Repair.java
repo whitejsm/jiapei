@@ -3,6 +3,16 @@ package com.woniu.jiapei.model;
 import java.util.Date;
 
 public class Repair {
+    private Fault fault;
+
+    public Fault getFault() {
+        return fault;
+    }
+
+    public void setFault(Fault fault) {
+        this.fault = fault;
+    }
+
     private UserInfo userInfo;
 
     public UserInfo getUserInfo() {

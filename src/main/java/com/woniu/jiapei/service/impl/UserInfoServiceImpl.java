@@ -2,10 +2,7 @@ package com.woniu.jiapei.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.woniu.jiapei.condition.AccountingCondition;
-import com.woniu.jiapei.condition.FaultCondition;
-import com.woniu.jiapei.condition.MedicalCondition;
-import com.woniu.jiapei.condition.ShareholderCondition;
+import com.woniu.jiapei.condition.*;
 import com.woniu.jiapei.mapper.HospitalMapper;
 import com.woniu.jiapei.mapper.ShareholderMapper;
 import com.woniu.jiapei.mapper.RoleMapper;
@@ -176,6 +173,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         return list;
     }
 
+
     @Override
     public List<UserInfo> findAllMedical(PageBean pageBean, MedicalCondition medicalCondition) {
         PageHelper.startPage(pageBean.getPageNum(),pageBean.getPageSize());
@@ -307,5 +305,10 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public UserInfo findById(Integer userinfoId) {
         return userInfoMapper.selectByPrimaryKey(userinfoId);
+    }
+
+    @Override
+    public List<UserInfo> findRepairman(RepairCondition repairCondition) {
+        return userInfoMapper.findRepairman(repairCondition);
     }
 }
