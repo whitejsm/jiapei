@@ -38,4 +38,8 @@ public interface OrdersMapper {
 
     Integer getCountByConditionAndDateStr(@Param("condition") VisibleReportOccupancyCondition condition,
                                       @Param("date") String date);
+
+    Integer getBedLeaseCount();
+
+    Integer getRentCount();
 }

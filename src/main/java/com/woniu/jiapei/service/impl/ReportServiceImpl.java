@@ -5,10 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.woniu.jiapei.condition.ReportCondition;
 import com.woniu.jiapei.condition.VisibleReportOccupancyCondition;
 import com.woniu.jiapei.mapper.*;
-import com.woniu.jiapei.model.Department;
-import com.woniu.jiapei.model.Hospital;
-import com.woniu.jiapei.model.SaleReport;
-import com.woniu.jiapei.model.UserInfo;
+import com.woniu.jiapei.model.*;
 import com.woniu.jiapei.service.ReportService;
 import com.woniu.jiapei.tools.PageBean;
 import com.woniu.jiapei.tools.TimeType;
@@ -40,7 +37,7 @@ public class ReportServiceImpl implements ReportService {
     @Resource
     private UserInfoMapper userInfoMapper;
     @Resource
-    private UserInfoServiceImpl userInfoServiceImpl;
+    private SimpleReportMapper simpleReportMapper;
 
     @Override
     public List<SaleReport> findSaleReportByCondition(PageBean pageBean, ReportCondition condition) {
@@ -74,7 +71,7 @@ public class ReportServiceImpl implements ReportService {
             saleReportList = saleReportMapper.findSaleReportByConditionWithDay(condition);
         } else {
             // null
-            saleReportList = saleReportMapper.findSaleReportByConditionWithDay(condition);
+            saleReportList = saleReportMapper.findSaleReportByCondition(condition);
         }
 
         return saleReportList;
@@ -163,7 +160,7 @@ public class ReportServiceImpl implements ReportService {
             departmentList = departmentMapper.selectByExample(null);
         } else if(roleId == 7) {
             // 分销商，查询所有二级分销商，自身对应医院、科室
-            distributorList = userInfoServiceImpl.getDistributor(userId);
+            distributorList = userInfoMapper.getDistributor(userId);
             hospitalList = hospitalMapper.findHospitalByDistributorId(userId);
             departmentList = departmentMapper.findDepartmentByDistributorId(userId);
         } else if(roleId == 5) {
@@ -179,5 +176,46 @@ public class ReportServiceImpl implements ReportService {
         map.put("departmentList", departmentList);
 
         return map;
+    }
+
+    // ----------------------------   simpleReport   ------------------------------
+
+
+    @Override
+    public List<SimpleReport> findSimpleReportByCondition(PageBean pageBean, ReportCondition condition) {
+        PageHelper.startPage(pageBean.getPageNum(), pageBean.getPageSize());
+        List<SimpleReport> simpleReportList = null;
+        if(condition.getSelectType() == TimeType.YEAR) {
+            simpleReportList = simpleReportMapper.findSimpleReportByConditionWithYear(condition);
+        } else if(condition.getSelectType() == TimeType.MONTH) {
+            simpleReportList = simpleReportMapper.findSimpleReportByConditionWithMonth(condition);
+        } else if(condition.getSelectType() == TimeType.DAY) {
+            simpleReportList = simpleReportMapper.findSimpleReportByConditionWithDay(condition);
+        } else {
+            // null
+            simpleReportList = simpleReportMapper.findSimpleReportByCondition(condition);
+        }
+        PageInfo<SimpleReport> pageInfo = new PageInfo<>(simpleReportList);
+        pageBean.setTotal((int)pageInfo.getTotal());
+        pageBean.setPages(pageInfo.getPages());
+
+        return simpleReportList;
+    }
+
+    @Override
+    public List<SimpleReport> findAllSimpleReportByCondition(ReportCondition condition) {
+        List<SimpleReport> simpleReportList = null;
+        if(condition.getSelectType() == TimeType.YEAR) {
+            simpleReportList = simpleReportMapper.findSimpleReportByConditionWithYear(condition);
+        } else if(condition.getSelectType() == TimeType.MONTH) {
+            simpleReportList = simpleReportMapper.findSimpleReportByConditionWithMonth(condition);
+        } else if(condition.getSelectType() == TimeType.DAY) {
+            simpleReportList = simpleReportMapper.findSimpleReportByConditionWithDay(condition);
+        } else {
+            // null
+            simpleReportList = simpleReportMapper.findSimpleReportByCondition(condition);
+        }
+
+        return simpleReportList;
     }
 }

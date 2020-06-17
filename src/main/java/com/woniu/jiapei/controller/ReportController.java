@@ -3,6 +3,8 @@ package com.woniu.jiapei.controller;
 import com.woniu.jiapei.condition.OrderCondition;
 import com.woniu.jiapei.condition.ReportCondition;
 import com.woniu.jiapei.model.*;
+import com.woniu.jiapei.service.BedService;
+import com.woniu.jiapei.service.OrdersService;
 import com.woniu.jiapei.service.ReportService;
 import com.woniu.jiapei.tools.DataFileUtil;
 import com.woniu.jiapei.tools.PageBean;
@@ -24,6 +26,10 @@ import java.util.Map;
 public class ReportController {
     @Resource
     private ReportService reportServiceImpl;
+    @Resource
+    private BedService bedServiceImpl;
+    @Resource
+    private OrdersService ordersServiceImpl;
 
     @GetMapping("/getSaleReport")
     public Map<String, Object> getSaleReport(HttpSession session, PageBean pageBean, ReportCondition condition) {
@@ -96,6 +102,74 @@ public class ReportController {
 //        XSSFWorkbook workBook = DataFileUtil.createScoreFile(Examination.class, examinationMapper.findAll());
 
         String filename = "saleReport.xlsx";
+
+        //设置文件下载头
+        response.setHeader("content-disposition", "attachment;filename=" + filename);
+        //1.设置文件ContentType类型，这样设置，会自动判断下载文件类型
+//        response.setContentType("multipart/form-data");
+        response.setContentType("application/vnd.ms-excel");
+        //BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
+        // 不要使用ajax跳转到这个链接，否则会抛出管道中断错误
+        OutputStream out = response.getOutputStream();
+        workBook.write(out);
+        out.flush();
+        out.close();
+    }
+
+
+    // -----------------------------   SimpleReport   -------------------------------
+    @GetMapping("/getCountInfo")
+    public Map<String, Object> getCountInfo() {
+        Map<String, Object> map = new HashMap<>();
+
+        try {
+            Integer bedCount = bedServiceImpl.getBedCount();
+            Integer leaseCount = ordersServiceImpl.getBedLeaseCount();
+            Integer rentCount = ordersServiceImpl.getRentCount();
+
+            map.put("bedCount", bedCount);
+            map.put("leaseCount", leaseCount);
+            map.put("rentCount", rentCount);
+            map.put("result", "success");
+            System.out.println(map);
+        } catch(Exception e) {
+            e.printStackTrace();
+            map.put("result", "error");
+        }
+
+        return map;
+    }
+
+    @GetMapping("/getSimpleReport")
+    public Map<String, Object> getSimpleReport(PageBean pageBean, ReportCondition condition) {
+        condition.switchTime();
+        System.out.println(condition);
+        Map<String, Object> map = new HashMap<>();
+
+        try {
+            List<SimpleReport> simpleReportList = reportServiceImpl.findSimpleReportByCondition(pageBean, condition);
+
+            map.put("simpleReportList", simpleReportList);
+            map.put("pageBean", pageBean);
+            map.put("result", "success");
+        } catch(Exception e) {
+            e.printStackTrace();
+            map.put("result", "error");
+        }
+
+        return map;
+    }
+
+    @GetMapping("/downloadSimpleReportFile")
+    public void downloadSimpleReportFile(ReportCondition condition, HttpServletResponse response) throws IOException {
+        condition.switchTime();
+        System.out.println(condition);
+        List<SimpleReport> simpleReportList = reportServiceImpl.findAllSimpleReportByCondition(condition);
+
+        XSSFWorkbook workBook = DataFileUtil.createScoreFile(SimpleReport.class, simpleReportList);
+//        XSSFWorkbook workBook = DataFileUtil.createScoreFile(Examination.class, examinationMapper.findAll());
+
+        String filename = "simpleReport.xlsx";
 
         //设置文件下载头
         response.setHeader("content-disposition", "attachment;filename=" + filename);

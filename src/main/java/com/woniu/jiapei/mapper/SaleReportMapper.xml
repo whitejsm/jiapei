@@ -94,7 +94,7 @@
         count(1) as `lease_count`,
         sum(k.totalpay) as `rent_count`
         from (
-        select convert(pay_time,date) as `order_date`, (
+        select year(pay_time) as `order_date`, (
         select department_id from tb_jp_bed where bed_id = a.bed_id
         ) as `department_id`, (
         select hospital_id from tb_jp_department where department_id = (
@@ -160,7 +160,7 @@
         count(1) as `lease_count`,
         sum(k.totalpay) as `rent_count`
         from (
-        select convert(pay_time,date) as `order_date`, (
+        select month(pay_time) as `order_date`, (
         select department_id from tb_jp_bed where bed_id = a.bed_id
         ) as `department_id`, (
         select hospital_id from tb_jp_department where department_id = (
@@ -229,7 +229,7 @@
         count(1) as `lease_count`,
         sum(k.totalpay) as `rent_count`
         from (
-        select convert(pay_time,date) as `order_date`, (
+        select day(pay_time) as `order_date`, (
         select department_id from tb_jp_bed where bed_id = a.bed_id
         ) as `department_id`, (
         select hospital_id from tb_jp_department where department_id = (

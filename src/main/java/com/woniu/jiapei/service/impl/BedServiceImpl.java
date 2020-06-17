@@ -125,4 +125,9 @@ public class BedServiceImpl implements BedService {
         criteria.andDepartmentIdEqualTo(departmentId);
         return bedMapper.selectByExample(example);
     }
+
+    @Override
+    public Integer getBedCount() {
+        return bedMapper.getBedCount();
+    }
 }
