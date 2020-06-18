@@ -11,6 +11,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -31,11 +32,12 @@ public class LoginController {
      */
     @GetMapping("/login")
     public Map<String, Object> login(HttpSession session, String uname, String upass){
+        upass= DigestUtils.md5DigestAsHex(upass.getBytes());
         Map<String, Object> map=new HashMap<>();
-//        Subject subject = SecurityUtils.getSubject();
-//        UsernamePasswordToken token = new UsernamePasswordToken(uname,upass);
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(uname,upass);
         try{
-       //     subject.login(token);
+            subject.login(token);
             System.out.println("登录成功");
             UserInfo userinfo= userInfoServiceImpl.findByName(uname);
             Role role = userInfoServiceImpl.findRoleByUserId(userinfo.getUserinfoId());
@@ -54,9 +56,9 @@ public class LoginController {
             map.put("userId",String.valueOf(userId));
             map.put("userName",userName);
         }catch(UnknownAccountException unknownAccountException){
-            System.out.println("账户不存在");
+            System.out.println("账户不存在或账户未启用");
             map.put("status","error");
-            map.put("msg","账户不存在");
+            map.put("msg","账户不存在或账户未启用");
         }catch(IncorrectCredentialsException incorrectCredentialsException){
             System.out.println("口令和账户不匹配");
             map.put("status","error");
@@ -72,10 +74,28 @@ public class LoginController {
     /*
     注销
      */
-    @RequestMapping("/admin/logout")
-    public String logout(){
+    @GetMapping("/logout")
+    public void logout(){
+        System.out.println("退出系统");
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
-        return "/tologin";
+//        return "/tologin";
+    }
+
+
+    @PostMapping("changePassword")
+    public Boolean changePassword(String newPs,HttpSession session){
+        boolean flag=false;
+        try{
+            UserInfo userInfo=new UserInfo();
+            userInfo.setUserinfoId((int)(session.getAttribute("userId")));
+            int a=userInfoServiceImpl.changePassword(newPs,userInfo);
+            if (a>0){
+                flag=true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return flag;
     }
 }

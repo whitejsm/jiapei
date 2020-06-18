@@ -1,22 +1,44 @@
 package com.woniu.jiapei.model;
 
+import lombok.Data;
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Department {
-    private List<Bed> bedList;
+@Data
+public class Department implements Serializable {
+
+
+    private Integer departmentId;
+
     private Integer hospitalId;
     private Hospital hospital;
 
-    public List<Bed> getBedList() {
-        return bedList;
+
+
+    private Integer departorId;
+    private UserInfo departor;
+    private List<Bed> bedList;
+    private Repairman repairman;
+
+    private Long value1;
+
+    public Long getValue1() {
+        return createTime==null?null:createTime.getTime();
     }
 
-    public void setBedList(List<Bed> bedList) {
-        this.bedList = bedList;
+    public void setValue1(Long value1) {
+        this.value1 = value1;
     }
 
-    private Integer departmentId;
+    private String departmentname;
+
+    private Date createTime;
+
+    private Integer revenueshare;
+
+    private Boolean isdelete;
 
     public Hospital getHospital() {
         return hospital;
@@ -26,13 +48,29 @@ public class Department {
         this.hospital = hospital;
     }
 
-    private Integer departorId;
+    public UserInfo getDepartor() {
+        return departor;
+    }
 
-    private String departmentname;
+    public void setDepartor(UserInfo departor) {
+        this.departor = departor;
+    }
 
-    private Date createTime;
+    public List<Bed> getBedList() {
+        return bedList;
+    }
 
-    private Integer revenueshare;
+    public void setBedList(List<Bed> bedList) {
+        this.bedList = bedList;
+    }
+
+    public Repairman getRepairman() {
+        return repairman;
+    }
+
+    public void setRepairman(Repairman repairman) {
+        this.repairman = repairman;
+    }
 
     public Integer getDepartmentId() {
         return departmentId;
@@ -67,6 +105,7 @@ public class Department {
     }
 
     public Date getCreateTime() {
+
         return createTime;
     }
 
@@ -80,5 +119,13 @@ public class Department {
 
     public void setRevenueshare(Integer revenueshare) {
         this.revenueshare = revenueshare;
+    }
+
+    public Boolean getIsdelete() {
+        return isdelete;
+    }
+
+    public void setIsdelete(Boolean isdelete) {
+        this.isdelete = isdelete;
     }
 }

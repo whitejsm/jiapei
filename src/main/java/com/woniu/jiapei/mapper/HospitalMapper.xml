@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.woniu.jiapei.mapper.HospitalMapper" >
+  <cache></cache>
   <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.Hospital" >
     <id column="hospital_id" property="hospitalId" jdbcType="INTEGER" />
     <result column="hospitalname" property="hospitalname" jdbcType="VARCHAR" />
@@ -13,17 +14,43 @@
     <result column="province_id" property="provinceId" jdbcType="INTEGER" />
     <result column="city_id" property="cityId" jdbcType="INTEGER" />
     <result column="zone_id" property="zoneId" jdbcType="INTEGER" />
+    <result column="isdelete" property="isdelete" jdbcType="BIT" />
   </resultMap>
+
+  <resultMap id="BaseResultMapContactorDistributor" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMap">
+    <association property="distributor" column="distributor_id" select="com.woniu.jiapei.mapper.UserInfoMapper.selectByPrimaryKey"></association>
+    <association property="contactor" column="contactor_id" select="com.woniu.jiapei.mapper.UserInfoMapper.selectByPrimaryKey"></association>
+
+  </resultMap>
+  <!--连接医院科室-->
+
+  <resultMap id="BaseResultMapContactorDepartment" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMapContactorDistributor">
+    <collection property="departments" column="hospital_id" select="com.woniu.jiapei.mapper.DepartmentMapper.findByHospitalId"></collection>
+  </resultMap>
+
+  <resultMap id="BaseResultMapContactorDepartmentPCZ" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMapContactorDepartment">
+         <association property="province" column="province_id" select="com.woniu.jiapei.mapper.ProvinceMapper.selectByPrimaryKey"></association>
+         <association property="city" column="city_id" select="com.woniu.jiapei.mapper.CityMapper.selectByPrimaryKey"></association>
+         <association property="zone" column="zone_id" select="com.woniu.jiapei.mapper.ZoneMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <!--  查询所有方法-->
+  <select id="findAll" resultMap="BaseResultMapContactorDepartmentPCZ">
+select * from tb_jp_hospital where isdelete=1
+</select>
+
+
+
   <resultMap id="BaseResultMapWithDepartment" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMap">
     <collection property="departmentList" column="hospital_id" select="com.woniu.jiapei.mapper.DepartmentMapper.findByHospitalId"></collection>
   </resultMap>
+  <select id="findOneWithDepartment" parameterType="int" resultMap="BaseResultMapWithDepartment">
+    select * from tb_jp_hospital where hospital_id=#{hospitalId}
+  </select>
   <resultMap id="BaseResultMapWithUserInfo" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMap">
     <collection property="userInfo" column="contactor_id" select="com.woniu.jiapei.mapper.UserInfoMapper.findById"></collection>
   </resultMap>
 
-  <select id="findOneWithDepartment" parameterType="int" resultMap="BaseResultMapWithDepartment">
-    select * from tb_jp_hospital where hospital_id=#{hospitalId}
-  </select>
+
 
   <select id="findAllInvestment" parameterType="int" resultMap="BaseResultMapWithUserInfo">
     select * from tb_jp_hospital where distributor_id=#{userinfoId}
@@ -100,10 +127,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    hospital_id, hospitalname, bankcard, rent, revenueshare, create_time, distributor_id, 
-    contactor_id, province_id, city_id, zone_id
+    hospital_id, hospitalname, bankcard, rent, revenueshare, create_time, distributor_id,
+    contactor_id, province_id, city_id, zone_id, isdelete
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMapWithDepartment" parameterType="com.woniu.jiapei.model.HospitalExample" >
+  <select id="selectByExample" resultMap="BaseResultMapContactorDepartmentPCZ" parameterType="com.woniu.jiapei.model.HospitalExample" >
     select
     <if test="distinct" >
       distinct
@@ -117,8 +144,8 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMapContactorDepartmentPCZ" parameterType="java.lang.Integer" >
+    select
     <include refid="Base_Column_List" />
     from tb_jp_hospital
     where hospital_id = #{hospitalId,jdbcType=INTEGER}
@@ -134,14 +161,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.woniu.jiapei.model.Hospital" >
-    insert into tb_jp_hospital (hospital_id, hospitalname, bankcard, 
-      rent, revenueshare, create_time, 
-      distributor_id, contactor_id, province_id, 
-      city_id, zone_id)
-    values (#{hospitalId,jdbcType=INTEGER}, #{hospitalname,jdbcType=VARCHAR}, #{bankcard,jdbcType=VARCHAR}, 
-      #{rent,jdbcType=DECIMAL}, #{revenueshare,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{distributorId,jdbcType=INTEGER}, #{contactorId,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER}, 
-      #{cityId,jdbcType=INTEGER}, #{zoneId,jdbcType=INTEGER})
+    insert into tb_jp_hospital (hospital_id, hospitalname, bankcard,
+      rent, revenueshare, create_time,
+      distributor_id, contactor_id, province_id,
+      city_id, zone_id, isdelete
+      )
+    values (#{hospitalId,jdbcType=INTEGER}, #{hospitalname,jdbcType=VARCHAR}, #{bankcard,jdbcType=VARCHAR},
+      #{rent,jdbcType=DECIMAL}, #{revenueshare,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+      #{distributorId,jdbcType=INTEGER}, #{contactorId,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER},
+      #{cityId,jdbcType=INTEGER}, #{zoneId,jdbcType=INTEGER}, #{isdelete,jdbcType=BIT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Hospital" >
     insert into tb_jp_hospital
@@ -179,6 +208,9 @@
       <if test="zoneId != null" >
         zone_id,
       </if>
+      <if test="isdelete != null" >
+        isdelete,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="hospitalId != null" >
@@ -213,6 +245,9 @@
       </if>
       <if test="zoneId != null" >
         #{zoneId,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -258,6 +293,9 @@
       <if test="record.zoneId != null" >
         zone_id = #{record.zoneId,jdbcType=INTEGER},
       </if>
+      <if test="record.isdelete != null" >
+        isdelete = #{record.isdelete,jdbcType=BIT},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -275,7 +313,8 @@
       contactor_id = #{record.contactorId,jdbcType=INTEGER},
       province_id = #{record.provinceId,jdbcType=INTEGER},
       city_id = #{record.cityId,jdbcType=INTEGER},
-      zone_id = #{record.zoneId,jdbcType=INTEGER}
+      zone_id = #{record.zoneId,jdbcType=INTEGER},
+      isdelete = #{record.isdelete,jdbcType=BIT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -313,6 +352,9 @@
       <if test="zoneId != null" >
         zone_id = #{zoneId,jdbcType=INTEGER},
       </if>
+      <if test="isdelete != null" >
+        isdelete = #{isdelete,jdbcType=BIT},
+      </if>
     </set>
     where hospital_id = #{hospitalId,jdbcType=INTEGER}
   </update>
@@ -327,7 +369,8 @@
       contactor_id = #{contactorId,jdbcType=INTEGER},
       province_id = #{provinceId,jdbcType=INTEGER},
       city_id = #{cityId,jdbcType=INTEGER},
-      zone_id = #{zoneId,jdbcType=INTEGER}
+      zone_id = #{zoneId,jdbcType=INTEGER},
+      isdelete = #{isdelete,jdbcType=BIT}
     where hospital_id = #{hospitalId,jdbcType=INTEGER}
   </update>
 

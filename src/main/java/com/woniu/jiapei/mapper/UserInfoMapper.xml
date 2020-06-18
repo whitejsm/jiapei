@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.woniu.jiapei.mapper.UserInfoMapper" >
+  <cache></cache>
   <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.UserInfo" >
     <id column="userinfo_id" property="userinfoId" jdbcType="INTEGER" />
     <result column="username" property="username" jdbcType="VARCHAR" />
@@ -26,8 +27,24 @@
   </resultMap>
   <!-- 自定义的登录查询语句 -->
   <select id="findByName" resultMap="BaseResultMapWithRolePermission" parameterType="string">
-    select * from tb_jp_userinfo where username=#{uname}
+    select * from tb_jp_userinfo where username=#{uname} and isdelete=true
   </select>
+  <select id="findDistributor" resultMap="BaseResultMap">
+select * from tb_jp_userinfo where userinfo_id in(
+select distributor_id from tb_jp_hospital where isdelete=1
+)
+</select>
+  <select id="findByRoleName" resultMap="BaseResultMap" parameterType="string">
+    select * from tb_jp_userinfo where
+    isdelete=1
+    and userinfo_id in(
+
+select userinfo_id from tb_jp_userinforole where role_id in
+(
+select role_id from tb_jp_role where rolename = #{name}
+)
+)
+    </select>
   <!--查询会计 -->
   <select id="getAccountingByCondition" parameterType="com.woniu.jiapei.condition.AccountingCondition"
           resultMap="BaseResultMap">
@@ -101,6 +118,7 @@
         and phonenumber like #{phonenumber}
       </if>
 
+  <!-- 自定义的登录查询语句 end-->
       <if test="startTime != null">
         and create_time &gt;= #{startTime}
       </if>
@@ -143,6 +161,31 @@
         and create_time &lt;= #{endTime}
       </if>
     </where>
+  </select>
+
+  <!--找出所有维修人员-->
+  <select id="findRepairman" parameterType="com.woniu.jiapei.condition.RepairCondition" resultMap="BaseResultMap">
+    select * from tb_jp_userinfo
+        <where>
+            <if test="hospitalId!=-1">
+                and userinfo_id in (select repairman_id from tb_jp_repairman where hospital_id = #{hospitalId})
+            </if>
+            <if test="departmentId!=-1">
+                and userinfo_id in (select repairman_id from tb_jp_repairman where department_id = #{departmentId})
+            </if>
+            <if test="hospitalId==-1 and departmentId==-1">
+                and userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id = 4)
+            </if>
+            <if test="roleId==4">
+                and userinfo_id in (select repairman_id from tb_jp_repairman where hospital_id in (select hospital_id from tb_jp_repairman where repairman_id = #{userInfoId}))
+            </if>
+            <if test="roleId==5">
+                and userinfo_id in (select repairman_id from tb_jp_repairman where hospital_id in (select hospital_id from tb_jp_hospital where contactor_id = #{userInfoId}))
+            </if>
+            <if test="roleId==6">
+                and userinfo_id in (select repairman_id from tb_jp_repairman where department_id in (select department_id from tb_jp_department where departor_id = #{userInfoId}))
+            </if>
+        </where>
   </select>
 
 
@@ -223,7 +266,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    userinfo_id, username, name, password, gender, birth, create_time, phonenumber, wechat, 
+    userinfo_id, username, name, password, gender, birth, create_time, phonenumber, wechat,
     email, isdelete, parent_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.model.UserInfoExample" >
@@ -241,7 +284,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from tb_jp_userinfo
     where userinfo_id = #{userinfoId,jdbcType=INTEGER}
@@ -257,13 +300,13 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.woniu.jiapei.model.UserInfo" useGeneratedKeys="true" keyProperty="userinfoId">
-    insert into tb_jp_userinfo (userinfo_id, username, name, 
-      password, gender, birth, create_time, 
-      phonenumber, wechat, email, 
+    insert into tb_jp_userinfo (userinfo_id, username, name,
+      password, gender, birth, create_time,
+      phonenumber, wechat, email,
       isdelete, parent_id)
-    values (#{userinfoId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, #{birth,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{phonenumber,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+    values (#{userinfoId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, #{birth,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP},
+      #{phonenumber,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
       #{isdelete,jdbcType=BIT}, #{parentId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.woniu.jiapei.model.UserInfo" >

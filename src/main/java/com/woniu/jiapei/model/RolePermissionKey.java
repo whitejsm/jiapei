@@ -1,6 +1,8 @@
 package com.woniu.jiapei.model;
 
-public class RolePermissionKey {
+import java.io.Serializable;
+
+public class RolePermissionKey implements Serializable {
     private Integer permissionId;
 
     private Integer roleId;

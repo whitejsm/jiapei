@@ -1,6 +1,8 @@
 package com.woniu.jiapei.model;
 
-public class UserInfoRoleKey {
+import java.io.Serializable;
+
+public class UserInfoRoleKey implements Serializable {
     private Integer userinfoId;
 
     private Integer roleId;

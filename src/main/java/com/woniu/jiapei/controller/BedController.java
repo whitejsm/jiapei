@@ -1,7 +1,7 @@
 package com.woniu.jiapei.controller;
 
+import com.woniu.jiapei.JiapeiApplication;
 import com.woniu.jiapei.condition.BedCondition;
-import com.woniu.jiapei.condition.OrderCondition;
 import com.woniu.jiapei.mapper.DepartmentMapper;
 import com.woniu.jiapei.mapper.HospitalMapper;
 import com.woniu.jiapei.mapper.ManufacturerMapper;
@@ -11,8 +11,12 @@ import com.woniu.jiapei.service.ManufacturerService;
 import com.woniu.jiapei.tools.DataFileUtil;
 import com.woniu.jiapei.tools.Msg;
 import com.woniu.jiapei.tools.PageBean;
+import com.woniu.jiapei.tools.UploadFile;
+import com.woniu.jiapei.tools.impl.BedPrimaryKey;
+import com.woniu.jiapei.tools.impl.OrderPrimaryKey;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -154,7 +158,9 @@ public class BedController {
         Msg msg = new Msg();
         try{
             //生成新的bedID
-            bed.setBedId(bed.getBedId()+(new Date().getTime()+1000*3600*13)+ (new Random().nextInt(8999)+1000));
+            Date date = new Date();
+            String bedId = "" + (date.getYear()+1700)+(date.getMonth()+1)+date.getDate()+date.getHours()+date.getMinutes()+date.getSeconds()+"bed"+(9000+new Random().nextInt(1000));
+            bed.setBedId(bedId);
             bed.setStatus("空闲");
             bed.setPower(100);
             bed.setCreateTime(new Date());
@@ -228,5 +234,46 @@ public class BedController {
         workBook.write(out);
         out.flush();
         out.close();
+    }
+
+    @GetMapping("/downBedTemplate")
+    public void down(HttpServletResponse response) throws IOException {
+        // 生成文件
+        XSSFWorkbook workBook = DataFileUtil.createTemplateXlsxFile(Bed.class);
+//        XSSFWorkbook workBook = DataFileUtil.createScoreFile(Examination.class, examinationMapper.findAll());
+
+        String filename = "bedAdd.xlsx";
+
+        //设置文件下载头
+        response.setHeader("content-disposition", "attachment;filename=" + filename);
+        //1.设置文件ContentType类型，这样设置，会自动判断下载文件类型
+//        response.setContentType("multipart/form-data");
+        response.setContentType("application/vnd.ms-excel");
+        //BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
+        // 不要使用ajax跳转到这个链接，否则会抛出管道中断错误
+        OutputStream out = response.getOutputStream();
+        workBook.write(out);
+        out.flush();
+        out.close();
+    }
+
+    //上传文件
+    @RequestMapping("/uploadBedFile")
+    public boolean uploadBedFile(MultipartFile file) {
+        String realPath = JiapeiApplication.class.getClassLoader().getResource(".").getPath() + "upload/bed";
+        System.out.println(realPath);
+        // 文件保存路径
+        String path = UploadFile.saveFile(file, realPath);
+
+        boolean flag = false;
+        try {
+            List<Bed> list = DataFileUtil.getObjectList(Bed.class, path, new BedPrimaryKey(), "bedId");
+            System.out.println(list);
+            bedServiceImpl.saveBeds(list);
+            flag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
     }
 }

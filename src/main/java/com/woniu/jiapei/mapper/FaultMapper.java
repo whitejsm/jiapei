@@ -38,4 +38,6 @@ public interface FaultMapper {
     List<Fault> findAll(FaultCondition faultCondition);
 
     List<Fault> findByRepairId(int userinfoId);
+
+    Fault findForRepair(Integer faultId);
 }

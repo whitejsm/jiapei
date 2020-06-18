@@ -1,8 +1,9 @@
 package com.woniu.jiapei.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Feedback {
+public class Feedback implements Serializable {
     private String feedbackId;
 
     private String ordersId;

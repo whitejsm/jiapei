@@ -1,8 +1,9 @@
 package com.woniu.jiapei.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Customer {
+public class Customer  implements Serializable {
     private Integer customerId;
 
     private String phonenumber;

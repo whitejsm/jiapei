@@ -2,9 +2,10 @@ package com.woniu.jiapei.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 @Data
-public class Bed {
+public class Bed implements Serializable {
     private String bedId;
 
     private Integer manufacturerId;
@@ -16,6 +17,16 @@ public class Bed {
 
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    private Long value1;
+
+    public Long getValue1() {
+        return createTime.getTime();
+    }
+
+    public void setValue1(Long value1) {
+        this.value1 = value1;
     }
 
     private Integer departmentId;

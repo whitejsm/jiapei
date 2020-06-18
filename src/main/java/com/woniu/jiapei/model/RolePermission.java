@@ -1,6 +1,8 @@
 package com.woniu.jiapei.model;
 
-public class RolePermission extends RolePermissionKey {
+import java.io.Serializable;
+
+public class RolePermission extends RolePermissionKey implements Serializable {
     private String rule;
 
     public String getRule() {

@@ -24,8 +24,8 @@
 <!--    <table schema="jiapei" tableName="tb_jp_customer_login" domainObjectName="CustomerLoginInfo">-->
 <!--    </table>-->
 
-<!--    <table schema="jiapei" tableName="tb_jp_department" domainObjectName="Department">-->
-<!--    </table>-->
+    <table schema="jiapei" tableName="tb_jp_department" domainObjectName="Department">
+    </table>
 <!--    <table schema="jiapei" tableName="tb_jp_fault" domainObjectName="Fault">-->
 <!--    </table>-->
 <!--    <table schema="jiapei" tableName="tb_jp_feedback" domainObjectName="Feedback">-->

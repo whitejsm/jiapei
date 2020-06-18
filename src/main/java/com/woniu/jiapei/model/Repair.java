@@ -1,8 +1,19 @@
 package com.woniu.jiapei.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Repair {
+public class Repair implements Serializable {
+    private Fault fault;
+
+    public Fault getFault() {
+        return fault;
+    }
+
+    public void setFault(Fault fault) {
+        this.fault = fault;
+    }
+
     private UserInfo userInfo;
 
     public UserInfo getUserInfo() {

@@ -1,7 +1,18 @@
 package com.woniu.jiapei.model;
 
-public class Repairman {
+import java.io.Serializable;
+
+public class Repairman implements Serializable {
     private Integer repairmanId;
+    private UserInfo man;
+
+    public UserInfo getMan() {
+        return man;
+    }
+
+    public void setMan(UserInfo man) {
+        this.man = man;
+    }
 
     private Integer hospitalId;
 

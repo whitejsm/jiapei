@@ -4,6 +4,7 @@ import com.woniu.jiapei.condition.AccountingCondition;
 import com.woniu.jiapei.condition.FaultCondition;
 import com.woniu.jiapei.condition.MedicalCondition;
 import com.woniu.jiapei.condition.ShareholderCondition;
+import com.woniu.jiapei.condition.*;
 import com.woniu.jiapei.model.Customer;
 import com.woniu.jiapei.model.Hospital;
 import com.woniu.jiapei.model.Shareholder;
@@ -58,6 +59,7 @@ public interface UserInfoService {
 
     UserInfo findById(Integer userinfoId);
 
+
     List<UserInfo> downloadAccount(AccountingCondition accountingCondition);
 
     List<UserInfo> downloadRepairman(AccountingCondition accountingCondition);
@@ -65,4 +67,10 @@ public interface UserInfoService {
     List<UserInfo> downloadShareholder(ShareholderCondition shareholderCondition);
 
     List<UserInfo> downloadMedicalList(MedicalCondition medicalCondition);
+
+    List<UserInfo> findRepairman(RepairCondition repairCondition);
+
+    void resetPassword(UserInfo userInfo);
+
+    int changePassword(String newPs, UserInfo userInfo);
 }

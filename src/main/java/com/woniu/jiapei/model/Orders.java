@@ -2,9 +2,10 @@ package com.woniu.jiapei.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Orders {
+public class Orders implements Serializable {
     private String ordersId;
 
     private Integer customerId;

@@ -1,8 +1,9 @@
 package com.woniu.jiapei.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Log {
+public class Log implements Serializable {
     private String logId;
 
     private Integer userinfoId;
