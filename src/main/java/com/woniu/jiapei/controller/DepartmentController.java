@@ -11,6 +11,7 @@ import com.woniu.jiapei.service.HospitalService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +38,7 @@ public class DepartmentController {
     }
 
     @PostMapping("/search")
-    public Map<String, Object> search(DepartmentCondition hospitalSearch, Integer currentPage) {
+    public Map<String, Object> search(DepartmentCondition hospitalSearch, Integer currentPage , HttpSession session) {
         if (hospitalSearch.getValue1() != null && hospitalSearch.getValue2() != null) {
             Date date1 = new Date(hospitalSearch.getValue1());
             Date date2 = new Date(hospitalSearch.getValue2());
@@ -46,15 +47,35 @@ public class DepartmentController {
 
         }
 
-        HashMap<String, Object> map = departmentService.findBySearch(hospitalSearch,currentPage);
-        PageInfo info = (PageInfo) map.get("info");
-        PageBean pb = new PageBean();
-        pb.setCurrentPage(info.getPageNum());
-        pb.setPages(info.getPages());
-        pb.setTotalCount((int) info.getTotal());
+
+
+        if ((Integer)(session.getAttribute("roleId"))==1||(Integer)(session.getAttribute("roleId"))==2) {
+            HashMap<String, Object> map = departmentService.findBySearch(hospitalSearch,currentPage);
+//        for (Object o : (List)map.get("list")) {
+////            System.out.println(o);
+//        }
+//        System.out.println(map.get("info"));
+            PageInfo info = (PageInfo) map.get("info");
+            PageBean pb = new PageBean();
+            pb.setCurrentPage(info.getPageNum());
+            pb.setPages(info.getPages());
+            pb.setTotalCount((int) info.getTotal());
 //        System.out.println(pb);
-        map.put("pb", pb);
-        return map;
+            map.put("pb", pb);
+            return map;
+        } else if ((Integer) (session.getAttribute("roleId")) == 6) {
+            HashMap<String, Object> map = departmentService.searchOwn((Integer) (session.getAttribute("userId")), currentPage);
+            PageInfo info = (PageInfo) map.get("info");
+            PageBean pb = new PageBean();
+            pb.setCurrentPage(info.getPageNum());
+            pb.setPages(info.getPages());
+            pb.setTotalCount((int) info.getTotal());
+//        System.out.println(pb);
+            map.put("pb", pb);
+            return map;
+        } else {
+            return null;
+        }
 
 
 

@@ -1,9 +1,7 @@
 package com.woniu.jiapei.service;
 
-import com.woniu.jiapei.condition.VisibleReportOccupancyCondition;
 import com.woniu.jiapei.condition.VisibleReportRentCondition;
 import com.woniu.jiapei.model.*;
-import com.woniu.jiapei.vo.OccupancyDataVo;
 import com.woniu.jiapei.vo.RentDataVo;
 
 import java.util.HashMap;
@@ -44,4 +42,6 @@ public interface HospitalService {
     Boolean delete(int id);
 
     List<City> findCities(int provinceId);
+
+    HashMap<String, Object> searchOwn(Integer userId, Integer roleId);
 }

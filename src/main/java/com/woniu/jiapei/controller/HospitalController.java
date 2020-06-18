@@ -158,7 +158,7 @@ public class HospitalController {
     }
 
     @PostMapping("/search")
-    public Map<String, Object> search(HospitalSearch hospitalSearch, Integer currentPage) {
+    public Map<String, Object> search(HospitalSearch hospitalSearch, Integer currentPage,HttpSession session) {
         if (hospitalSearch.getValue1() != null && hospitalSearch.getValue2() != null) {
             Date date1 = new Date(hospitalSearch.getValue1());
             Date date2 = new Date(hospitalSearch.getValue2());
@@ -166,24 +166,39 @@ public class HospitalController {
             hospitalSearch.setDate2(date2);
         }
 
+        if ((Integer)(session.getAttribute("roleId"))==1||(Integer)(session.getAttribute("roleId"))==2) {
+            HashMap<String, Object> map = hospitalService.findBySearch(hospitalSearch,currentPage);
+//        for (Object o : (List)map.get("list")) {
+////            System.out.println(o);
+//        }
+//        System.out.println(map.get("info"));
+            PageInfo info = (PageInfo) map.get("info");
+            PageBean pb = new PageBean();
+            pb.setCurrentPage(info.getPageNum());
+            pb.setPages(info.getPages());
+            pb.setTotalCount((int) info.getTotal());
+//        System.out.println(pb);
+            map.put("pb", pb);
+            return map;
+        } else if ((Integer) (session.getAttribute("roleId")) == 5) {
+            HashMap<String, Object> map = hospitalService.searchOwn((Integer)(session.getAttribute("userId")), currentPage);
+            PageInfo info = (PageInfo) map.get("info");
+            PageBean pb = new PageBean();
+            pb.setCurrentPage(info.getPageNum());
+            pb.setPages(info.getPages());
+            pb.setTotalCount((int) info.getTotal());
+//        System.out.println(pb);
+            map.put("pb", pb);
+            return map;
+        } else {
+            return null;
+        }
 
 
 
 
 //        System.out.println(hospitalSearch);
-        HashMap<String, Object> map = hospitalService.findBySearch(hospitalSearch,currentPage);
-//        for (Object o : (List)map.get("list")) {
-////            System.out.println(o);
-//        }
-//        System.out.println(map.get("info"));
-        PageInfo info = (PageInfo) map.get("info");
-        PageBean pb = new PageBean();
-        pb.setCurrentPage(info.getPageNum());
-        pb.setPages(info.getPages());
-        pb.setTotalCount((int) info.getTotal());
-//        System.out.println(pb);
-        map.put("pb", pb);
-        return map;
+
 
     }
     @PostMapping("/insertSave")
