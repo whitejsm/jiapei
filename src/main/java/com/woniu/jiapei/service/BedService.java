@@ -22,4 +22,6 @@ public interface BedService {
     List<Bed> findByDepartmentId(Integer departmentId);
 
     Integer getBedCount();
+
+    void saveBeds(List<Bed> list);
 }

@@ -130,4 +130,11 @@ public class BedServiceImpl implements BedService {
     public Integer getBedCount() {
         return bedMapper.getBedCount();
     }
+
+    @Override
+    public void saveBeds(List<Bed> list) {
+        for (Bed bed : list) {
+            bedMapper.insert(bed);
+        }
+    }
 }
