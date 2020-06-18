@@ -44,6 +44,7 @@
   <select id="findByExample" resultMap="BaseResultMapWithManufacturerAndDepartment" parameterType="com.woniu.jiapei.condition.BedCondition" >
         select * from tb_jp_bed 
         <where>
+               and status!='停用'
           <if test="power!=null and power!=-1">
                and power &lt; #{power}
           </if>
