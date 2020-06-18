@@ -37,4 +37,6 @@ public interface BedMapper {
     List<Integer> getCountByCondition(VisibleReportOccupancyCondition condition);
 
     List<String> getDateListByCondition(VisibleReportOccupancyCondition condition);
+
+    Integer getBedCount();
 }

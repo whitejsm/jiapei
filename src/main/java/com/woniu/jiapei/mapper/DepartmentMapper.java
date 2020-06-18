@@ -32,4 +32,8 @@ public interface DepartmentMapper {
     List<Department> getByHospitalId(Integer hospitalId);
 
     List<Department> findByDepartorId(BedCondition bedCondition);
+
+    List<Department> findDepartmentByHospitalManId(Integer userId);
+
+    List<Department> findDepartmentByDistributorId(Integer userId);
 }

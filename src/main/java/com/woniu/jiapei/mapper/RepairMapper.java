@@ -1,5 +1,6 @@
 package com.woniu.jiapei.mapper;
 
+import com.woniu.jiapei.condition.RepairCondition;
 import com.woniu.jiapei.model.Repair;
 import com.woniu.jiapei.model.RepairExample;
 import java.util.List;
@@ -34,4 +35,6 @@ public interface RepairMapper {
     int updateByPrimaryKeyWithBLOBs(Repair record);
 
     int updateByPrimaryKey(Repair record);
+
+    List<Repair> findAll(RepairCondition repairCondition);
 }

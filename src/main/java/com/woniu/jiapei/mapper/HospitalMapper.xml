@@ -400,4 +400,9 @@
     order by count(*) desc
     limit 7
   </select>
+
+  <select id="findHospitalByDistributorId" resultMap="BaseResultMap">
+    select * from tb_jp_hospital
+    where distributor_id = #{userId}
+  </select>
 </mapper>

@@ -2,13 +2,37 @@ package com.woniu.jiapei.condition;
 
 import com.woniu.jiapei.tools.TimeType;
 
+import java.sql.Time;
+import java.util.Date;
+
 public class ReportCondition {
     private Integer distributorId;
     private Integer departmentId;
     private Integer hospitalId;
     private TimeType selectType;
-    private Integer year;
-    private Integer month;
+    // 月选择的年
+    private String year;
+    // 日选择的月
+    private String month;
+
+    private Integer roleId;
+    private Integer userId;
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public Integer getDistributorId() {
         return distributorId;
@@ -42,19 +66,19 @@ public class ReportCondition {
         this.selectType = selectType;
     }
 
-    public Integer getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(Integer year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
-    public Integer getMonth() {
+    public String getMonth() {
         return month;
     }
 
-    public void setMonth(Integer month) {
+    public void setMonth(String month) {
         this.month = month;
     }
 
@@ -68,5 +92,21 @@ public class ReportCondition {
                 ", year=" + year +
                 ", month=" + month +
                 '}';
+    }
+
+    public void switchTime() {
+        if(selectType == TimeType.YEAR) {
+            // 实际就是按年向前查询统计，故未使用
+//            year = String.valueOf(new Date().getYear());
+        } else if(selectType == TimeType.MONTH) {
+            // 2020-12-31T16:00:00.000Z
+            // elementui的月时间选择器传递的是上一年末最后一秒，故+1
+            year = String.valueOf((Integer.valueOf(year.substring(0, 4)) + 1));
+        } else if(selectType == TimeType.DAY) {
+            // TimeType.DAY 2020/03
+            year = month.substring(0, 4);
+            month = Integer.valueOf(month.substring(5, 7)).toString();
+        }
+        // selectType == null
     }
 }

@@ -51,4 +51,6 @@ public interface HospitalMapper {
     List<String> getCityListByProvinceId(Integer provinceId);
 
     List<Integer> getCountListByProvinceId(Integer provinceId);
+
+    List<Hospital> findHospitalByDistributorId(Integer userId);
 }

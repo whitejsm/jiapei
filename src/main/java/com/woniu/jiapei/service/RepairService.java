@@ -4,6 +4,8 @@ import com.woniu.jiapei.condition.RepairCondition;
 import com.woniu.jiapei.model.Repair;
 import com.woniu.jiapei.tools.PageBean;
 
+import java.util.List;
+
 public interface RepairService {
     void save(Repair repair);
 
@@ -11,5 +13,9 @@ public interface RepairService {
 
     void delRepairByFaultId(Integer faultId);
 
-    void findAll(RepairCondition repairCondition, PageBean pageBean);
+    List<Repair> findAll(RepairCondition repairCondition, PageBean pageBean);
+
+    void delRepairByRepairId(String repairId);
+
+    List<Repair> getRepairsByCondition(RepairCondition repairCondition);
 }

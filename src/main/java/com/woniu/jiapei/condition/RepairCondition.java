@@ -10,10 +10,10 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RepairCondition {
-    private Integer repairId;
+    private String repairId;
     private Integer hospitalId;
     private Integer departmentId;
-    private String repairManId;
+    private Integer repairmanId;
     private String repairStatus;
     private Date beginTime;
     private Date endTime;

@@ -32,6 +32,14 @@
     <association property="role" column="contactor_id" select="com.woniu.jiapei.mapper.RoleMapper.findByUid"></association>
   </resultMap>
 
+  <!--查询结果不带维修信息-->
+  <resultMap id="ResultMapWithBLOBsAndSourceAndBedAndRoleInfo" type="com.woniu.jiapei.model.Fault" extends="ResultMapWithBLOBs">
+    <association property="userInfo" column="contactor_id" select="com.woniu.jiapei.mapper.UserInfoMapper.selectByPrimaryKey"></association>
+    <association property="customer" column="customer_id" select="com.woniu.jiapei.mapper.CustomerMapper.selectByPrimaryKey"></association>
+    <association property="bed" column="bed_id" select="com.woniu.jiapei.mapper.BedMapper.findByFaultBedId"></association>
+    <association property="role" column="contactor_id" select="com.woniu.jiapei.mapper.RoleMapper.findByUid"></association>
+  </resultMap>
+
   <!--查询所有故障信息-->
   <select id="findAll" resultMap="ResultMapWithBLOBsAndSourceAndRepairAndBedAndRoleInfo" parameterType="com.woniu.jiapei.condition.FaultCondition">
         select * from tb_jp_fault
@@ -89,6 +97,10 @@
 
   <select id="findByRepairId" resultMap="ResultMapWithDepartment" parameterType="int">
     select * from tb_jp_fault where contactor_id=#{userinfoId}
+  </select>
+
+  <select id="findForRepair" resultMap="ResultMapWithBLOBsAndSourceAndBedAndRoleInfo" parameterType="Integer">
+        select * from tb_jp_fault where fault_id = #{faultId}
   </select>
   <sql id="Example_Where_Clause" >
     <where >

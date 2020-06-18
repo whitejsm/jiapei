@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.woniu.jiapei.mapper.ProvinceHospitalDataMapper" >
+  <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.ProvinceHospitalData" >
+    <id column="province_id" property="areaCode" />
+    <result column="province_name" property="name" />
+    <result column="province_value" property="value" />
+  </resultMap>
+
+  <select id="getProvinceValueList" resultMap="BaseResultMap">
+    select province_name, province_id, (
+        select count(*) from tb_jp_hospital
+        where province_id = a.province_id
+    ) as `province_value`
+    from province a
+  </select>
+</mapper>

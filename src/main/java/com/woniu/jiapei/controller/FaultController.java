@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Date;
@@ -41,7 +42,12 @@ public class FaultController {
     private RepairService repairServiceImpl;
 
     @GetMapping("findAll")
-    public Msg findAll(FaultCondition faultCondition,PageBean pageBean){
+    public Msg findAll(FaultCondition faultCondition, PageBean pageBean, HttpSession session){
+        System.out.println(session.getAttribute("userId"));
+        System.out.println(session.getAttribute("userName"));
+        System.out.println(session.getAttribute("roleId"));
+        System.out.println(session.getAttribute("roleName"));
+
         Msg msg = new Msg();
         try{
             if(faultCondition.getEndTime()!=null)
@@ -164,7 +170,7 @@ public class FaultController {
             //创建故障信息的同时创建一条维修记录，但是不填写维修人员、维修信息、维修状态、维修结果
             Repair repair = new Repair();
             Date date = new Date();
-            String repairId = (date.getYear()+1700)+(date.getMonth()+1)+date.getDate()+date.getHours()+date.getMinutes()+date.getSeconds()+"wx"+(9000+new Random().nextInt(1000));
+            String repairId = "" + (date.getYear()+1700)+(date.getMonth()+1)+date.getDate()+date.getHours()+date.getMinutes()+date.getSeconds()+"wx"+(9000+new Random().nextInt(1000));
             repair.setRepairId(repairId);
             repair.setCreateTime(date);
             repair.setRepairResult("待备案");

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.woniu.jiapei.mapper.SimpleReportMapper">
+    <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.SimpleReport">
+        <result column="order_date" property="orderDate"/>
+        <result column="bed_count" property="bedCount"/>
+        <result column="lease_count" property="leaseCount"/>
+        <result column="rent_count" property="rentCount"/>
+    </resultMap>
+    <select id="findSimpleReportByCondition" resultMap="BaseResultMap"
+            parameterType="com.woniu.jiapei.condition.ReportCondition">
+        select j.`order_date`, j.`bed_count`, k.`lease_count`, k.`rent_count`
+        from (
+            select convert(create_time, date) as `order_date`,
+            count(*) as `bed_count`
+            from tb_jp_bed
+            group by `order_date`
+        ) j left join (
+            select convert(pay_time,date) as `order_date`,
+            count(*) as `lease_count`,
+            sum(totalpay) as `rent_count`
+            from tb_jp_orders
+            where orders_status = '已完成'
+            group by `order_date`
+        ) k on j.`order_date` = k.`order_date`
+        order by j.`order_date` desc
+    </select>
+
+    <select id="findSimpleReportByConditionWithYear" resultMap="BaseResultMap"
+            parameterType="com.woniu.jiapei.condition.ReportCondition">
+        select j.`order_date`, j.`bed_count`, k.`lease_count`, k.`rent_count`
+        from (
+            select year(create_time) as `order_date`,
+            count(*) as `bed_count`
+            from tb_jp_bed
+            group by `order_date`
+        ) j left join (
+            select year(pay_time) as `order_date`,
+            count(*) as `lease_count`,
+            sum(totalpay) as `rent_count`
+            from tb_jp_orders
+            where orders_status = '已完成'
+            group by `order_date`
+        ) k on j.`order_date` = k.`order_date`
+        order by j.`order_date` desc
+    </select>
+
+    <select id="findSimpleReportByConditionWithMonth" resultMap="BaseResultMap"
+            parameterType="com.woniu.jiapei.condition.ReportCondition">
+        select j.`order_date`, j.`bed_count`, k.`lease_count`, k.`rent_count`
+        from (
+            select month(create_time) as `order_date`,
+            count(*) as `bed_count`
+            from tb_jp_bed
+            <where>
+                <if test="year != null and year != ''">
+                    and year(create_time) = #{year}
+                </if>
+            </where>
+            group by `order_date`
+        ) j left join (
+            select month(pay_time) as `order_date`,
+            count(*) as `lease_count`,
+            sum(totalpay) as `rent_count`
+            from tb_jp_orders
+            where orders_status = '已完成'
+            <if test="year != null and year != ''">
+                and year(pay_time) = #{year}
+            </if>
+            group by `order_date`
+        ) k on j.`order_date` = k.`order_date`
+
+        order by j.`order_date` desc
+    </select>
+
+    <select id="findSimpleReportByConditionWithDay" resultMap="BaseResultMap"
+            parameterType="com.woniu.jiapei.condition.ReportCondition">
+        select j.`order_date`, j.`bed_count`, k.`lease_count`, k.`rent_count`
+        from (
+            select day(create_time) as `order_date`,
+            count(*) as `bed_count`
+            from tb_jp_bed
+            <where>
+                <if test="year != null and year != ''">
+                    and year(create_time) = #{year}
+                </if>
+                <if test="month != null and month != ''">
+                    and month(create_time) = #{month}
+                </if>
+            </where>
+            group by `order_date`
+        ) j left join (
+            select day(pay_time) as `order_date`,
+            count(*) as `lease_count`,
+            sum(totalpay) as `rent_count`
+            from tb_jp_orders
+            where orders_status = '已完成'
+            <if test="year != null and year != ''">
+                and year(pay_time) = #{year}
+            </if>
+            <if test="month != null and month != ''">
+                and month(pay_time) = #{month}
+            </if>
+            group by `order_date`
+        ) k on j.`order_date` = k.`order_date`
+        order by j.`order_date` desc
+    </select>
+</mapper>

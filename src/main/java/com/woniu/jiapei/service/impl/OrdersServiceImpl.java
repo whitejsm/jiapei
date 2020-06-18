@@ -101,4 +101,14 @@ public class OrdersServiceImpl implements OrdersService {
         criteria.andCustomerIdEqualTo(customerId);
         return ordersMapper.selectByExample(example);
     }
+
+    @Override
+    public Integer getBedLeaseCount() {
+        return ordersMapper.getBedLeaseCount();
+    }
+
+    @Override
+    public Integer getRentCount() {
+        return ordersMapper.getRentCount();
+    }
 }
