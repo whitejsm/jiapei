@@ -11,6 +11,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -31,6 +32,7 @@ public class LoginController {
      */
     @GetMapping("/login")
     public Map<String, Object> login(HttpSession session, String uname, String upass){
+        upass= DigestUtils.md5DigestAsHex(upass.getBytes());
         Map<String, Object> map=new HashMap<>();
 //        Subject subject = SecurityUtils.getSubject();
 //        UsernamePasswordToken token = new UsernamePasswordToken(uname,upass);
@@ -72,10 +74,28 @@ public class LoginController {
     /*
     注销
      */
-    @RequestMapping("/admin/logout")
-    public String logout(){
+    @GetMapping("/logout")
+    public void logout(){
+        System.out.println("退出系统");
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
-        return "/tologin";
+//        return "/tologin";
+    }
+
+
+    @PostMapping("changePassword")
+    public Boolean changePassword(String newPs,HttpSession session){
+        boolean flag=false;
+        try{
+            UserInfo userInfo=new UserInfo();
+            userInfo.setUserinfoId((int)(session.getAttribute("userId")));
+            int a=userInfoServiceImpl.changePassword(newPs,userInfo);
+            if (a>0){
+                flag=true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return flag;
     }
 }

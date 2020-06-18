@@ -261,4 +261,10 @@ public class UserInfoController {
 //        }
 //        return map;
 //    }
+
+
+    @PostMapping("/resetPassword")
+    public void resetPassword(UserInfo userInfo){
+        userInfoServiceImpl.resetPassword(userInfo);
+    }
 }

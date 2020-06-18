@@ -8,6 +8,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface HospitalMapper {
+
+
     int countByExample(HospitalExample example);
 
     int deleteByExample(HospitalExample example);

@@ -2,7 +2,6 @@ package com.woniu.jiapei.controller;
 
 import com.woniu.jiapei.JiapeiApplication;
 import com.woniu.jiapei.condition.BedCondition;
-import com.woniu.jiapei.condition.OrderCondition;
 import com.woniu.jiapei.mapper.DepartmentMapper;
 import com.woniu.jiapei.mapper.HospitalMapper;
 import com.woniu.jiapei.mapper.ManufacturerMapper;

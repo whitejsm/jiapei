@@ -6,6 +6,16 @@ import java.util.List;
 public class Hospital {
     private List<Department> departmentList;
 
+    private Boolean isdelete;
+
+    public Boolean getIsdelete() {
+        return isdelete;
+    }
+
+    public void setIsdelete(Boolean isdelete) {
+        this.isdelete = isdelete;
+    }
+
     public List<Department> getDepartmentList() {
         return departmentList;
     }
@@ -28,6 +38,16 @@ public class Hospital {
 
     private String hospitalname;
 
+    private Long value1;
+
+    public Long getValue1() {
+        return createTime==null?null:createTime.getTime();
+    }
+
+    public void setValue1(Long value1) {
+        this.value1 = value1;
+    }
+
     private String bankcard;
 
     private Long rent;
@@ -45,6 +65,8 @@ public class Hospital {
     private Integer cityId;
 
     private Integer zoneId;
+
+
 
     public Integer getHospitalId() {
         return hospitalId;
@@ -87,6 +109,7 @@ public class Hospital {
     }
 
     public Date getCreateTime() {
+
         return createTime;
     }
 
