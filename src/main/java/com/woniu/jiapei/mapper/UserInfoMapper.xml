@@ -26,7 +26,7 @@
   </resultMap>
   <!-- 自定义的登录查询语句 -->
   <select id="findByName" resultMap="BaseResultMapWithRolePermission" parameterType="string">
-    select * from tb_jp_userinfo where username=#{uname}
+    select * from tb_jp_userinfo where username=#{uname} and isdelete=true
   </select>
   <select id="findDistributor" resultMap="BaseResultMap">
 select * from tb_jp_userinfo where userinfo_id in(
