@@ -12,13 +12,13 @@ import com.woniu.jiapei.mapper.RoleMapper;
 import com.woniu.jiapei.mapper.UserInfoMapper;
 import com.woniu.jiapei.mapper.UserInfoRoleMapper;
 import com.woniu.jiapei.model.*;
-import com.woniu.jiapei.model.Customer;
 import com.woniu.jiapei.model.Role;
 import com.woniu.jiapei.model.UserInfo;
 import com.woniu.jiapei.model.UserInfoRoleKey;
 import com.woniu.jiapei.service.UserInfoService;
 import com.woniu.jiapei.tools.PageBean;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -78,7 +78,7 @@ public class UserInfoServiceImpl implements UserInfoService {
      */
     @Override
     public void addAccounting(UserInfo userInfo) {
-        userInfo.setPassword("123456");
+        userInfo.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
         userInfo.setCreateTime(new Date());
         userInfo.setIsdelete(true);
         userInfoMapper.insert(userInfo);
@@ -124,7 +124,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public void addRepairman(UserInfo userInfo) {
-        userInfo.setPassword("123456");
+        userInfo.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
         userInfo.setCreateTime(new Date());
         userInfo.setIsdelete(true);
         userInfoMapper.insert(userInfo);
@@ -177,6 +177,26 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
+    public void resetPassword(UserInfo userInfo) {
+        userInfo.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
+        userInfoMapper.updateByPrimaryKeySelective(userInfo);
+    }
+
+    @Override
+    public int changePassword(String newPs, UserInfo userInfo) {
+        int a=0;
+        try{
+            userInfo.setPassword(DigestUtils.md5DigestAsHex(newPs.getBytes()));
+            userInfoMapper.updateByPrimaryKeySelective(userInfo);
+            a=1;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return a;
+    }
+
+
+    @Override
     public List<UserInfo> findAllMedical(PageBean pageBean, MedicalCondition medicalCondition) {
         PageHelper.startPage(pageBean.getPageNum(),pageBean.getPageSize());
         List<UserInfo> list=userInfoMapper.getMedicalByCondition(medicalCondition);
@@ -193,7 +213,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public void addMedical(UserInfo userInfo, int level) {
-        userInfo.setPassword("123456");
+        userInfo.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
         userInfo.setCreateTime(new Date());
         userInfo.setIsdelete(true);
         userInfoMapper.insert(userInfo);
@@ -242,7 +262,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public void addShareholder(UserInfo userInfo, int level, Shareholder shareholder) {
-        userInfo.setPassword("123456");
+        userInfo.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
         userInfo.setCreateTime(new Date());
         userInfo.setIsdelete(true);
         userInfoMapper.insert(userInfo);
