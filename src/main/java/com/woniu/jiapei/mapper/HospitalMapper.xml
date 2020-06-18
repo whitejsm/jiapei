@@ -49,9 +49,7 @@ select * from tb_jp_hospital where isdelete=1
     <collection property="userInfo" column="contactor_id" select="com.woniu.jiapei.mapper.UserInfoMapper.findById"></collection>
   </resultMap>
 
-  <select id="findOneWithDepartment" parameterType="int" resultMap="BaseResultMapWithDepartment">
-    select * from tb_jp_hospital where hospital_id=#{hospitalId}
-  </select>
+
 
   <select id="findAllInvestment" parameterType="int" resultMap="BaseResultMapWithUserInfo">
     select * from tb_jp_hospital where distributor_id=#{userinfoId}

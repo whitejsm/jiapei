@@ -71,7 +71,7 @@ public class DepartmentController {
     public Map<String,Object> findInsert() {
         List<UserInfo> connectors = hospitalService.findPersons("科室对接人");
 
-        List<Hospital> distributor1s = hospitalService.findByAll();
+        List<Hospital> distributor1s = hospitalService.getAllHospital();
 
 
         HashMap<String, Object> map = new HashMap<>();

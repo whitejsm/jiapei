@@ -9,6 +9,7 @@ import com.woniu.jiapei.model.Customer;
 import com.woniu.jiapei.service.CustomerService;
 import com.woniu.jiapei.tools.PageBean;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -52,5 +53,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> downByCondition(CustomerCondition customerCondition) {
         return customerMapper.downByCondition(customerCondition);
+    }
+
+    @Override
+    public void resetPassword(Customer customer) {
+        customer.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
+        customerMapper.updateByPrimaryKeySelective(customer);
     }
 }
