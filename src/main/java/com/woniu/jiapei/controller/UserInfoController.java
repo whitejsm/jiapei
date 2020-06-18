@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -32,7 +33,6 @@ import java.util.Map;
 public class UserInfoController {
     @Resource
     UserInfoService userInfoServiceImpl;
-
 
     /**
      * 获取会计列表
@@ -243,5 +243,28 @@ public class UserInfoController {
         workBook.write(out);
         out.flush();
         out.close();
+    }
+//    /**
+//     * 当登陆角色为经销商时获取二级分销商
+//     */
+//    @GetMapping("/getDistributor")
+//    public Map<String, Object> getDistributor(HttpSession session) {
+//        Map<String, Object> map = new HashMap<>();
+//        try {
+//            Integer userId = (Integer) session.getAttribute("userId");
+//            List<UserInfo> distributorList = userInfoServiceImpl.getDistributor(userId);
+//            map.put("distributorList", distributorList);
+//            map.put("result", "success");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            map.put("result", "error");
+//        }
+//        return map;
+//    }
+
+
+    @PostMapping("/resetPassword")
+    public void resetPassword(UserInfo userInfo){
+        userInfoServiceImpl.resetPassword(userInfo);
     }
 }

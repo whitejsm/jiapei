@@ -1,8 +1,6 @@
 package com.woniu.jiapei.mapper;
 
-import com.woniu.jiapei.condition.AccountingCondition;
-import com.woniu.jiapei.condition.MedicalCondition;
-import com.woniu.jiapei.condition.ShareholderCondition;
+import com.woniu.jiapei.condition.*;
 import com.woniu.jiapei.model.Role;
 import com.woniu.jiapei.model.UserInfo;
 import com.woniu.jiapei.model.UserInfoExample;
@@ -42,12 +40,15 @@ public interface UserInfoMapper {
 
     UserInfo findByName(String username);
 
+    Integer countAccounting();
 
     List<UserInfo> getAccountingByCondition(AccountingCondition accountingCondition);
 
     Integer countRepairman();
 
     List<UserInfo> getRepairmanByCondition(AccountingCondition accountingCondition);
+
+    List<UserInfo> getDistributor(Integer userId);
 
     List<UserInfo> getMedicalByCondition(MedicalCondition medicalCondition);
 
@@ -57,5 +58,10 @@ public interface UserInfoMapper {
 
     Integer countShareholder();
 
-    Integer countAccounting();
+    List<UserInfo> findByFaultSource(FaultCondition faultCondition);
+
+    UserInfo findById(Integer id);
+
+    List<UserInfo> findRepairman(RepairCondition repairCondition);
+    List<UserInfo> findAllDistributor();
 }

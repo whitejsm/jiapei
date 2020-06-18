@@ -7,7 +7,6 @@
     <result column="count" property="count" jdbcType="INTEGER" />
     <result column="lougou_time" property="lougouTime" jdbcType="TIMESTAMP" />
   </resultMap>
-
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -84,7 +83,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select
+    select 
     <include refid="Base_Column_List" />
     from tb_jp_user_login
     where userinfo_id = #{userinfoId,jdbcType=INTEGER}
@@ -100,9 +99,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.woniu.jiapei.model.UserLoginInfo" >
-    insert into tb_jp_user_login (userinfo_id, login_ip, count,
+    insert into tb_jp_user_login (userinfo_id, login_ip, count, 
       lougou_time)
-    values (#{userinfoId,jdbcType=INTEGER}, #{loginIp,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER},
+    values (#{userinfoId,jdbcType=INTEGER}, #{loginIp,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, 
       #{lougouTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.woniu.jiapei.model.UserLoginInfo" >

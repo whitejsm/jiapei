@@ -425,6 +425,76 @@ public class FaultExample {
             return (Criteria) this;
         }
 
+        public Criteria andFaultTypeIsNull() {
+            addCriterion("fault_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaultTypeIsNotNull() {
+            addCriterion("fault_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaultTypeEqualTo(String value) {
+            addCriterion("fault_type =", value, "faultType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaultTypeNotEqualTo(String value) {
+            addCriterion("fault_type <>", value, "faultType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaultTypeGreaterThan(String value) {
+            addCriterion("fault_type >", value, "faultType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaultTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("fault_type >=", value, "faultType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaultTypeLessThan(String value) {
+            addCriterion("fault_type <", value, "faultType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaultTypeLessThanOrEqualTo(String value) {
+            addCriterion("fault_type <=", value, "faultType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaultTypeLike(String value) {
+            addCriterion("fault_type like", value, "faultType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaultTypeNotLike(String value) {
+            addCriterion("fault_type not like", value, "faultType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaultTypeIn(List<String> values) {
+            addCriterion("fault_type in", values, "faultType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaultTypeNotIn(List<String> values) {
+            addCriterion("fault_type not in", values, "faultType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaultTypeBetween(String value1, String value2) {
+            addCriterion("fault_type between", value1, value2, "faultType");
+            return (Criteria) this;
+        }
+
+        public Criteria andFaultTypeNotBetween(String value1, String value2) {
+            addCriterion("fault_type not between", value1, value2, "faultType");
+            return (Criteria) this;
+        }
+
         public Criteria andFaultStatusIsNull() {
             addCriterion("fault_status is null");
             return (Criteria) this;

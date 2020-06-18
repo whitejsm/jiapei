@@ -24,14 +24,14 @@
   <resultMap id="BaseResultMapWithShareholder" type="com.woniu.jiapei.model.UserInfo" extends="BaseResultMapWithRolePermission">
     <collection property="shareholder" column="userinfo_id" select="com.woniu.jiapei.mapper.ShareholderMapper.findByUid"></collection>
   </resultMap>
-  <!-- 自定义的登录查询语句 begin-->
+  <!-- 自定义的登录查询语句 -->
   <select id="findByName" resultMap="BaseResultMapWithRolePermission" parameterType="string">
     select * from tb_jp_userinfo where username=#{uname}
   </select>
   <select id="findDistributor" resultMap="BaseResultMap">
 select * from tb_jp_userinfo where userinfo_id in(
-select userinfo_id from tb_jp_userinforole where role_id = 7
-) and isdelete=1
+select distributor_id from tb_jp_hospital where isdelete=1
+)
 </select>
   <select id="findByRoleName" resultMap="BaseResultMap" parameterType="string">
     select * from tb_jp_userinfo where
@@ -70,33 +70,27 @@ select role_id from tb_jp_role where rolename = #{name}
     select count(userinfo_id) from tb_jp_userinforole where role_id=(
     select role_id from tb_jp_role where rolename='会计')
   </select>
+  <!--查询维修人员 -->
+  <select id="getRepairmanByCondition" parameterType="com.woniu.jiapei.condition.AccountingCondition"
+          resultMap="BaseResultMap">
+    select * from tb_jp_userinfo
+    <where>
+      userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id=(
+      select role_id from tb_jp_role where rolename='维修人员'))
+      <if test="phonenumber != null and phonenumber != ''">
+        <bind name="phonenumber" value="'%' + phonenumber + '%'" />
+        and phonenumber like #{phonenumber}
+      </if>
+      <if test="startTime != null">
+        and create_time &gt;= #{startTime}
+      </if>
+      <if test="endTime != null">
+        and create_time &lt;= #{endTime}
+      </if>
+    </where>
 
-  <select id="findByRoleNameDistributor1" resultMap="BaseResultMap" parameterType="string">
-select * from tb_jp_userinfo where ISNULL(parent_id ) and
-isdelete=1
-and
-
-userinfo_id in(
-
-select userinfo_id from tb_jp_userinforole where role_id in
-(
-select role_id from tb_jp_role where rolename = '分销商'
-)
-)
   </select>
 
-  <select id="findByRoleNameDistributor2" resultMap="BaseResultMap" parameterType="string">
-select * from tb_jp_userinfo where parent_id is not null and
-isdelete=1
-and
-userinfo_id in(
-
-select userinfo_id from tb_jp_userinforole where role_id in
-(
-select role_id from tb_jp_role where rolename = '分销商'
-)
-)
-</select>
   <!-- 获取维修人员人数 -->
   <select id="countRepairman" resultType="int" >
     select count(userinfo_id) from tb_jp_userinforole where role_id=(
@@ -168,6 +162,31 @@ select role_id from tb_jp_role where rolename = '分销商'
     </where>
   </select>
 
+  <!--找出所有维修人员-->
+  <select id="findRepairman" parameterType="com.woniu.jiapei.condition.RepairCondition" resultMap="BaseResultMap">
+    select * from tb_jp_userinfo
+        <where>
+            <if test="hospitalId!=-1">
+                and userinfo_id in (select repairman_id from tb_jp_repairman where hospital_id = #{hospitalId})
+            </if>
+            <if test="departmentId!=-1">
+                and userinfo_id in (select repairman_id from tb_jp_repairman where department_id = #{departmentId})
+            </if>
+            <if test="hospitalId==-1 and departmentId==-1">
+                and userinfo_id in (select userinfo_id from tb_jp_userinforole where role_id = 4)
+            </if>
+            <if test="roleId==4">
+                and userinfo_id in (select repairman_id from tb_jp_repairman where hospital_id in (select hospital_id from tb_jp_repairman where repairman_id = #{userInfoId}))
+            </if>
+            <if test="roleId==5">
+                and userinfo_id in (select repairman_id from tb_jp_repairman where hospital_id in (select hospital_id from tb_jp_hospital where contactor_id = #{userInfoId}))
+            </if>
+            <if test="roleId==6">
+                and userinfo_id in (select repairman_id from tb_jp_repairman where department_id in (select department_id from tb_jp_department where departor_id = #{userInfoId}))
+            </if>
+        </where>
+  </select>
+
 
   <!-- 获取股东分销商人数 -->
   <select id="countShareholder" resultType="int" >
@@ -177,6 +196,15 @@ select role_id from tb_jp_role where rolename = '分销商'
 
   <select id="findById" resultType="com.woniu.jiapei.model.UserInfo" parameterType="int">
       select name from tb_jp_userinfo where userinfo_id=#{contactor_id}
+  </select>
+
+  <select id="findByFaultSource" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.condition.FaultCondition">
+    select * from tb_jp_userinfo
+    <where>
+      <if test="faultSource!=null">
+        and userinfo_id in (select userInfo_id from tb_jp_userinforole where role_id in (select role_id from tb_jp_role where rolename=#{faultSource}))
+      </if>
+    </where>
   </select>
   <sql id="Example_Where_Clause" >
     <where >
@@ -481,4 +509,20 @@ select role_id from tb_jp_role where rolename = '分销商'
       parent_id = #{parentId,jdbcType=INTEGER}
     where userinfo_id = #{userinfoId,jdbcType=INTEGER}
   </update>
+
+  <sql id="userNameAndId">
+    userinfo_id, username, name
+  </sql>
+
+  <select id="getDistributor" resultMap="BaseResultMap">
+    select <include refid="userNameAndId" /> from tb_jp_userinfo
+    where parent_id = #{userId}
+  </select>
+
+  <select id="findAllDistributor" resultMap="BaseResultMap">
+    select <include refid="userNameAndId" /> from tb_jp_userinfo
+    where userinfo_id in (
+        select userinfo_id from tb_jp_userinforole where role_id = 7
+    )
+  </select>
 </mapper>

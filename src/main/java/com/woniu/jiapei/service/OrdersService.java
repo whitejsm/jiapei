@@ -24,4 +24,8 @@ public interface OrdersService {
     void insertOrders(List<Orders> list);
 
     List<Orders> downOrdersByCid(Integer customerId);
+
+    Integer getBedLeaseCount();
+
+    Integer getRentCount();
 }

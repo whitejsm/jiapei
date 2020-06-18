@@ -2,14 +2,13 @@ package com.woniu.jiapei.shiro;
 
 import com.woniu.jiapei.model.Permission;
 import com.woniu.jiapei.service.PermissionService;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.mgt.SecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+import sun.reflect.generics.tree.Tree;
 
 import javax.annotation.Resource;
 import javax.servlet.Filter;
@@ -33,7 +32,7 @@ public class ShiroConfiguration {
         //认证失败后去哪里
         factoryBean.setSecurityManager(securityManager);
 
-        Map<String,String> map = new LinkedHashMap<>();
+        Map map = new LinkedHashMap();
         map.put("/*","anon");
         map.put("/static/**","anon");
         map.put("/css/**","anon");
@@ -56,7 +55,7 @@ public class ShiroConfiguration {
     }
 
     @Bean
-    public DefaultWebSecurityManager securityManager(ShiroRealm realm){
+    public SecurityManager securityManager(ShiroRealm realm){
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(realm);
         return securityManager;
@@ -69,7 +68,7 @@ public class ShiroConfiguration {
     }
 
     @Bean
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager){
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager){
         AuthorizationAttributeSourceAdvisor aasa = new AuthorizationAttributeSourceAdvisor();
         aasa.setSecurityManager(securityManager);
         return aasa;

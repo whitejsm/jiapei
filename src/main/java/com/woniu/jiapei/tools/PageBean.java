@@ -1,14 +1,12 @@
 package com.woniu.jiapei.tools;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString
 public class PageBean {
     private Integer pageSize = 1;
     private Integer pageNum = 1;

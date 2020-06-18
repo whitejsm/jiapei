@@ -17,4 +17,6 @@ public class BedCondition {
     private String status;
     private Date beginTime;
     private Date endTime;
+    private Integer userInfoId;
+    private Integer roleId;
 }

@@ -1,5 +1,6 @@
 package com.woniu.jiapei.mapper;
 
+import com.woniu.jiapei.model.Permission;
 import com.woniu.jiapei.model.Repairman;
 import com.woniu.jiapei.model.RepairmanExample;
 import com.woniu.jiapei.model.RepairManKey;

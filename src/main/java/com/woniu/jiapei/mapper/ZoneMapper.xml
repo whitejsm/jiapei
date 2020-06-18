@@ -6,10 +6,6 @@
     <result column="city_id" property="cityId" jdbcType="INTEGER" />
     <result column="zone_name" property="zoneName" jdbcType="VARCHAR" />
   </resultMap>
-  <select id="findByCityId" resultMap="BaseResultMap" parameterType="int">
-
-    select * from zone where city_id=#{cityId}
-  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -86,7 +82,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select
+    select 
     <include refid="Base_Column_List" />
     from zone
     where zone_id = #{zoneId,jdbcType=INTEGER}
@@ -182,4 +178,8 @@
       zone_name = #{zoneName,jdbcType=VARCHAR}
     where zone_id = #{zoneId,jdbcType=INTEGER}
   </update>
+
+  <select id="findZoneByCityId" resultMap="BaseResultMap">
+    select * from zone where city_id = #{cityId}
+  </select>
 </mapper>

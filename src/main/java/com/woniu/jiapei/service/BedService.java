@@ -18,4 +18,8 @@ public interface BedService {
     void save(Bed bed);
 
     List<Bed> getBedsByCondition(BedCondition bedCondition);
+
+    List<Bed> findByDepartmentId(Integer departmentId);
+
+    Integer getBedCount();
 }

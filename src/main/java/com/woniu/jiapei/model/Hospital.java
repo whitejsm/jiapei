@@ -1,37 +1,27 @@
 package com.woniu.jiapei.model;
 
-import lombok.Data;
-
 import java.util.Date;
 import java.util.List;
-@Data
+
 public class Hospital {
-    private UserInfo distributor;
-    private UserInfo contactor;
-    private List<Department> departments;
+    private List<Department> departmentList;
 
-    public UserInfo getDistributor() {
-        return distributor;
+    public List<Department> getDepartmentList() {
+        return departmentList;
     }
 
-    public void setDistributor(UserInfo distributor) {
-        this.distributor = distributor;
+    public void setDepartmentList(List<Department> departmentList) {
+        this.departmentList = departmentList;
     }
 
-    public UserInfo getContactor() {
-        return contactor;
+    private UserInfo userInfo;
+
+    public UserInfo getUserInfo() {
+        return userInfo;
     }
 
-    public void setContactor(UserInfo contactor) {
-        this.contactor = contactor;
-    }
-
-    public List<Department> getDepartments() {
-        return departments;
-    }
-
-    public void setDepartments(List<Department> departments) {
-        this.departments = departments;
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
     private Integer hospitalId;
@@ -61,40 +51,10 @@ public class Hospital {
     private Integer contactorId;
 
     private Integer provinceId;
-    private Province province;
 
     private Integer cityId;
 
-    public Province getProvince() {
-        return province;
-    }
-
-    public void setProvince(Province province) {
-        this.province = province;
-    }
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
-
-    public Zone getZone() {
-        return zone;
-    }
-
-    public void setZone(Zone zone) {
-        this.zone = zone;
-    }
-
-    private City city;
-
     private Integer zoneId;
-    private Zone zone;
-
-    private Boolean isdelete;
 
 
 
@@ -187,11 +147,4 @@ public class Hospital {
         this.zoneId = zoneId;
     }
 
-    public Boolean getIsdelete() {
-        return isdelete;
-    }
-
-    public void setIsdelete(Boolean isdelete) {
-        this.isdelete = isdelete;
-    }
 }

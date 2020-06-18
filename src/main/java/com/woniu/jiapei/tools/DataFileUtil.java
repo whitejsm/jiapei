@@ -69,6 +69,10 @@ public class DataFileUtil {
     }
 
     public static <T> XSSFWorkbook createScoreFile(Class<?> cls, List<T> list) {
+        return createScoreFile(cls, list, null);
+    }
+
+    public static <T> XSSFWorkbook createScoreFile(Class<?> cls, List<T> list, List<String> outList) {
         // 1. 创建一个workbook
         XSSFWorkbook workbook = workbook = new XSSFWorkbook();
         try {
@@ -80,6 +84,15 @@ public class DataFileUtil {
             XSSFCell xssfCell = null;
 
             Map<String, String> map = dataMap.get(cls.getSimpleName());
+            // 移除不需要导出的列
+            if(outList != null) {
+                LinkedHashMap map1 = new LinkedHashMap();
+                map1.putAll(map);
+                map = map1;
+                for (String s : outList) {
+                    map.remove(s);
+                }
+            }
 
             int colNum = 0;
             List<String> ls = new ArrayList<>();

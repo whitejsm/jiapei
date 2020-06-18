@@ -19,8 +19,11 @@
   <resultMap id="BaseResultMapWithBed" type="com.woniu.jiapei.model.Department" extends="BaseResultMapWithHospital">
     <association property="repairman" column="department_id" select="com.woniu.jiapei.mapper.RepairmanMapper.findByDepartment"></association>
     <collection property="bedList" column="department_id" select="com.woniu.jiapei.mapper.BedMapper.findByDepartmentId"></collection>
-
   </resultMap>
+
+  <select id="findByDepartmentId" resultMap="BaseResultMapWithHospital" parameterType="int">
+    select * from tb_jp_department where department_id = #{departmentId}
+  </select>
 
   <select id="findByHospitalId" resultMap="BaseResultMap" parameterType="Integer">
     select * from tb_jp_department
@@ -30,6 +33,23 @@
       </if>
     </where>
   </select>
+
+  <select id="getByHospitalId" resultMap="BaseResultMap" parameterType="int">
+    select * from tb_jp_department where hospital_id=#{hospitalId}
+  </select>
+
+  <select id="findByDepartorId" parameterType="com.woniu.jiapei.condition.BedCondition" resultMap="BaseResultMap">
+    select * from tb_jp_department
+    <where>
+      <if test="hospitalId!=-1 and hospitalId!=null">
+        and hospital_id=#{hospitalId}
+      </if>
+      <if test="roleId==6">
+        and departor_id=#{userInfoId}
+      </if>
+    </where>
+  </select>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -40,15 +60,15 @@
                 <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -59,25 +79,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -116,9 +136,9 @@
     delete from tb_jp_department
     where department_id = #{departmentId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.woniu.jiapei.model.DepartmentExample">
+  <delete id="deleteByExample" parameterType="com.woniu.jiapei.model.DepartmentExample" >
     delete from tb_jp_department
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
@@ -130,48 +150,48 @@
       #{departmentname,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{revenueshare,jdbcType=INTEGER},
       #{isdelete,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Department">
+  <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Department" >
     insert into tb_jp_department
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="departmentId != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="departmentId != null" >
         department_id,
       </if>
-      <if test="hospitalId != null">
+      <if test="hospitalId != null" >
         hospital_id,
       </if>
-      <if test="departorId != null">
+      <if test="departorId != null" >
         departor_id,
       </if>
-      <if test="departmentname != null">
+      <if test="departmentname != null" >
         departmentname,
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         create_time,
       </if>
-      <if test="revenueshare != null">
+      <if test="revenueshare != null" >
         revenueshare,
       </if>
       <if test="isdelete != null">
         isdelete,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="departmentId != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="departmentId != null" >
         #{departmentId,jdbcType=INTEGER},
       </if>
-      <if test="hospitalId != null">
+      <if test="hospitalId != null" >
         #{hospitalId,jdbcType=INTEGER},
       </if>
-      <if test="departorId != null">
+      <if test="departorId != null" >
         #{departorId,jdbcType=INTEGER},
       </if>
-      <if test="departmentname != null">
+      <if test="departmentname != null" >
         #{departmentname,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="revenueshare != null">
+      <if test="revenueshare != null" >
         #{revenueshare,jdbcType=INTEGER},
       </if>
       <if test="isdelete != null">
@@ -179,70 +199,69 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.woniu.jiapei.model.DepartmentExample" resultType="java.lang.Integer">
+  <select id="countByExample" parameterType="com.woniu.jiapei.model.DepartmentExample" resultType="java.lang.Integer" >
     select count(*) from tb_jp_department
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByExampleSelective" parameterType="map" >
     update tb_jp_department
-    <set>
-      <if test="record.departmentId != null">
+    <set >
+      <if test="record.departmentId != null" >
         department_id = #{record.departmentId,jdbcType=INTEGER},
       </if>
-      <if test="record.hospitalId != null">
+      <if test="record.hospitalId != null" >
         hospital_id = #{record.hospitalId,jdbcType=INTEGER},
       </if>
-      <if test="record.departorId != null">
+      <if test="record.departorId != null" >
         departor_id = #{record.departorId,jdbcType=INTEGER},
       </if>
-      <if test="record.departmentname != null">
+      <if test="record.departmentname != null" >
         departmentname = #{record.departmentname,jdbcType=VARCHAR},
       </if>
-      <if test="record.createTime != null">
+      <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.revenueshare != null">
+      <if test="record.revenueshare != null" >
         revenueshare = #{record.revenueshare,jdbcType=INTEGER},
       </if>
       <if test="record.isdelete != null">
         isdelete = #{record.isdelete,jdbcType=BIT},
       </if>
     </set>
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByExample" parameterType="map" >
     update tb_jp_department
     set department_id = #{record.departmentId,jdbcType=INTEGER},
       hospital_id = #{record.hospitalId,jdbcType=INTEGER},
       departor_id = #{record.departorId,jdbcType=INTEGER},
       departmentname = #{record.departmentname,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      revenueshare = #{record.revenueshare,jdbcType=INTEGER},
-      isdelete = #{record.isdelete,jdbcType=BIT}
-    <if test="_parameter != null">
+      revenueshare = #{record.revenueshare,jdbcType=INTEGER}
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.jiapei.model.Department">
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.jiapei.model.Department" >
     update tb_jp_department
-    <set>
-      <if test="hospitalId != null">
+    <set >
+      <if test="hospitalId != null" >
         hospital_id = #{hospitalId,jdbcType=INTEGER},
       </if>
-      <if test="departorId != null">
+      <if test="departorId != null" >
         departor_id = #{departorId,jdbcType=INTEGER},
       </if>
-      <if test="departmentname != null">
+      <if test="departmentname != null" >
         departmentname = #{departmentname,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="revenueshare != null">
+      <if test="revenueshare != null" >
         revenueshare = #{revenueshare,jdbcType=INTEGER},
       </if>
       <if test="isdelete != null">
@@ -251,16 +270,29 @@
     </set>
     where department_id = #{departmentId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.woniu.jiapei.model.Department">
+  <update id="updateByPrimaryKey" parameterType="com.woniu.jiapei.model.Department" >
     update tb_jp_department
     set hospital_id = #{hospitalId,jdbcType=INTEGER},
       departor_id = #{departorId,jdbcType=INTEGER},
       departmentname = #{departmentname,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      revenueshare = #{revenueshare,jdbcType=INTEGER},
-      isdelete = #{isdelete,jdbcType=BIT}
+      revenueshare = #{revenueshare,jdbcType=INTEGER}
     where department_id = #{departmentId,jdbcType=INTEGER}
   </update>
+
+  <select id="findDepartmentByHospitalManId" resultMap="BaseResultMap">
+    select * from tb_jp_department
+    where hospital_id in (
+        select hospital_id from tb_jp_hospital where contactor_id = #{userId}
+    )
+  </select>
+
+  <select id="findDepartmentByDistributorId" resultMap="BaseResultMap">
+    select * from tb_jp_department
+    where hospital_id in (
+        select hospital_id from tb_jp_hospital where distributor_id = #{userId}
+    )
+  </select>
 
 
 

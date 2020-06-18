@@ -6,8 +6,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface CityMapper {
-    List findByProvinceId(int provinceId);
-
     int countByExample(CityExample example);
 
     int deleteByExample(CityExample example);
@@ -29,4 +27,6 @@ public interface CityMapper {
     int updateByPrimaryKeySelective(City record);
 
     int updateByPrimaryKey(City record);
+
+    List<City> findCityByProvinceId(Integer provinceId);
 }

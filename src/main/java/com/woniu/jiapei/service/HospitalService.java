@@ -1,6 +1,13 @@
 package com.woniu.jiapei.service;
 
-import com.woniu.jiapei.model.*;
+import com.woniu.jiapei.condition.VisibleReportOccupancyCondition;
+import com.woniu.jiapei.condition.VisibleReportRentCondition;
+import com.woniu.jiapei.model.Hospital;
+import com.woniu.jiapei.model.HospitalSearch;
+import com.woniu.jiapei.model.UserInfo;
+import com.woniu.jiapei.model.Zone;
+import com.woniu.jiapei.vo.OccupancyDataVo;
+import com.woniu.jiapei.vo.RentDataVo;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,15 +18,13 @@ import java.util.List;
  *
  */
 public interface HospitalService {
-    List<Hospital> findByAll();
+    List<Hospital> getAllHospital();
 
-    Boolean delete(int id);
+    List<Hospital> getDistributorHospital(Integer distributorId);
 
-    List<UserInfo> findDistributor();
+    RentDataVo getRentDataByCondition(VisibleReportRentCondition condition);
 
-    List<Province> findProvinces();
-
-    List<City> findCities(int provinceId);
+    List<Hospital> getHospitalByContactorId(Integer contactorId);
 
     List<Zone> findZones(int cityId);
 
@@ -31,7 +36,7 @@ public interface HospitalService {
 
     Hospital findByPrimaryKey(int hospitalId);
 
-    List<Hospital> getAllHospital();
 
     void update(Hospital hospital);
+    List<Hospital> getHospitalByDepartorId(Integer departorId);
 }

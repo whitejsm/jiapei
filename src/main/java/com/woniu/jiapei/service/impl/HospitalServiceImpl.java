@@ -4,14 +4,20 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.woniu.jiapei.mapper.*;
 import com.woniu.jiapei.model.*;
+import com.woniu.jiapei.condition.VisibleReportRentCondition;
+import com.woniu.jiapei.mapper.HospitalMapper;
+import com.woniu.jiapei.model.Hospital;
 import com.woniu.jiapei.service.HospitalService;
+import com.woniu.jiapei.vo.RentDataVo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+@Transactional
 @Service
 public class HospitalServiceImpl implements HospitalService {
     @Resource
@@ -26,6 +32,11 @@ public class HospitalServiceImpl implements HospitalService {
     ZoneMapper zoneMapper;
 
     @Override
+    public List<Hospital> getAllHospital() {
+        return hospitalMapper.selectByExample(null);
+    }
+
+    @Override
     public Boolean delete(int id) {
         Hospital hospital = new Hospital();
         hospital.setHospitalId(id);
@@ -34,6 +45,28 @@ public class HospitalServiceImpl implements HospitalService {
         return i==0?false:true;
     }
 
+    @Override
+    public List<Hospital> getDistributorHospital(Integer distributorId) {
+        return hospitalMapper.selectByDistributorId(distributorId);
+    }
+
+    @Override
+    public RentDataVo getRentDataByCondition(VisibleReportRentCondition condition) {
+        List<Hospital> hospitalList = hospitalMapper.selectByVisibleCondition(condition);
+        RentDataVo vo = new RentDataVo();
+
+        for (Hospital hospital : hospitalList) {
+            vo.getHospitalNameList().add(hospital.getHospitalname());
+            vo.getRentList().add(hospital.getRent());
+        }
+
+        return vo;
+    }
+
+    @Override
+    public List<Hospital> getHospitalByContactorId(Integer contactorId) {
+        return hospitalMapper.selectByContactorId(contactorId);
+    }
     @Override
     public List<City> findCities(int provinceId) {
         return cityMapper.findByProvinceId(provinceId);
@@ -102,9 +135,7 @@ public class HospitalServiceImpl implements HospitalService {
         return hospitalMapper.selectByPrimaryKey(hospitalId);
     }
 
-    public List<Hospital> getAllHospital() {
-        return hospitalMapper.selectByExample(null);
-    }
+
 
     @Override
     public void update(Hospital hospital) {
@@ -125,5 +156,9 @@ public class HospitalServiceImpl implements HospitalService {
     public List<Hospital> findByAll() {
         List<Hospital> list = hospitalMapper.findAll();
         return list;
+    }
+    @Override
+    public List<Hospital> getHospitalByDepartorId(Integer departorId) {
+        return hospitalMapper.selectByDepartorId(departorId);
     }
 }

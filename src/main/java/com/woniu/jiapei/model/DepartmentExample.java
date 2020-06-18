@@ -474,66 +474,6 @@ public class DepartmentExample {
             addCriterion("revenueshare not between", value1, value2, "revenueshare");
             return (Criteria) this;
         }
-
-        public Criteria andIsdeleteIsNull() {
-            addCriterion("isdelete is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsdeleteIsNotNull() {
-            addCriterion("isdelete is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsdeleteEqualTo(Boolean value) {
-            addCriterion("isdelete =", value, "isdelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsdeleteNotEqualTo(Boolean value) {
-            addCriterion("isdelete <>", value, "isdelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsdeleteGreaterThan(Boolean value) {
-            addCriterion("isdelete >", value, "isdelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsdeleteGreaterThanOrEqualTo(Boolean value) {
-            addCriterion("isdelete >=", value, "isdelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsdeleteLessThan(Boolean value) {
-            addCriterion("isdelete <", value, "isdelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsdeleteLessThanOrEqualTo(Boolean value) {
-            addCriterion("isdelete <=", value, "isdelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsdeleteIn(List<Boolean> values) {
-            addCriterion("isdelete in", values, "isdelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsdeleteNotIn(List<Boolean> values) {
-            addCriterion("isdelete not in", values, "isdelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsdeleteBetween(Boolean value1, Boolean value2) {
-            addCriterion("isdelete between", value1, value2, "isdelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsdeleteNotBetween(Boolean value1, Boolean value2) {
-            addCriterion("isdelete not between", value1, value2, "isdelete");
-            return (Criteria) this;
-        }
     }
 
     public static class Criteria extends GeneratedCriteria {

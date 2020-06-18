@@ -7,10 +7,73 @@
     <result column="repair_result" property="repairResult" jdbcType="VARCHAR" />
     <result column="repair_status" property="repairStatus" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="repairman_id" property="repairmanId" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.woniu.jiapei.model.Repair" extends="BaseResultMap" >
     <result column="repair_instructions" property="repairInstructions" jdbcType="LONGVARCHAR" />
   </resultMap>
+  <!--查询结果附带后台用户信息-->
+  <resultMap id="ResultMapWithBLOBsAndUserinfo" type="com.woniu.jiapei.model.Repair" extends="ResultMapWithBLOBs">
+    <association property="userInfo" column="repairman_id" select="com.woniu.jiapei.mapper.UserInfoMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <!--查询结果附带故障信息-->
+  <resultMap id="ResultMapWithBLOBsAndUserinfoAndFault" type="com.woniu.jiapei.model.Repair" extends="ResultMapWithBLOBsAndUserinfo">
+      <association property="fault" column="fault_id" select="com.woniu.jiapei.mapper.FaultMapper.findForRepair"></association>
+  </resultMap>
+
+  <select id="findAll" parameterType="com.woniu.jiapei.condition.RepairCondition" resultMap="ResultMapWithBLOBsAndUserinfoAndFault">
+    select * from tb_jp_repair
+        <where>
+            and repairman_id is not null
+            and repair_status!='已删除'
+            and repair_status!='待备案'
+            <if test="repairId!='' and repairId!=null">
+                and repair_id like concat("%",#{repairId},"%")
+            </if>
+            <if test="hospitalId!='-1' and hospitalId!=null">
+                and fault_id in (select fault_id from tb_jp_fault where bed_id in
+                  (select bed_id from tb_jp_bed where department_id in
+                    (select department_id from tb_jp_department where hospital_id = #{hospitalId})))
+            </if>
+            <if test="departmentId!='-1' and departmentId!=null">
+                and fault_id in (select fault_id from tb_jp_fault where bed_id in
+                     (select bed_id from tb_jp_bed where department_id = #{departmentId}))
+            </if>
+            <if test="repairmanId!='-1' and repairmanId!=null">
+                and repairman_id = #{repairmanId}
+            </if>
+            <if test="repairStatus!='-1' and repairStatus!=null">
+                and repair_status = #{repairStatus}
+            </if>
+            <if test="beginTime!=null">
+                and create_time &gt; #{beginTime}
+            </if>
+            <if test="endTime!=null">
+                and create_time &lt; #{endTime}
+            </if>
+            <if test="roleId==4">
+                and fault_id in (select fault_id from tb_jp_fault where bed_id in
+                    (select bed_id from tb_jp_bed where department_id in
+                        (select department_id from tb_jp_repairman where repairman_id = #{userInfoId})))
+            </if>
+            <if test="roleId==5">
+                 and fault_id in (select fault_id from tb_jp_fault where bed_id in
+                    (select bed_id from tb_jp_bed where department_id in
+                        (select department_id from tb_jp_department where hospital_id in
+                            (select hospital_id from tb_jp_hospital where contactor_id = #{userInfoId}))))
+            </if>
+            <if test="roleId==6">
+                and fault_id in (select fault_id from tb_jp_fault where bed_id in
+                    (select bed_id from tb_jp_bed where department_id in
+                        (select department_id from tb_jp_department where departor_id = #{userInfoId}))
+            </if>
+        </where>
+  </select>
+
+  <select id="findByFaultId" resultMap="ResultMapWithBLOBsAndUserinfo" parameterType="int">
+    select * from tb_jp_repair where fault_id = #{faultId}
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -70,7 +133,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    repair_id, fault_id, repair_result, repair_status, create_time
+    repair_id, fault_id, repair_result, repair_status, create_time, repairman_id
   </sql>
   <sql id="Blob_Column_List" >
     repair_instructions
@@ -125,11 +188,11 @@
   </delete>
   <insert id="insert" parameterType="com.woniu.jiapei.model.Repair" >
     insert into tb_jp_repair (repair_id, fault_id, repair_result, 
-      repair_status, create_time, repair_instructions
-      )
+      repair_status, create_time, repairman_id, 
+      repair_instructions)
     values (#{repairId,jdbcType=VARCHAR}, #{faultId,jdbcType=INTEGER}, #{repairResult,jdbcType=VARCHAR}, 
-      #{repairStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{repairInstructions,jdbcType=LONGVARCHAR}
-      )
+      #{repairStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{repairmanId,jdbcType=INTEGER}, 
+      #{repairInstructions,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Repair" >
     insert into tb_jp_repair
@@ -148,6 +211,9 @@
       </if>
       <if test="createTime != null" >
         create_time,
+      </if>
+      <if test="repairmanId != null" >
+        repairman_id,
       </if>
       <if test="repairInstructions != null" >
         repair_instructions,
@@ -168,6 +234,9 @@
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repairmanId != null" >
+        #{repairmanId,jdbcType=INTEGER},
       </if>
       <if test="repairInstructions != null" >
         #{repairInstructions,jdbcType=LONGVARCHAR},
@@ -198,6 +267,9 @@
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.repairmanId != null" >
+        repairman_id = #{record.repairmanId,jdbcType=INTEGER},
+      </if>
       <if test="record.repairInstructions != null" >
         repair_instructions = #{record.repairInstructions,jdbcType=LONGVARCHAR},
       </if>
@@ -213,6 +285,7 @@
       repair_result = #{record.repairResult,jdbcType=VARCHAR},
       repair_status = #{record.repairStatus,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      repairman_id = #{record.repairmanId,jdbcType=INTEGER},
       repair_instructions = #{record.repairInstructions,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -224,7 +297,8 @@
       fault_id = #{record.faultId,jdbcType=INTEGER},
       repair_result = #{record.repairResult,jdbcType=VARCHAR},
       repair_status = #{record.repairStatus,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      repairman_id = #{record.repairmanId,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -244,6 +318,9 @@
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="repairmanId != null" >
+        repairman_id = #{repairmanId,jdbcType=INTEGER},
+      </if>
       <if test="repairInstructions != null" >
         repair_instructions = #{repairInstructions,jdbcType=LONGVARCHAR},
       </if>
@@ -256,6 +333,7 @@
       repair_result = #{repairResult,jdbcType=VARCHAR},
       repair_status = #{repairStatus,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
+      repairman_id = #{repairmanId,jdbcType=INTEGER},
       repair_instructions = #{repairInstructions,jdbcType=LONGVARCHAR}
     where repair_id = #{repairId,jdbcType=VARCHAR}
   </update>
@@ -264,7 +342,8 @@
     set fault_id = #{faultId,jdbcType=INTEGER},
       repair_result = #{repairResult,jdbcType=VARCHAR},
       repair_status = #{repairStatus,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      repairman_id = #{repairmanId,jdbcType=INTEGER}
     where repair_id = #{repairId,jdbcType=VARCHAR}
   </update>
 </mapper>

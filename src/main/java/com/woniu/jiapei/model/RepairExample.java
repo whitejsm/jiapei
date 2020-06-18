@@ -434,6 +434,66 @@ public class RepairExample {
             addCriterion("create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
+
+        public Criteria andRepairmanIdIsNull() {
+            addCriterion("repairman_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepairmanIdIsNotNull() {
+            addCriterion("repairman_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepairmanIdEqualTo(Integer value) {
+            addCriterion("repairman_id =", value, "repairmanId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepairmanIdNotEqualTo(Integer value) {
+            addCriterion("repairman_id <>", value, "repairmanId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepairmanIdGreaterThan(Integer value) {
+            addCriterion("repairman_id >", value, "repairmanId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepairmanIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("repairman_id >=", value, "repairmanId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepairmanIdLessThan(Integer value) {
+            addCriterion("repairman_id <", value, "repairmanId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepairmanIdLessThanOrEqualTo(Integer value) {
+            addCriterion("repairman_id <=", value, "repairmanId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepairmanIdIn(List<Integer> values) {
+            addCriterion("repairman_id in", values, "repairmanId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepairmanIdNotIn(List<Integer> values) {
+            addCriterion("repairman_id not in", values, "repairmanId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepairmanIdBetween(Integer value1, Integer value2) {
+            addCriterion("repairman_id between", value1, value2, "repairmanId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepairmanIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("repairman_id not between", value1, value2, "repairmanId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

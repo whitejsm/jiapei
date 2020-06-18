@@ -4,8 +4,6 @@ import com.woniu.jiapei.condition.FaultCondition;
 import com.woniu.jiapei.model.Fault;
 import com.woniu.jiapei.model.FaultExample;
 import java.util.List;
-
-import com.woniu.jiapei.tools.PageBean;
 import org.apache.ibatis.annotations.Param;
 
 public interface FaultMapper {
@@ -40,4 +38,6 @@ public interface FaultMapper {
     List<Fault> findAll(FaultCondition faultCondition);
 
     List<Fault> findByRepairId(int userinfoId);
+
+    Fault findForRepair(Integer faultId);
 }
