@@ -7,19 +7,18 @@ import java.util.List;
 
 @Data
 public class Department {
-    private List<Bed> bedList;
+
+
+    private Integer departmentId;
+
     private Integer hospitalId;
     private Hospital hospital;
 
 
 
-    private Integer departmentId;
-
-
-
-
     private Integer departorId;
     private UserInfo departor;
+    private List<Bed> bedList;
     private Repairman repairman;
 
     private Long value1;
