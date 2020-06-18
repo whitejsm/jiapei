@@ -92,7 +92,7 @@ public class HospitalController {
     }
     @GetMapping("/findAll")
     public List<Hospital> getAll() {
-        return hospitalService.findByAll();
+        return hospitalService.getAllHospital();
     }
     @GetMapping("/findDistributor")
     public List<UserInfo> findDistributor() {

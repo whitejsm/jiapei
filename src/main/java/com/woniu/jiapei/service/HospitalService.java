@@ -2,10 +2,7 @@ package com.woniu.jiapei.service;
 
 import com.woniu.jiapei.condition.VisibleReportOccupancyCondition;
 import com.woniu.jiapei.condition.VisibleReportRentCondition;
-import com.woniu.jiapei.model.Hospital;
-import com.woniu.jiapei.model.HospitalSearch;
-import com.woniu.jiapei.model.UserInfo;
-import com.woniu.jiapei.model.Zone;
+import com.woniu.jiapei.model.*;
 import com.woniu.jiapei.vo.OccupancyDataVo;
 import com.woniu.jiapei.vo.RentDataVo;
 
@@ -39,4 +36,12 @@ public interface HospitalService {
 
     void update(Hospital hospital);
     List<Hospital> getHospitalByDepartorId(Integer departorId);
+
+    List<UserInfo> findDistributor();
+
+    List<Province> findProvinces();
+
+    Boolean delete(int id);
+
+    List<City> findCities(int provinceId);
 }

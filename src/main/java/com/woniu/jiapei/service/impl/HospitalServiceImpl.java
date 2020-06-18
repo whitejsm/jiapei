@@ -69,12 +69,12 @@ public class HospitalServiceImpl implements HospitalService {
     }
     @Override
     public List<City> findCities(int provinceId) {
-        return cityMapper.findByProvinceId(provinceId);
+        return cityMapper.findCityByProvinceId(provinceId);
     }
 
     @Override
     public List<Zone> findZones(int cityId) {
-        return zoneMapper.findByCityId(cityId);
+        return zoneMapper.findZoneByCityId(cityId);
     }
 
     @Override
@@ -152,11 +152,7 @@ public class HospitalServiceImpl implements HospitalService {
         return userInfoMapper.findDistributor();
     }
 
-    @Override
-    public List<Hospital> findByAll() {
-        List<Hospital> list = hospitalMapper.findAll();
-        return list;
-    }
+
     @Override
     public List<Hospital> getHospitalByDepartorId(Integer departorId) {
         return hospitalMapper.selectByDepartorId(departorId);

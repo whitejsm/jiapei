@@ -6,6 +6,16 @@ import java.util.List;
 public class Hospital {
     private List<Department> departmentList;
 
+    private Boolean isdelete;
+
+    public Boolean getIsdelete() {
+        return isdelete;
+    }
+
+    public void setIsdelete(Boolean isdelete) {
+        this.isdelete = isdelete;
+    }
+
     public List<Department> getDepartmentList() {
         return departmentList;
     }
