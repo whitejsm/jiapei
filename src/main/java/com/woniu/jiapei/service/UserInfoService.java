@@ -59,7 +59,6 @@ public interface UserInfoService {
 
     UserInfo findById(Integer userinfoId);
 
-    List<UserInfo> getDistributor(Integer userId);
 
     List<UserInfo> downloadAccount(AccountingCondition accountingCondition);
 
