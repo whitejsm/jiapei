@@ -285,28 +285,27 @@
 
     <select id="getBedCount" resultType="int"
             parameterType="com.woniu.jiapei.condition.ReportCondition">
-        select sum(bed_count) from (
-        select (
-        select count(*) from tb_jp_bed where department_id = k.department_id
-        ) as `bed_count`
-        from (
-        select (
-        select department_id from tb_jp_bed where bed_id = a.bed_id
-        ) as `department_id`, (
-        select hospital_id from tb_jp_department where department_id = (
-        select department_id from tb_jp_bed where bed_id = a.bed_id
-        )
-        ) as `hospital_id`, (
-        select distributor_id from tb_jp_hospital where hospital_id =(
-        select hospital_id from tb_jp_department where department_id = (
-        select department_id from tb_jp_bed where bed_id = a.bed_id
-        )
-        )
-        ) as `distributor_id`
-        from tb_jp_orders a
-        <where>and orders_status = '已完成'
-                <if test="
-                roleId==5">
+
+        select count(*) from tb_jp_bed
+        where department_id in (
+            select distinct k.department_id
+            from (
+                select (
+                    select department_id from tb_jp_bed where bed_id = a.bed_id
+                ) as `department_id`, (
+                    select hospital_id from tb_jp_department where department_id = (
+                        select department_id from tb_jp_bed where bed_id = a.bed_id
+                    )
+                ) as `hospital_id`, (
+                select distributor_id from tb_jp_hospital where hospital_id =(
+                    select hospital_id from tb_jp_department where department_id = (
+                        select department_id from tb_jp_bed where bed_id = a.bed_id
+                    )
+                )
+            ) as `distributor_id`
+            from tb_jp_orders a
+            <where>and orders_status = '已完成'
+                <if test="roleId==5">
                         and bed_id in (select bed_id from tb_jp_bed where department_id in (select department_id from
                         tb_jp_department where hospital_id in (select hospital_id from tb_jp_hospital where contactor_id =
                         #{userId})))
@@ -330,10 +329,10 @@
                     and k.hospital_id = #{hospitalId}
                 </if>
                 <if test="departmentId != null and departmentId != -1">
-                    and department_id = #{departmentId}
+                    and k.department_id = #{departmentId}
                 </if>
             </where>
-        ) c
+        )
     </select>
 
     <select id="getLeaseCount" resultType="int"
@@ -382,7 +381,7 @@
                     and k.hospital_id = #{hospitalId}
                 </if>
                 <if test="departmentId != null and departmentId != -1">
-                    and department_id = #{departmentId}
+                    and k.department_id = #{departmentId}
                 </if>
             </where>
         ) c

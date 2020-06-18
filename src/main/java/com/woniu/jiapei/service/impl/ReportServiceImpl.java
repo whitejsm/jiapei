@@ -93,28 +93,8 @@ public class ReportServiceImpl implements ReportService {
         if(condition.getDate() != null) {
             condition.setDate( new Date(condition.getDate().getTime() + 3600 * 24 * 1000) );
         }
-        System.out.println(condition.getDate());
-        List<Integer> countList = bedMapper.getCountByCondition(condition);
-        System.out.println(countList);
-        List<String> dateList = bedMapper.getDateListByCondition(condition);
-        System.out.println(dateList);
-//        vo.setDateList(dateList);
+        System.out.println(condition);
 
-        Map<String, Integer> map = new HashMap<>();
-        for(int i = 0; i < dateList.size(); i++) {
-            map.put(dateList.get(i), countList.get(i));
-        }
-
-        // 得到的非前15天，而是有数据的前15条
-//        for(int index = 0; index < dateList.size(); index++) {
-//            double occupancy = 0;
-//            if(countList.get(index) != 0) {
-//                Integer count = ordersMapper.getCountByConditionAndDateStr(condition, dateList.get(index));
-//                System.out.println(count);
-//                occupancy = count * 1.0 / countList.get(index) * 100;
-//            }
-//            vo.getOccupancyList().add(occupancy);
-//        }
         Long millions = condition.getDate().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         for(long i = 0; i < 15; i++) {
@@ -122,13 +102,19 @@ public class ReportServiceImpl implements ReportService {
             String str = df.format(date);
             vo.getDateList().add(str);
             double occupancy = 0;
-            if(map.get(str) == null || map.get(str) == 0) {
-                vo.getOccupancyList().add(0);
-            } else {
-                Integer count = ordersMapper.getCountByConditionAndDateStr(condition, str);
-                occupancy = count * 1.0 / map.get(str) * 100;
-                vo.getOccupancyList().add((int)occupancy);
-            }
+//            if(map.get(str) == null || map.get(str) == 0) {
+//                vo.getOccupancyList().add(0);
+//            } else {
+                Integer bedCount = bedMapper.getCountByConditionAndDateStr(condition, str);
+                Integer leaseCount = 0;
+                if(bedCount != null && bedCount != 0) {
+                    leaseCount = ordersMapper.getCountByConditionAndDateStr(condition, str);
+                    occupancy = leaseCount * 1.0 / bedCount * 100;
+                } else {
+                    occupancy = 0;
+                }
+            vo.getOccupancyList().add((int) occupancy);
+//            }
         }
 
         return vo;
