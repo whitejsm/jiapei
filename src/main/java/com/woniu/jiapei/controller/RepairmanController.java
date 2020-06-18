@@ -3,7 +3,7 @@ package com.woniu.jiapei.controller;
 import com.woniu.jiapei.model.Department;
 import com.woniu.jiapei.model.Fault;
 import com.woniu.jiapei.model.Hospital;
-import com.woniu.jiapei.model.RepairMan;
+import com.woniu.jiapei.model.Repairman;
 import com.woniu.jiapei.service.RepairmanService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +25,7 @@ public class RepairmanController {
     @GetMapping("showHospital")
     public Map<String,Object> showHospital(int userinfoId) throws ParseException {
         Map<String,Object> map=new HashMap<String,Object>();
-        List<RepairMan> list=repairmanService.findHospital(userinfoId);
+        List<Repairman> list=repairmanService.findHospital(userinfoId);
         Integer countHospital=repairmanService.countHospital(userinfoId);
         map.put("hospitalList",list);
         map.put("countHospital",countHospital);

@@ -38,6 +38,16 @@ public class Hospital {
 
     private String hospitalname;
 
+    private Long value1;
+
+    public Long getValue1() {
+        return createTime==null?null:createTime.getTime();
+    }
+
+    public void setValue1(Long value1) {
+        this.value1 = value1;
+    }
+
     private String bankcard;
 
     private Long rent;
@@ -129,6 +139,7 @@ public class Hospital {
     }
 
     public Date getCreateTime() {
+
         return createTime;
     }
 

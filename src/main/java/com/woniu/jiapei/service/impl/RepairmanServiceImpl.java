@@ -3,7 +3,7 @@ package com.woniu.jiapei.service.impl;
 import com.woniu.jiapei.mapper.DepartmentMapper;
 import com.woniu.jiapei.mapper.FaultMapper;
 import com.woniu.jiapei.mapper.HospitalMapper;
-import com.woniu.jiapei.mapper.RepairManMapper;
+import com.woniu.jiapei.mapper.RepairmanMapper;
 import com.woniu.jiapei.model.*;
 import com.woniu.jiapei.service.RepairmanService;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class RepairmanServiceImpl implements RepairmanService {
     @Resource
-    RepairManMapper repairmanMapper;
+    RepairmanMapper repairmanMapper;
     @Resource
     HospitalMapper hospitalMapper;
     @Resource
@@ -23,11 +23,11 @@ public class RepairmanServiceImpl implements RepairmanService {
     @Resource
     FaultMapper faultMapper;
     @Override
-    public List<RepairMan> findHospital(int userinfoId) {
-        RepairManExample example=new RepairManExample();
-        RepairManExample.Criteria criteria=example.createCriteria();
+    public List<Repairman> findHospital(int userinfoId) {
+        RepairmanExample example=new RepairmanExample();
+        RepairmanExample.Criteria criteria=example.createCriteria();
         criteria.andRepairmanIdEqualTo(userinfoId);
-        List<RepairMan> list=repairmanMapper.selectByExample(example);
+        List<Repairman> list=repairmanMapper.selectByExample(example);
         return list;
     }
 
@@ -38,8 +38,8 @@ public class RepairmanServiceImpl implements RepairmanService {
 
     @Override
     public void deleteDeptment(int departmentId) {
-        RepairManExample example=new RepairManExample();
-        RepairManExample.Criteria criteria=example.createCriteria();
+        RepairmanExample example=new RepairmanExample();
+        RepairmanExample.Criteria criteria=example.createCriteria();
         criteria.andDepartmentIdEqualTo(departmentId);
         repairmanMapper.deleteByExample(example);
     }
@@ -80,7 +80,7 @@ public class RepairmanServiceImpl implements RepairmanService {
         }
         for (Department department1 : departmentList) {
             System.out.println("增加维修负责");
-            RepairMan repairman=new RepairMan();
+            Repairman repairman=new Repairman();
             repairman.setRepairmanId(repairManId);
             repairman.setHospitalId(department1.getHospitalId());
             repairman.setDepartmentId(department1.getDepartmentId());

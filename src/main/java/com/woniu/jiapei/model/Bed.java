@@ -18,6 +18,16 @@ public class Bed {
         this.manufacturer = manufacturer;
     }
 
+    private Long value1;
+
+    public Long getValue1() {
+        return createTime.getTime();
+    }
+
+    public void setValue1(Long value1) {
+        this.value1 = value1;
+    }
+
     private Integer departmentId;
     private Department department;
 

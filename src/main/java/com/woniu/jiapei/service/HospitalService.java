@@ -32,4 +32,6 @@ public interface HospitalService {
     Hospital findByPrimaryKey(int hospitalId);
 
     List<Hospital> getAllHospital();
+
+    void update(Hospital hospital);
 }

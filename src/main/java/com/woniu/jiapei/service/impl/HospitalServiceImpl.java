@@ -83,13 +83,9 @@ public class HospitalServiceImpl implements HospitalService {
     @Override
     public List<UserInfo> findPersons(String name) {
 
-        if ("一级分销商".equals(name)) {
-            return userInfoMapper.findByRoleNameDistributor1(name);
-        } else if ("二级分销商".equals(name)) {
-            return userInfoMapper.findByRoleNameDistributor2(name);
-        } else {
+
             return userInfoMapper.findByRoleName(name);
-        }
+
 
 
     }
@@ -108,6 +104,11 @@ public class HospitalServiceImpl implements HospitalService {
 
     public List<Hospital> getAllHospital() {
         return hospitalMapper.selectByExample(null);
+    }
+
+    @Override
+    public void update(Hospital hospital) {
+        hospitalMapper.updateByPrimaryKeySelective(hospital);
     }
 
     @Override
