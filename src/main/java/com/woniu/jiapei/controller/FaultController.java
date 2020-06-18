@@ -3,7 +3,6 @@ package com.woniu.jiapei.controller;
 import com.woniu.jiapei.condition.BedCondition;
 import com.woniu.jiapei.condition.FaultCondition;
 import com.woniu.jiapei.mapper.DepartmentMapper;
-import com.woniu.jiapei.mapper.FaultMapper;
 import com.woniu.jiapei.mapper.HospitalMapper;
 import com.woniu.jiapei.model.*;
 import com.woniu.jiapei.service.BedService;

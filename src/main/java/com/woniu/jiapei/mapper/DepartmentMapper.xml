@@ -1,20 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.woniu.jiapei.mapper.DepartmentMapper" >
-  <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.Department" >
-    <id column="department_id" property="departmentId" jdbcType="INTEGER" />
-    <result column="hospital_id" property="hospitalId" jdbcType="INTEGER" />
-    <result column="departor_id" property="departorId" jdbcType="INTEGER" />
-    <result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="revenueshare" property="revenueshare" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.jiapei.mapper.DepartmentMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.jiapei.model.Department">
+    <id column="department_id" jdbcType="INTEGER" property="departmentId" />
+    <result column="hospital_id" jdbcType="INTEGER" property="hospitalId" />
+    <result column="departor_id" jdbcType="INTEGER" property="departorId" />
+    <result column="departmentname" jdbcType="VARCHAR" property="departmentname" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="revenueshare" jdbcType="INTEGER" property="revenueshare" />
+    <result column="isdelete" jdbcType="BIT" property="isdelete" />
   </resultMap>
 
   <resultMap id="BaseResultMapWithHospital" type="com.woniu.jiapei.model.Department" extends="BaseResultMap">
     <association property="hospital" column="hospital_id" select="com.woniu.jiapei.mapper.HospitalMapper.selectByPrimaryKey"></association>
+    <association property="departor" column="departor_id" select="com.woniu.jiapei.mapper.UserInfoMapper.selectByPrimaryKey"></association>
   </resultMap>
 
-  <resultMap id="BaseResultMapWithBed" type="com.woniu.jiapei.model.Department" extends="BaseResultMap">
+  <resultMap id="BaseResultMapWithBed" type="com.woniu.jiapei.model.Department" extends="BaseResultMapWithHospital">
+    <association property="repairman" column="department_id" select="com.woniu.jiapei.mapper.RepairmanMapper.findByDepartment"></association>
     <collection property="bedList" column="department_id" select="com.woniu.jiapei.mapper.BedMapper.findByDepartmentId"></collection>
   </resultMap>
 
@@ -46,14 +49,15 @@
       </if>
     </where>
   </select>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
                 <when test="criterion.singleValue" >
@@ -104,30 +108,31 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
-    department_id, hospital_id, departor_id, departmentname, create_time, revenueshare
+  <sql id="Base_Column_List">
+    department_id, hospital_id, departor_id, departmentname, create_time, revenueshare,
+    isdelete
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.woniu.jiapei.model.DepartmentExample" >
+  <select id="selectByExample" parameterType="com.woniu.jiapei.model.DepartmentExample" resultMap="BaseResultMapWithBed">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
     from tb_jp_department
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMapWithHospital" parameterType="java.lang.Integer" >
-    select 
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMapWithBed">
+    select
     <include refid="Base_Column_List" />
     from tb_jp_department
     where department_id = #{departmentId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_jp_department
     where department_id = #{departmentId,jdbcType=INTEGER}
   </delete>
@@ -137,13 +142,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.woniu.jiapei.model.Department" >
-    insert into tb_jp_department (department_id, hospital_id, departor_id, 
-      departmentname, create_time, revenueshare
-      )
-    values (#{departmentId,jdbcType=INTEGER}, #{hospitalId,jdbcType=INTEGER}, #{departorId,jdbcType=INTEGER}, 
-      #{departmentname,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{revenueshare,jdbcType=INTEGER}
-      )
+  <insert id="insert" parameterType="com.woniu.jiapei.model.Department">
+    insert into tb_jp_department (department_id, hospital_id, departor_id,
+      departmentname, create_time, revenueshare,
+      isdelete)
+    values (#{departmentId,jdbcType=INTEGER}, #{hospitalId,jdbcType=INTEGER}, #{departorId,jdbcType=INTEGER},
+      #{departmentname,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{revenueshare,jdbcType=INTEGER},
+      #{isdelete,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Department" >
     insert into tb_jp_department
@@ -166,6 +171,9 @@
       <if test="revenueshare != null" >
         revenueshare,
       </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="departmentId != null" >
@@ -185,6 +193,9 @@
       </if>
       <if test="revenueshare != null" >
         #{revenueshare,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -214,6 +225,9 @@
       </if>
       <if test="record.revenueshare != null" >
         revenueshare = #{record.revenueshare,jdbcType=INTEGER},
+      </if>
+      <if test="record.isdelete != null">
+        isdelete = #{record.isdelete,jdbcType=BIT},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -250,6 +264,9 @@
       <if test="revenueshare != null" >
         revenueshare = #{revenueshare,jdbcType=INTEGER},
       </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=BIT},
+      </if>
     </set>
     where department_id = #{departmentId,jdbcType=INTEGER}
   </update>
@@ -276,4 +293,7 @@
         select hospital_id from tb_jp_hospital where distributor_id = #{userId}
     )
   </select>
+
+
+
 </mapper>
