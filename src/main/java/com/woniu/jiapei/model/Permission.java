@@ -1,9 +1,10 @@
 package com.woniu.jiapei.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Permission {
+public class Permission implements Serializable {
     private Integer id;
 
     private String permissionname;

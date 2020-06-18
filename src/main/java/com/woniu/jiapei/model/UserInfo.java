@@ -1,9 +1,10 @@
 package com.woniu.jiapei.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class UserInfo {
+public class UserInfo implements Serializable {
     private Integer userinfoId;
 
     private String username;

@@ -2,11 +2,12 @@ package com.woniu.jiapei.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Data
-public class Department {
+public class Department implements Serializable {
 
 
     private Integer departmentId;
