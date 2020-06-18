@@ -14,4 +14,6 @@ public interface CustomerService {
     void updateOne(Customer customer);
 
     List<Customer> downByCondition(CustomerCondition customerCondition);
+
+    void resetPassword(Customer customer);
 }

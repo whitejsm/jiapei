@@ -5,6 +5,7 @@ import com.woniu.jiapei.condition.CustomerCondition;
 import com.woniu.jiapei.condition.OrderCondition;
 import com.woniu.jiapei.model.Customer;
 import com.woniu.jiapei.model.Orders;
+import com.woniu.jiapei.model.UserInfo;
 import com.woniu.jiapei.service.CustomerService;
 import com.woniu.jiapei.service.OrdersService;
 import com.woniu.jiapei.tools.DataFileUtil;
@@ -104,5 +105,11 @@ public class CustomerController {
         workBook.write(out);
         out.flush();
         out.close();
+    }
+
+
+    @PostMapping("/resetCustomerPassword")
+    public void resetCustomerPassword(Customer customer){
+        customerServiceImpl.resetPassword(customer);
     }
 }
