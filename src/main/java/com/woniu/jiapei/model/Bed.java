@@ -2,9 +2,10 @@ package com.woniu.jiapei.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 @Data
-public class Bed {
+public class Bed implements Serializable {
     private String bedId;
 
     private Integer manufacturerId;

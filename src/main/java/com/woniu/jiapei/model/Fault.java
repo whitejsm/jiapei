@@ -1,9 +1,10 @@
 package com.woniu.jiapei.model;
 
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Fault {
+public class Fault implements Serializable {
     private Bed bed;
     private Repair repair;
     private UserInfo userInfo;

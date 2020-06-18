@@ -2,24 +2,24 @@ package com.woniu.jiapei.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Data
-public class Department {
-    private List<Bed> bedList;
+public class Department implements Serializable {
+
+
+    private Integer departmentId;
+
     private Integer hospitalId;
     private Hospital hospital;
 
 
 
-    private Integer departmentId;
-
-
-
-
     private Integer departorId;
     private UserInfo departor;
+    private List<Bed> bedList;
     private Repairman repairman;
 
     private Long value1;

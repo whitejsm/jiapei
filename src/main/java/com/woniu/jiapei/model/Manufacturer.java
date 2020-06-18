@@ -1,6 +1,8 @@
 package com.woniu.jiapei.model;
 
-public class Manufacturer {
+import java.io.Serializable;
+
+public class Manufacturer implements Serializable {
     private Integer manufacturerId;
 
     private String name;

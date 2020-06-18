@@ -2,10 +2,11 @@ package com.woniu.jiapei.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 @Data
-public class Hospital {
+public class Hospital implements Serializable {
     private UserInfo distributor;
     private UserInfo contactor;
     private List<Department> departments;

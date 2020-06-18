@@ -1,8 +1,9 @@
 package com.woniu.jiapei.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Shareholder {
+public class Shareholder implements Serializable {
     private Integer userinfoId;
 
     private Integer shareholderRevenueshare;
