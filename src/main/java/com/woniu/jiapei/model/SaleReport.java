@@ -1,6 +1,8 @@
 package com.woniu.jiapei.model;
 
-public class SaleReport {
+import java.io.Serializable;
+
+public class SaleReport implements Serializable {
     private String orderDate;
     private String distributorName;
     private String hospitalName;
