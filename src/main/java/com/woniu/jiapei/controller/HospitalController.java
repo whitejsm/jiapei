@@ -120,7 +120,8 @@ public class HospitalController {
     @GetMapping("/{hospitalId}")
     public Hospital showDetail(@PathVariable int hospitalId) {
         Hospital hospital = hospitalService.findByPrimaryKey(hospitalId);
-        //System.out.println(hospital);
+        System.out.println(hospital);
+        System.out.println("ssh");
         return hospital;
         }
 

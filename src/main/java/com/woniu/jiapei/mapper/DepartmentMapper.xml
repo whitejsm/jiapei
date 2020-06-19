@@ -13,7 +13,7 @@
   </resultMap>
 
   <resultMap id="BaseResultMapWithHospital" type="com.woniu.jiapei.model.Department" extends="BaseResultMap">
-    <association property="hospital" column="hospital_id" select="com.woniu.jiapei.mapper.HospitalMapper.selectByPrimaryKey"></association>
+    <association property="hospital" column="hospital_id" select="com.woniu.jiapei.mapper.HospitalMapper.department"></association>
     <association property="departor" column="departor_id" select="com.woniu.jiapei.mapper.UserInfoMapper.selectByPrimaryKey"></association>
   </resultMap>
 
@@ -26,7 +26,7 @@
     select * from tb_jp_department where department_id = #{departmentId}
   </select>
 
-  <select id="findByHospitalId" resultMap="BaseResultMap" parameterType="Integer">
+  <select id="findByHospitalId" resultMap="BaseResultMapWithBed" parameterType="Integer">
     select * from tb_jp_department
     <where>
       <if test="hospitalId!=-1 and hospitalId!=null">

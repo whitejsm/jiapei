@@ -102,7 +102,7 @@ public class HospitalServiceImpl implements HospitalService {
         HospitalExample.Criteria criteria = example.createCriteria();
         criteria.andIsdeleteEqualTo(true);
         if (hospitalSearch.getName() != null && !"".equals(hospitalSearch.getName())) {
-            criteria.andHospitalnameLike(hospitalSearch.getName());
+            criteria.andHospitalnameLike("%"+hospitalSearch.getName()+"%");
         }
         if (hospitalSearch.getDistributor() != null) {
             criteria.andDistributorIdEqualTo(hospitalSearch.getDistributor());

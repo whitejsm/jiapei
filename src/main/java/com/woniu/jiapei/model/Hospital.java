@@ -213,4 +213,7 @@ public class Hospital implements Serializable {
     public void setIsdelete(Boolean isdelete) {
         this.isdelete = isdelete;
     }
-}
+
+
+    }
+

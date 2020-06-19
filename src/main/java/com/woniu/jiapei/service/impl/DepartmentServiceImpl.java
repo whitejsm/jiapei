@@ -36,7 +36,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         criteria.andIsdeleteEqualTo(true);
         if (hospitalSearch.getName() != null && !"".equals(hospitalSearch.getName())) {
             System.out.println(hospitalSearch.getName());
-            criteria.andDepartmentnameLike(hospitalSearch.getName());
+            criteria.andDepartmentnameLike("%"+hospitalSearch.getName()+"%");
         }
 
         if (hospitalSearch.getHospitalId() != null && !"".equals(hospitalSearch.getHospitalId())) {
