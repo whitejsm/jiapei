@@ -21,4 +21,6 @@ public interface DepartmentService {
     Department findByPrimaryKey(int departmentId);
 
     void update(Department department);
+
+    HashMap<String, Object> searchOwn(Integer userId, Integer currentPage);
 }

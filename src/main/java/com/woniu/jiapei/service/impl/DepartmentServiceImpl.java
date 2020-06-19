@@ -93,4 +93,22 @@ public class DepartmentServiceImpl implements DepartmentService {
     public void update(Department department) {
         departmentMapper.updateByPrimaryKeySelective(department);
     }
+
+    @Override
+    public HashMap<String, Object> searchOwn(Integer userId, Integer currentPage) {
+        PageHelper.startPage(currentPage, 15);
+        DepartmentExample example = new DepartmentExample();
+        DepartmentExample.Criteria criteria = example.createCriteria();
+        criteria.andIsdeleteEqualTo(true);
+        criteria.andDepartorIdEqualTo(userId);
+        List<Department> list = departmentMapper.selectByExample(example);
+        System.out.println(list);
+        PageInfo<Department> info = new PageInfo<>(list);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("list", list);
+        map.put("info", info);
+
+        return map;
+
+    }
 }

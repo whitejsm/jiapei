@@ -58,12 +58,16 @@ public class RepairmanController {
 
         department[0]=department[0].substring(1);
         for(int i=0;i<department.length;i++){
-            String a=department[i].substring(5,6);
+            String a=null;
+            if(department[i].length()>8){
+                a=department[i].substring(5,10);
+            }else{
+                a=department[i].substring(5,6);
+            }
             department[i]=a;
             System.out.println(department[i]);
         }
         repairmanService.RepairAddDepartment(repairManId,department);
-
     }
 
     @GetMapping("getRepair")

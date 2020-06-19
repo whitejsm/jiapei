@@ -308,28 +308,6 @@
     where bed_id = #{bedId,jdbcType=VARCHAR}
   </update>
 
-    <select id="getCountByCondition" parameterType="com.woniu.jiapei.condition.VisibleReportOccupancyCondition"
-            resultType="int">
-        select count(*) from (
-            select convert(create_time, date) as `date` from tb_jp_bed
-            <where>
-                <if test="hospitalId != null and hospitalId != -1">
-                    and department_id in (
-                    select department_id from tb_jp_department where hospital_id = #{hospitalId}
-                    )
-                </if>
-                <if test="departmentId != null and departmentId != -1">
-                    and department_id = #{departmentId}
-                </if>
-                <if test="date != null">
-                    and create_time &lt;= #{date}
-                </if>
-            </where>
-            ) a
-        group by a.`date`
-        order by a.`date` desc
-    </select>
-
     <select id="getDateListByCondition" parameterType="com.woniu.jiapei.condition.VisibleReportOccupancyCondition"
             resultType="String">
         select a.`date` from (
@@ -354,5 +332,23 @@
 
     <select id="getBedCount" resultType="int">
         select count(*) from tb_jp_bed
+    </select>
+
+    <select id="getCountByConditionAndDateStr" resultType="int">
+      select count(*)
+      from tb_jp_bed
+      <where>
+        <if test="condition.hospitalId != null and condition.hospitalId != -1">
+          and department_id in (
+          select department_id from tb_jp_department where hospital_id = #{condition.hospitalId}
+          )
+        </if>
+        <if test="condition.departmentId != null and condition.departmentId != -1">
+          and department_id = #{condition.departmentId}
+        </if>
+        <if test="condition.date != null">
+          and create_time &lt;= #{condition.date}
+        </if>
+      </where>
     </select>
 </mapper>

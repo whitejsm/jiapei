@@ -73,6 +73,25 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
     @Override
+    public HashMap<String, Object> searchOwn(Integer userId, Integer currentPage) {
+        PageHelper.startPage(currentPage, 15);
+        HospitalExample example = new HospitalExample();
+        HospitalExample.Criteria criteria = example.createCriteria();
+        criteria.andIsdeleteEqualTo(true);
+        criteria.andContactorIdEqualTo(userId);
+        List<Hospital> list = hospitalMapper.selectByExample(example);
+        PageInfo<Hospital> info = new PageInfo<>(list);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("list", list);
+        map.put("info", info);
+
+        return map;
+
+
+
+    }
+
+    @Override
     public List<Zone> findZones(int cityId) {
         return zoneMapper.findZoneByCityId(cityId);
     }
