@@ -358,12 +358,10 @@
     </select>
 
     <select id="getCountByConditionAndDateStr" resultType="int">
-        select  count(*) from (
-        select convert(tb_jp_orders.create_time, date) as `date`
-        from tb_jp_orders, tb_jp_bed
+        select count(*)
+        from tb_jp_orders
         <where>
-            and tb_jp_orders.bed_id = tb_jp_bed.bed_id
-            and convert(tb_jp_orders.create_time, date) = convert(tb_jp_bed.create_time, date)
+            and convert(tb_jp_orders.create_time, date) = #{date}
             <if test="condition.hospitalId != null and condition.hospitalId != -1">
                 and tb_jp_orders.bed_id in (
                 select bed_id from tb_jp_bed where department_id in (
@@ -376,12 +374,7 @@
                 select bed_id from tb_jp_bed where department_id = #{condition.departmentId}
                 )
             </if>
-            <if test="condition.date != null">
-                and tb_jp_orders.create_time &lt;= #{condition.date}
-            </if>
         </where>
-        ) a
-        where a.`date` = #{date}
     </select>
 
     <select id="getBedLeaseCount" resultType="int">

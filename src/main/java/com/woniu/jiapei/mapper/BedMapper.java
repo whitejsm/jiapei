@@ -34,9 +34,9 @@ public interface BedMapper {
 
     Bed findBedById(String bedId);
 
-    List<Integer> getCountByCondition(VisibleReportOccupancyCondition condition);
-
     List<String> getDateListByCondition(VisibleReportOccupancyCondition condition);
 
     Integer getBedCount();
+
+    Integer getCountByConditionAndDateStr(@Param("condition") VisibleReportOccupancyCondition condition, @Param("date") String date);
 }

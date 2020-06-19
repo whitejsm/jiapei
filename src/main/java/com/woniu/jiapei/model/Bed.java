@@ -22,6 +22,9 @@ public class Bed implements Serializable {
     private Long value1;
 
     public Long getValue1() {
+        if(createTime==null){
+            return null;
+        }
         return createTime.getTime();
     }
 

@@ -3,7 +3,9 @@
  */
 package com.woniu.jiapei.model;
 
-public class ProvinceHospitalData {
+import java.io.Serializable;
+
+public class ProvinceHospitalData implements Serializable {
     private String name;
     private Integer value;
     private Integer areaCode;

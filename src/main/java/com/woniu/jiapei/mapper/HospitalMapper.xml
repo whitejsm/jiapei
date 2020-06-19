@@ -26,6 +26,7 @@
 
   <resultMap id="BaseResultMapContactorDepartment" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMapContactorDistributor">
     <collection property="departments" column="hospital_id" select="com.woniu.jiapei.mapper.DepartmentMapper.findByHospitalId"></collection>
+    <collection property="departmentList" column="hospital_id" select="com.woniu.jiapei.mapper.DepartmentMapper.findByHospitalId"></collection>
   </resultMap>
 
   <resultMap id="BaseResultMapContactorDepartmentPCZ" type="com.woniu.jiapei.model.Hospital" extends="BaseResultMapContactorDepartment">
