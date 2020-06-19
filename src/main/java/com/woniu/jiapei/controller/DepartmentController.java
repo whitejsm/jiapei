@@ -62,6 +62,7 @@ public class DepartmentController {
             pb.setTotalCount((int) info.getTotal());
 //        System.out.println(pb);
             map.put("pb", pb);
+            map.put("rid", (Integer) (session.getAttribute("roleId")));
             return map;
         } else if ((Integer) (session.getAttribute("roleId")) == 6) {
             HashMap<String, Object> map = departmentService.searchOwn((Integer) (session.getAttribute("userId")), currentPage);
@@ -72,6 +73,8 @@ public class DepartmentController {
             pb.setTotalCount((int) info.getTotal());
 //        System.out.println(pb);
             map.put("pb", pb);
+            map.put("rid", (Integer) (session.getAttribute("roleId")));
+
             return map;
         } else {
             return null;

@@ -160,7 +160,7 @@ select * from tb_jp_hospital where isdelete=1
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.woniu.jiapei.model.Hospital" >
+  <insert id="insert" parameterType="com.woniu.jiapei.model.Hospital" flushCache="true">
     insert into tb_jp_hospital (hospital_id, hospitalname, bankcard,
       rent, revenueshare, create_time,
       distributor_id, contactor_id, province_id,
@@ -172,7 +172,7 @@ select * from tb_jp_hospital where isdelete=1
       #{cityId,jdbcType=INTEGER}, #{zoneId,jdbcType=INTEGER}, #{isdelete,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Hospital" >
+  <insert id="insertSelective" parameterType="com.woniu.jiapei.model.Hospital" flushCache="true">
     insert into tb_jp_hospital
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="hospitalId != null" >
@@ -319,7 +319,7 @@ select * from tb_jp_hospital where isdelete=1
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.jiapei.model.Hospital" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.jiapei.model.Hospital" flushCache="true">
     update tb_jp_hospital
     <set >
       <if test="hospitalname != null" >

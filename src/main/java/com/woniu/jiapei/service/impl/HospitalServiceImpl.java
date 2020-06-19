@@ -145,7 +145,7 @@ public class HospitalServiceImpl implements HospitalService {
     @Override
     public void insert(Hospital hospital) {
         hospital.setCreateTime(new Date());
-        hospital.setIsdelete(false);
+        hospital.setIsdelete(true);
         hospitalMapper.insertSelective(hospital);
     }
 
