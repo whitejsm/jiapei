@@ -1,6 +1,8 @@
 package com.woniu.jiapei.model;
 
-public class SimpleReport {
+import java.io.Serializable;
+
+public class SimpleReport implements Serializable {
     private String orderDate;
     private Integer bedCount;
     private Integer leaseCount;
