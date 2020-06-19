@@ -285,7 +285,7 @@ public class UserInfoServiceImpl implements UserInfoService {
                 shareholder.setShareholderTime(new Date());
                 shareholderMapper.insert(shareholder);
             }
-        }else if(!level){
+        }else {
             userInfoRoleMapper.changeRoleFXS(userInfo.getUserinfoId());
             System.out.println("修改角色为分销商");
             shareholderMapper.deleteByPrimaryKey(userInfo.getUserinfoId());

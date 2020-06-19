@@ -10,6 +10,15 @@ public class Hospital implements Serializable {
     private UserInfo distributor;
     private UserInfo contactor;
     private List<Department> departments;
+    private UserInfo userInfo;
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
 
     public UserInfo getDistributor() {
         return distributor;
