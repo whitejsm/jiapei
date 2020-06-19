@@ -11,6 +11,7 @@ public class Hospital implements Serializable {
     private UserInfo contactor;
     private List<Department> departments;
     private List<Department> departmentList;
+    //
 
     public List<Department> getDepartmentList() {
         return departmentList;
