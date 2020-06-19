@@ -75,10 +75,11 @@ public class LoginController {
     注销
      */
     @GetMapping("/logout")
-    public void logout(){
+    public void logout(HttpSession session){
         System.out.println("退出系统");
-        Subject currentUser = SecurityUtils.getSubject();
-        currentUser.logout();
+        session.invalidate();
+//        Subject currentUser = SecurityUtils.getSubject();
+//        currentUser.logout();
 //        return "/tologin";
     }
 
