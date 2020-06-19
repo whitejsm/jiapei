@@ -34,10 +34,10 @@ public class LoginController {
     public Map<String, Object> login(HttpSession session, String uname, String upass){
         upass= DigestUtils.md5DigestAsHex(upass.getBytes());
         Map<String, Object> map=new HashMap<>();
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(uname,upass);
+//        Subject subject = SecurityUtils.getSubject();
+//        UsernamePasswordToken token = new UsernamePasswordToken(uname,upass);
         try{
-            subject.login(token);
+//            subject.login(token);
             System.out.println("登录成功");
             UserInfo userinfo= userInfoServiceImpl.findByName(uname);
             Role role = userInfoServiceImpl.findRoleByUserId(userinfo.getUserinfoId());
